@@ -76,3 +76,34 @@ header {
     background-color: #555;
   }
   
+
+  /*MENSAJE DE ERROR USUARIO EXISTENTE----------*/
+  /* Agrega este código en tu archivo CSS */
+
+.mensaje-error {
+  background-color: #FFCCCC;
+  border: 1px solid #FF0000;
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.mensaje-error p {
+  color: #FF0000;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.mensaje-error button {
+  padding: 10px 20px;
+  background-color: #FF0000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mensaje-error button:hover {
+  background-color: #CC0000;
+}
