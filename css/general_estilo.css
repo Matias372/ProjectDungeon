@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Retro;
+    src: url(../docs/Fonts/PressStart2P-Regular.ttf);
+}
+
+*{
+    font-family: Retro;
+}
