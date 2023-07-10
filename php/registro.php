@@ -6,13 +6,15 @@
     <title>ProjectDungeon</title>
     <link rel="stylesheet" href="../css/general_estilo.css">
     <link rel="stylesheet" href="../css/registro_estilo.css">
+    <link rel="stylesheet" href="../css/header_estilo.css">
+    <link rel="stylesheet" href="../css/footer_estilo.css">
 </head>
 <body>
 
     <!-- Incluir el encabezado -->
-    <header>
+    
         <?php include '../html/header.html'; ?>
-    </header>
+    
 
     <form class="registro-form" action="validar_registro.php" method="POST">
         <h2>Registro</h2>

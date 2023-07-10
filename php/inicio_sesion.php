@@ -6,13 +6,15 @@
     <title>Project Dungeon</title>
     <link rel="stylesheet" href="../css/general_estilo.css">
     <link rel="stylesheet" href="../css/ini_sesion_estilos.css">
+    <link rel="stylesheet" href="../css/header_estilo.css">
+    <link rel="stylesheet" href="../css/footer_estilo.css">
 </head>
 <body>
 
     <!-- Incluir el encabezado -->
-    <header>
-        <?php include '<../html/header.html'; ?>
-    </header>
+    
+    <?php include '../html/header.html'; ?>
+    
 
     <h2>Iniciar sesión</h2>
 
@@ -41,7 +43,7 @@
     <a href="../index.php" class="cancel-link">Cancelar</a>
   
     <header>
-        <?php include '<../html/header.html'; ?>
+        <?php include '../html/footer.html'; ?>
     </header>
 
 </body>

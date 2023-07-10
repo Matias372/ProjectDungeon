@@ -1,4 +1,8 @@
 /* Estilos específicos para el formulario de registro */
+*{
+  margin: 0px;
+  padding: 0px;
+}
 
 .registro-form {
   max-width: 400px;
