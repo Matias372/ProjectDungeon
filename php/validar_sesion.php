@@ -27,7 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $email;
             $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
             // Redirigir al index.php con la sesión iniciada
-            header("Location: ../index.php");
+            // La sesión se inicia correctamente
+            $_SESSION['sesion_iniciada'] = true;
+
+            // Redirigir al index.php con la señal de sesión iniciada
+            header("Location: ../index.php?sesion_iniciada=true");
             exit();
         } else {
             // La contraseña es incorrecta

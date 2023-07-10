@@ -1,26 +1,4 @@
-<!--
-<header>
-    <div class="logo">
-        <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-            <a href="index.php"><img src="img/LOGO PD.png" alt="Logo de la empresa"></a>
-        <?php else: ?>
-            <a href="../index.php"><img src="../img/LOGO PD.png" alt="Logo de la empresa"></a>
-        <?php endif; ?>
-    </div>
-    <nav>
-        <ul>
-            <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-                <li><a href="php/inicio_sesion.php">Iniciar sesión</a></li>
-                <li><a href="php/registro.php">Registrarse</a></li>
-            <?php else: ?>
-                <li><a href="../php/inicio_sesion.php">Iniciar sesión</a></li>
-                <li><a href="../php/registro.php">Registrarse</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-    
-</header>
--->
+
 <header>
     <div class="logo">
         <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
@@ -32,8 +10,8 @@
     
     <?php
     // Verificar si hay una sesión iniciada
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
+    if (isset($_SESSION['usuario'])) {
+        $username = $_SESSION['usuario'];
     ?>
     <nav>
         <ul>
