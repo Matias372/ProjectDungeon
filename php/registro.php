@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Verificar si hay una sesión iniciada
+if(isset($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Inicializar la variable de sesión $_SESSION
+$_SESSION = array();
+
 // Verificar si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos del formulario
@@ -22,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($clave, $hashed_password)) {
             // La contraseña es correcta, iniciar sesión
             $_SESSION['email'] = $email;
+            $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
             // Redirigir al index.php con la sesión iniciada
             header("Location: ../index.php");
             exit();

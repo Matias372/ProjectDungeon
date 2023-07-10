@@ -1,3 +1,6 @@
+<?php
+session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +35,7 @@
     </section>
 
     <!-- Incluir el pie de página -->
-    <?php include '<html/footer.html'; ?>
+    <?php include 'html/footer.html'; ?>
 
     <script src="js/index.js"></script>
 </body>
