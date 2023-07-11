@@ -22,7 +22,8 @@ html, body {
   }
   
   .content {
-    background-color: black;
+    
+    border: 1px solid #5e5e5e;
     width: 800px;
     height: 600px;
     margin: 0 auto;
