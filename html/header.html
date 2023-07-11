@@ -31,11 +31,16 @@
         </ul>
     </nav>
     <?php } else { ?>
-    <nav>
-        <ul>
-            <li><a href="php/inicio_sesion.php">Iniciar sesión</a></li>
-            <li><a href="php/registro.php">Registrarse</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+                    <li><a href="php/inicio_sesion.php">Iniciar sesión</a></li>
+                    <li><a href="php/registro.php">Registrarse</a></li>
+                <?php else: ?>
+                    <li><a href="inicio_sesion.php">Iniciar sesión</a></li>
+                    <li><a href="registro.php">Registrarse</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     <?php } ?>
 </header>

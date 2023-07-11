@@ -1,6 +1,7 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
 include("conexion.php");
+include("GetRandCod.php");
 
 // Verificar si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,6 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['username'];
     $email = $_POST['email'];
     $clave = $_POST['password'];
+
+    // Obtener el código aleatorio llamando a GetRandCod()
+    $codid = GetRandCod();
 
     // Verificar si el usuario ya existe en la base de datos por nombre de usuario
     $sql_verificar_usuario = "SELECT * FROM usuarios WHERE Usuario = '$usuario'";
@@ -29,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Generar el hash de la clave
         $hashed_clave = password_hash($clave, PASSWORD_DEFAULT);
 
-        // Insertar los datos en la base de datos con la clave hash
-        $sql_insertar = "INSERT INTO usuarios (Usuario, Email, Clave) VALUES ('$usuario', '$email', '$hashed_clave')";
+        // Insertar los datos en la base de datos con la clave hash y el código aleatorio
+        $sql_insertar = "INSERT INTO usuarios (Usuario, Email, Clave, Codigo_Id) VALUES ('$usuario', '$email', '$hashed_clave', '$codid')";
 
         if ($conn->query($sql_insertar) === TRUE) {
             header("Location: ../index.php?mensaje=exito");
@@ -44,3 +48,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Cerrar la conexión
 $conn->close();
 ?>
+
