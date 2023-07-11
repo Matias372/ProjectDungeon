@@ -34,7 +34,7 @@ session_start();
     <section class="game">
         <!--incluir game.js?-->
         <div class="content">
-            <!-- Contenido del div aquí -->
+            <iframe src="html/game.html" frameborder="0"></iframe>
         </div>
     </section>
 
