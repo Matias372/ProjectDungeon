@@ -16,14 +16,16 @@
         <ul>
             <li class="user-dropdown">
                 <div class="user-avatar">
-                    <img src="../img/Logo_sesion.png" alt="Avatar de usuario">
+                    <img src="img/Logo_sesion.png" alt="Avatar de usuario">
                 </div>
-                <div class="dropdown-content">
-                    <span class="username"><?php echo $username; ?></span>
-                    <ul>
-                        <li><a href="#">Cuenta</a></li>
-                        <li><a href="../php/logout.php">Salir</a></li>
-                    </ul>
+                <div class="user-info">
+                    <div class="username"><?php echo $username; ?></div>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Cuenta</a></li>
+                            <li><a href="php/logout.php">Salir</a></li>
+                        </ul>
+                    </div>
                 </div>
             </li>
         </ul>
