@@ -9,6 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['username'];
     $email = $_POST['email'];
     $clave = $_POST['password'];
+    
+    // Obtener la ruta de la imagen
+    $user_img = "Logo_sesion.png";
 
     // Obtener el código aleatorio llamando a GetRandCod()
     $codid = GetRandCod();
@@ -34,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hashed_clave = password_hash($clave, PASSWORD_DEFAULT);
 
         // Insertar los datos en la base de datos con la clave hash y el código aleatorio
-        $sql_insertar = "INSERT INTO usuarios (Usuario, Email, Clave, Codigo_Id) VALUES ('$usuario', '$email', '$hashed_clave', '$codid')";
+        $sql_insertar = "INSERT INTO usuarios (Usuario, Email, Clave, Codigo_Id, User_Img) VALUES ('$usuario', '$email', '$hashed_clave', '$codid', '$user_img')";
 
         if ($conn->query($sql_insertar) === TRUE) {
             header("Location: ../index.php?mensaje=exito");

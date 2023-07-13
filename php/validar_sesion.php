@@ -27,7 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['loggedin'] = true;
             $_SESSION['email'] = $email;
             $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
+            $_SESSION['Codigo_Id'] = $row['Codigo_Id']; // Almacenar el Codigo_Id en la sesión
+            $_SESSION['User_Img'] = $row['User_Img']; // Almacenar el User_Img en la sesión
 
+            
             // Redirigir al index.php con la señal de sesión iniciada
             header("Location: ../index.php?sesion_iniciada=true");
             exit();

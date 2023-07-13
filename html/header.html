@@ -1,17 +1,20 @@
 <header>
-    <div class="logo">
-        <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-            <a href="index.php"><img src="img/LOGO PD.png" alt="Logo de la empresa"></a>
-        <?php else: ?>
-            <a href="../index.php"><img src="../img/LOGO PD.png" alt="Logo de la empresa"></a>
-        <?php endif; ?>
-    </div>
-    
     <?php
     // Verificar si hay una sesión iniciada
     if (isset($_SESSION['usuario'])) {
         $username = $_SESSION['usuario'];
+        $Image = $_SESSION['User_Img'];
     ?>
+    
+    <div class="logo">
+        <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+            <a href="index.php"><img src="img/User_Img/<?php echo $Image ?>" alt="Logo de la empresa"></a>
+        <?php else: ?>
+            <a href="../index.php"><img src="../img/User_Img/<?php echo $Image ?>" alt="Logo de la empresa"></a>
+        <?php endif; ?>
+    </div>
+    
+    
     <nav>
         <ul>
             <li class="user-dropdown">
