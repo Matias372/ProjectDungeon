@@ -1,8 +1,5 @@
 <?php
 session_start();
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -15,32 +12,34 @@ session_start();
     <link rel="stylesheet" href="css/index_estilo.css">
     <link rel="stylesheet" href="css/header_estilo.css">
     <link rel="stylesheet" href="css/footer_estilo.css">
-
 </head>
 <body>
     <!-- Incluir el encabezado -->
-    
-        <?php include 'html/header.html'; ?>
-    
+    <?php include 'html/header.html'; ?>
 
-    <!-- Agrega esta sección en el cuerpo del archivo index.html -->
-    <section id="mensaje-exito" style="display: none;">
-        <div class="mensaje">
-            <p>Registro exitoso</p>
-            <button onclick="cerrarMensaje()">OK</button>
-        </div>
+    <!-- Agregar el section "play" -->
+    <section id="play">
+        <button onclick="playGame()">Play</button>
     </section>
 
-    <section class="game">
-        <!--incluir game.js?-->
-        <div class="content">
-            <iframe src="html/game.html" frameborder="0"></iframe>
-        </div>
+    <!-- Agregar el section "introduccion" -->
+    <section id="introduccion">
+        <!-- Contenido de la introducción -->
+        <h1>Bienvenido a la introducción</h1>
+        <p>Texto de introducción del juego...</p>
     </section>
 
     <!-- Incluir el pie de página -->
     <?php include 'html/footer.html'; ?>
 
-    <script src="js/index.js"></script>
+    <script>
+    function playGame() {
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) { ?>
+            window.location.href = "php/game.php";
+        <?php } else { ?>
+            window.location.href = "php/inicio_sesion.php";
+        <?php } ?>
+    }
+    </script>
 </body>
 </html>

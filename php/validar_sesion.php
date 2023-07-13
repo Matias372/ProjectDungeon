@@ -24,23 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (password_verify($clave, $hashed_password)) {
             // La contraseña es correcta, iniciar sesión
+            $_SESSION['loggedin'] = true;
             $_SESSION['email'] = $email;
             $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
-            // Redirigir al index.php con la sesión iniciada
-            // La sesión se inicia correctamente
-            $_SESSION['sesion_iniciada'] = true;
 
             // Redirigir al index.php con la señal de sesión iniciada
             header("Location: ../index.php?sesion_iniciada=true");
             exit();
         } else {
             // La contraseña es incorrecta
-            header("Location: inicio_sesion.php?error=contraseña_incorrecta");
+            header("Location: ../inicio_sesion.php?error=contraseña_incorrecta");
             exit();
         }
     } else {
         // El usuario no existe
-        header("Location: inicio_sesion.php?error=usuario_no_encontrado");
+        header("Location: ../inicio_sesion.php?error=usuario_no_encontrado");
         exit();
     }
 
@@ -48,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 } else {
     // Redirigir al formulario de inicio de sesión si se accede directamente a este archivo
-    header("Location: inicio_sesion.php");
+    header("Location: ../inicio_sesion.php");
     exit();
 }
 ?>
