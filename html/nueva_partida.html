@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Partida</title>
+    <link rel="stylesheet" href="css/nueva_partida_estilo.css">
+    <link rel="stylesheet" href="css/general_estilo.css">
+</head>
+<body>
+    <section class="nueva-partida">
+        <h1>Selecciona tu personaje</h1>
+        
+        <div class="personaje">
+            <img src="img/personaje1.jpg" alt="Personaje 1" class="personaje-img" onclick="seleccionarClase('Personaje 1')">
+            <p class="personaje-nombre">Personaje 1</p>
+        </div>
+        
+        <div class="personaje">
+            <img src="img/personaje2.jpg" alt="Personaje 2" class="personaje-img" onclick="seleccionarClase('Personaje 2')">
+            <p class="personaje-nombre">Personaje 2</p>
+        </div>
+        
+        <div class="personaje">
+            <img src="img/personaje3.jpg" alt="Personaje 3" class="personaje-img" onclick="seleccionarClase('Personaje 3')">
+            <p class="personaje-nombre">Personaje 3</p>
+        </div>
+        
+        <div class="personaje">
+            <img src="img/personaje4.jpg" alt="Personaje 4" class="personaje-img" onclick="seleccionarClase('Personaje 4')">
+            <p class="personaje-nombre">Personaje 4</p>
+        </div>
+        
+        <div class="nombre-personaje">
+            <label for="nombre">Nombre del personaje:</label>
+            <input type="text" id="nombre" placeholder="Ingresa el nombre del personaje">
+        </div>
+        
+        <button class="crear-btn" onclick="crearPersonaje()">Crear</button>
+    </section>
+
+    <script>
+        let claseSeleccionada = null;
+
+        function seleccionarClase(clase) {
+            // Resaltar la clase seleccionada visualmente
+            const personajes = document.querySelectorAll('.personaje');
+            personajes.forEach(personaje => {
+                personaje.classList.remove('seleccionado');
+            });
+            event.target.parentElement.classList.add('seleccionado');
+
+            // Guardar la clase seleccionada
+            claseSeleccionada = clase;
+        }
+
+        function crearPersonaje() {
+            const nombre = document.getElementById('nombre').value.trim();
+
+            // Verificar si se ha seleccionado una clase y se ha ingresado un nombre
+            if (claseSeleccionada && nombre) {
+                // Realizar las acciones necesarias para crear el personaje
+                // Por ejemplo, puedes enviar los datos al servidor o guardarlos en el almacenamiento local
+
+                // Redirigir a la página de juego o realizar otras acciones necesarias
+                // window.location.href = "game.html";
+                alert(`Personaje creado: ${claseSeleccionada} - Nombre: ${nombre}`);
+            } else {
+                alert('Por favor, selecciona una clase y proporciona un nombre para el personaje.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
             $_SESSION['Codigo_Id'] = $row['Codigo_Id']; // Almacenar el Codigo_Id en la sesión
             $_SESSION['User_Img'] = $row['User_Img']; // Almacenar el User_Img en la sesión
+            $_SESSION['Fecha_Creacion'] = $row['Fecha']; // Almacenar la fecha de creación en la sesión
 
             
             // Redirigir al index.php con la señal de sesión iniciada

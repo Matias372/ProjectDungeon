@@ -26,11 +26,12 @@ include("logros.php");
     <!-- Incluir el archivo header.html -->
     <?php include("../html/header.html"); ?>
 
-    <section>
+    <section class= datos>
         <div>
-            <img src="img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
+            <img src="../img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
             <h2><?php echo $_SESSION['usuario']; ?></h2>
             <button>Cambiar avatar</button>
+            <p>Fecha de creación: <?php echo $_SESSION['Fecha_Creacion']; ?></p>
             <p>Código ID de la cuenta: <?php echo $_SESSION['Codigo_Id']; ?></p>
         </div>
     </section>
