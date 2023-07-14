@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <link rel="stylesheet" href="../css/header_estilo.css">
     <link rel="stylesheet" href="../css/footer_estilo.css">
     <link rel="stylesheet" href="../css/game_extern_estilo.css">
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Incluir el encabezado -->
@@ -26,7 +26,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
     <!-- Agregar el section "game" -->
     <section class="game">
-        <div class="content">
+        <div class="content" id="game-content">
             <!-- Contenido del juego -->
             <iframe src="../html/game.html" frameborder="0" width="100%" height="100%"></iframe>
         </div>
@@ -34,5 +34,30 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
     <!-- Incluir el pie de página -->
     <?php include '../html/footer.html'; ?>
+
+    <script>
+        // Escuchar los mensajes enviados desde el iframe
+        window.addEventListener('message', function(event) {
+            if (event.data === 'redirigirNuevaPartida') {
+                redirigirNuevaPartida();
+            } else if (event.data === 'cargarPartida') {
+                cargarPartida();
+            }
+        });
+
+        // Manejar el redireccionamiento a nueva_partida.html
+        function redirigirNuevaPartida() {
+            console.log('Se ha llamado a la función redirigirNuevaPartida.');
+            $.get("../html/nueva_partida.html", function(data) {
+                $('#game-content').html(data);
+            });
+        }
+
+        // Manejar la carga de partida
+        function cargarPartida() {
+            console.log('Se ha llamado a la función cargarPartida.');
+            // Agrega aquí la lógica para cargar una partida existente
+        }
+    </script>
 </body>
 </html>

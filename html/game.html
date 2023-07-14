@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Dungeon</title>
-    <link rel="stylesheet" href="css/game_estilo.css">
-    <link rel="stylesheet" href="css/general_estilo.css">
 </head>
 <body>
     <section class="game">
@@ -14,15 +12,20 @@
             <div class="options">
                 <button class="button" onclick="redirigirNuevaPartida()">Nueva partida</button>
                 <br>
-                <button class="button">Cargar partida</button>
+                <button class="button" onclick="cargarPartida()">Cargar partida</button>
             </div>
         </div>
     </section>
 
     <script>
         function redirigirNuevaPartida() {
-            // Comunicarse con el archivo padre (game.php)
-            window.parent.location.href = "../html/nueva_partida.html";
+            console.log('Se ha llamado a la función redirigirNuevaPartida.');
+            parent.postMessage('redirigirNuevaPartida', '*'); // Envia un mensaje al padre (game.php)
+        }
+
+        function cargarPartida() {
+            console.log('Se ha llamado a la función cargarPartida.');
+            parent.postMessage('cargarPartida', '*'); // Envia un mensaje al padre (game.php)
         }
     </script>
 </body>
