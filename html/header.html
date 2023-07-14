@@ -8,9 +8,9 @@
     
     <div class="logo">
         <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-            <a href="index.php"><img src="img/User_Img/<?php echo $Image ?>" alt="Logo de la empresa"></a>
+            <a href="index.php"><img src="img/LOGO_PD.png" alt="Logo de la empresa"></a>
         <?php else: ?>
-            <a href="../index.php"><img src="../img/User_Img/<?php echo $Image ?>" alt="Logo de la empresa"></a>
+            <a href="../index.php"><img src="../img/LOGO_PD.png" alt="Logo de la empresa"></a>
         <?php endif; ?>
     </div>
     
@@ -19,14 +19,23 @@
         <ul>
             <li class="user-dropdown">
                 <div class="user-avatar">
-                    <img src="img/Logo_sesion.png" alt="Avatar de usuario">
+                    <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+                        <img src="img/User_img/<?php echo $Image?>" alt="Avatar de usuario">
+                    <?php else: ?>
+                        <img src="../img/User_img/<?php echo $Image?>" alt="Avatar de usuario">
+                    <?php endif; ?>
                 </div>
                 <div class="user-info">
                     <div class="username"><?php echo $username; ?></div>
                     <div class="dropdown-content">
                         <ul>
-                            <li><a href="#">Cuenta</a></li>
-                            <li><a href="php/logout.php">Salir</a></li>
+                            <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+                                <li><a href="php/cuenta.php">Cuenta</a></li>
+                                <li><a href="php/logout.php">Salir</a></li>
+                            <?php else: ?>
+                                <li><a href="cuenta.php">Cuenta</a></li>
+                                <li><a href="logout.php">Salir</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -34,6 +43,15 @@
         </ul>
     </nav>
     <?php } else { ?>
+        <div class="logo">
+            <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+                <a href="index.php"><img src="img/LOGO_PD.png" alt="Logo de la empresa"></a>
+            <?php else: ?>
+                <a href="../index.php"><img src="../img/LOGO_PD.png" alt="Logo de la empresa"></a>
+            <?php endif; ?>
+        </div>
+        
+
         <nav>
             <ul>
                 <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>

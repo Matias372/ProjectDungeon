@@ -36,12 +36,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Generar el hash de la clave
         $hashed_clave = password_hash($clave, PASSWORD_DEFAULT);
 
-        // Insertar los datos en la base de datos con la clave hash y el código aleatorio
-        $sql_insertar = "INSERT INTO usuarios (Usuario, Email, Clave, Codigo_Id, User_Img) VALUES ('$usuario', '$email', '$hashed_clave', '$codid', '$user_img')";
+        // Insertar los datos del usuario en la base de datos con la clave hash y el código aleatorio
+        $sql_insertar_usuario = "INSERT INTO usuarios (Usuario, Email, Clave, Codigo_Id, User_Img) VALUES ('$usuario', '$email', '$hashed_clave', '$codid', '$user_img')";
 
-        if ($conn->query($sql_insertar) === TRUE) {
-            header("Location: ../index.php?mensaje=exito");
-            exit();
+        if ($conn->query($sql_insertar_usuario) === TRUE) {
+            // Insertar un nuevo registro en la tabla usuarios_logros
+            $logro_id = 1; // ID del logro a insertar
+            $sql_insertar_logro = "INSERT INTO usuarios_logros (Codigo_Usuario, Logro_Id) VALUES ('$codid', '$logro_id')";
+            
+            if ($conn->query($sql_insertar_logro) === TRUE) {
+                header("Location: ../index.php?mensaje=exito");
+                exit();
+            } else {
+                echo "Error al insertar el logro: " . $conn->error;
+            }
         } else {
             echo "Error al registrar: " . $conn->error;
         }
@@ -51,4 +59,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Cerrar la conexión
 $conn->close();
 ?>
-
