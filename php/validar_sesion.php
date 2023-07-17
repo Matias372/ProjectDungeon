@@ -37,12 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         } else {
             // La contraseña es incorrecta
-            header("Location: ../inicio_sesion.php?error=contraseña_incorrecta");
+            error_log('contraseña incorrecta');
+            header("Location: inicio_sesion.php?error=contraseña_incorrecta");
             exit();
         }
     } else {
         // El usuario no existe
-        header("Location: ../inicio_sesion.php?error=usuario_no_encontrado");
+        error_log('Se ha llamado a la función redirigirNuevaPartida.');
+        header("Location: inicio_sesion.php?error=usuario_no_encontrado");
         exit();
     }
 
@@ -50,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 } else {
     // Redirigir al formulario de inicio de sesión si se accede directamente a este archivo
-    header("Location: ../inicio_sesion.php");
+    error_log('se redirige directo a inicio_sesion.php');
+    header("Location: inicio_sesion.php");
     exit();
 }
 ?>

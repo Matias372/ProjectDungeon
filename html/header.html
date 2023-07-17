@@ -8,9 +8,9 @@
     
     <div class="logo">
         <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-            <a href="index.php"><img src="img/LOGO_PD.png" alt="Logo de la empresa"></a>
+            <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa"></a>
         <?php else: ?>
-            <a href="../index.php"><img src="../img/LOGO_PD.png" alt="Logo de la empresa"></a>
+            <a href="../index.php"><img src="../img/NewLogo-01.png" alt="Logo de la empresa"></a>
         <?php endif; ?>
     </div>
     
@@ -52,9 +52,9 @@
     <?php } else { ?>
         <div class="logo">
             <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-                <a href="index.php"><img src="img/LOGO_PD.png" alt="Logo de la empresa"></a>
+                <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa"></a>
             <?php else: ?>
-                <a href="../index.php"><img src="../img/LOGO_PD.png" alt="Logo de la empresa"></a>
+                <a href="../index.php"><img src="../img/NewLogo-01.png" alt="Logo de la empresa"></a>
             <?php endif; ?>
         </div>
         
@@ -62,8 +62,13 @@
 
         <nav>
             <ul>
-                <li><a href="php/inicio_sesion.php">Iniciar sesión</a></li>
-                <li><a href="php/registro.php">Registrarse</a></li>
+                <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+                    <li><a href="php/inicio_sesion.php">Iniciar sesión</a></li>
+                    <li><a href="php/registro.php">Registrarse</a></li>
+                <?php else: ?>
+                    <li><a href="inicio_sesion.php">Iniciar sesión</a></li>
+                    <li><a href="registro.php">Registrarse</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     <?php } ?>

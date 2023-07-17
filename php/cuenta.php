@@ -27,10 +27,19 @@ include("logros.php");
     <?php include("../html/header.html"); ?>
 
     <section class= datos>
-        <div>
+    <div>
             <img src="../img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
             <h2><?php echo $_SESSION['usuario']; ?></h2>
-            <button>Cambiar avatar</button>
+            <form action="cambiar_avatar.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="avatar" accept="image/jpeg" required>
+                <input type="submit" value="Cambiar avatar">
+            </form>
+            <?php
+            if (isset($_SESSION['error_avatar'])) {
+                echo '<p class="error-message">' . $_SESSION['error_avatar'] . '</p>';
+                unset($_SESSION['error_avatar']);
+            }
+            ?>
             <p>Fecha de creación: <?php echo $_SESSION['Fecha_Creacion']; ?></p>
             <p>Código ID de la cuenta: <?php echo $_SESSION['Codigo_Id']; ?></p>
         </div>
