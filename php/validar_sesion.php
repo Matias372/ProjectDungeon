@@ -18,12 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result_verificar = $conn->query($sql_verificar);
 
     if ($result_verificar->num_rows > 0) {
-        // El usuario existe, verificar la contraseña
+        // El usuario existe, verificar la contraseña y el estado
         $row = $result_verificar->fetch_assoc();
         $hashed_password = $row['Clave'];
+        $estado = $row['Estado'];
 
         if (password_verify($clave, $hashed_password)) {
-            // La contraseña es correcta, iniciar sesión
+            if ($estado === "BLOQUEADO") {
+                // Si el estado del usuario es "BLOQUEADO", cancelar la sesión y redirigir con un mensaje de error
+                error_log('Usuario bloqueado');
+                header("Location: inicio_sesion.php?error=UsuarioBloqueado");
+                exit();
+            }
+
+            // La contraseña es correcta y el usuario no está bloqueado, iniciar sesión
             $_SESSION['loggedin'] = true;
             $_SESSION['email'] = $email;
             $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
@@ -31,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['User_Img'] = $row['User_Img']; // Almacenar el User_Img en la sesión
             $_SESSION['Fecha_Creacion'] = $row['Fecha']; // Almacenar la fecha de creación en la sesión
 
-            
             // Redirigir al index.php con la señal de sesión iniciada
             header("Location: ../index.php?sesion_iniciada=true");
             exit();
@@ -43,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // El usuario no existe
-        error_log('Se ha llamado a la función redirigirNuevaPartida.');
+        error_log('Usuario no encontrado.');
         header("Location: inicio_sesion.php?error=usuario_no_encontrado");
         exit();
     }

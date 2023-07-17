@@ -39,6 +39,8 @@ if(isset($_SESSION['email'])) {
             echo '<p class="mensaje-error">La contraseña es incorrecta.</p>';
         } elseif ($error === 'usuario_no_encontrado') {
             echo '<p class="mensaje-error">El usuario no ha sido encontrado.</p>';
+        } elseif ($error === 'UsuarioBloqueado') {
+            echo '<p class="mensaje-error">Usuario bloqueado. Por favor, contacte al administrador.</p>';
         }
     }
     ?>

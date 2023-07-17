@@ -1,0 +1,27 @@
+.personaje {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin-right: 10px;
+  }
+  
+  .personaje-img {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .personaje.seleccionado {
+    border: 2px solid blue;
+  }
+  
+  .nombre-personaje {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .crear-btn {
+    display: block;
+    margin: 0 auto;
+  }
+  
