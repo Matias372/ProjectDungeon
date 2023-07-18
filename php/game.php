@@ -18,6 +18,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <link rel="stylesheet" href="../css/header_estilo.css">
     <link rel="stylesheet" href="../css/footer_estilo.css">
     <link rel="stylesheet" href="../css/game_extern_estilo.css">
+    <link rel="stylesheet" href="../css/nueva_partida_estilo.css"> <!-- Agregamos el nuevo CSS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -35,6 +36,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <!-- Incluir el pie de página -->
     <?php include '../html/footer.html'; ?>
 
+    <!-- Script para escuchar los mensajes enviados desde el iframe -->
     <script>
         // Escuchar los mensajes enviados desde el iframe
         window.addEventListener('message', function(event) {
@@ -59,5 +61,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             // Agrega aquí la lógica para cargar una partida existente
         }
     </script>
+
+    <!-- Incluimos el script game.js -->
+    <script src="../js/game.js"></script>
+
+    <!-- Script para manejar la selección de clase y la creación del personaje -->
+    <script>
+        // ... Código anterior de la función seleccionarClase() ...
+
+        // Cambiar la función crearPersonaje() por Create_newgame()
+        function Create_newgame() {
+            // ... Código anterior de la función Create_newgame() ...
+        }
+    </script>
 </body>
 </html>
+
