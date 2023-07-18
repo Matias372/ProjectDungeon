@@ -24,10 +24,38 @@ session_start();
 
     <!-- Agregar el section "introduccion" -->
     <section id="introduccion">
-        <!-- Contenido de la introducción -->
-        <h1>Bienvenido a la introducción</h1>
-        <p>Texto de introducción del juego...</p>
+
+        <!-- Primer div -->
+        <div>
+            <img src="img/Character/NPC_Inn_Icon_Mesa-de-trabajo-1.png" alt="Descripción de la imagen 1">
+            <p id=in1>Hola Aventurero, bienvenido a "Project Dungeon". Nuestra ciudad es un lugar simple,
+                los aventureros como vos vienen por lo mismo, el portal. Si vuelves vivo trae unas monedas
+                y te recibire en la posada con una cerveza lista.
+            </p>
+            
+        </div>
+
+        <!-- Segundo div -->
+        <div>
+            <img src="img/Character/NPC_Shop_Icon_Mesa-de-trabajo-1.png" alt="Descripción de la imagen 2">
+            <p>En la ciudad puedes ir a la tienda para ver los equipos disponibles o puedes ir a la posada
+                para descansar y comprar suministros. 
+            </p>
+        </div>
+
+        <!-- Tercer div -->
+        <div>
+            <img src="img/Character/NPC_Guild_Icon_Mesa-de-trabajo-1.png" alt="Descripción de la imagen 3">
+            <p>Recuerda pasar por el gremio para solicitar y entregar misiones.</p>
+        </div>
+
+        <!-- Cuarto div -->
+        <div>
+            <img src="img/Character/Monsters/Goblinrunts_Icon.png" alt="Descripción de la imagen 4">
+            <p>¡¡ESPERAMOS QUE TE DIVIERTAS!!</p>
+        </div>
     </section>
+
 
     <!-- Incluir el pie de página -->
     <?php include 'html/footer.html'; ?>

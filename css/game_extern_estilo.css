@@ -2,14 +2,15 @@ section.game {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 600px;
     width: 800px;
     margin: 0 auto;
     margin-top: 5%;
     margin-bottom: 5%;
+    border: 1px solid black; /* Añadir borde de 1px de color negro */
 }
 
-section .content{
+section .content {
     width: 100%;
     height: 100%;
 }

@@ -5,6 +5,11 @@ html, body {
   margin: 0;
 }
 
+#introduccion img{
+  width: 150px;
+  height: auto;
+}
+
 /*MENSAJE DE EXITO EN EL REGISTRO----------------*/
 
 /* Estilos para el mensaje de registro exitoso */

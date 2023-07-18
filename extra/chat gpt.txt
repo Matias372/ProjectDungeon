@@ -1,0 +1,21 @@
+generar funcion function CreateDataGame() en nueva_partida.html. que tome siguientes datos:
+"Codigo_Id" de $_SESSION
+"Nombre" de pesonaje de nueva_partida.html
+"Clase" de id de la clase seleccionada en nueva_partida.html
+"ubicacion_actual" = "city.html"
+"nivel"= 1
+"experiencia" = 0
+"fuerza" = 15
+"destreza"= 15
+"resistencia"=15
+"magia"=15
+"fuerza_bonif"=0
+"destreza_bonif"=0
+"resistencia_bonif"=0
+"magia_bonif"=0
+"stat_point"=0
+
+
+----------------------------------------------------------------------
+generar funcion datos_partida() en game.js en el cual se verifique si existe el archivo Game-data.txt.
+si existe guardar los datos ahi, si no existe crear el archivo

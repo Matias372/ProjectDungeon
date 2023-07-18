@@ -1,31 +1,35 @@
-.personaje {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    margin-right: 10px;
-  }
-  
-  .personaje-img {
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .personaje.seleccionado {
-    border: 2px solid blue;
-  }
-  
-  .nombre-personaje {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .crear-btn {
-    display: block;
-    margin: 0 auto;
-  }
+/* Estilo para la clase "clase" que contiene los personajes */
+.clase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
 
-  .clase p{
-    color: white;
-  }
-  
+/* Estilo para cada personaje */
+.personaje {
+  text-align: center;
+  width: 23%; /* Ajustar el tamaño de los personajes para que entren en una misma fila */
+  margin: 10px;
+}
+
+.personaje-img {
+  max-width: 100%; /* Ajustar el tamaño máximo de la imagen para que entre en el espacio del "game-content" */
+}
+
+/* Estilo para centrar "nombre-personaje" y "crear-btn" */
+.nombre-personaje {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.crear-btn {
+  margin-top: 10px;
+}
+
+.personaje.seleccionado {
+  border: 2px solid blue;
+}

@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Dungeon</title>
+    <link rel="stylesheet" href="../css/general_estilo.css">
+    <link rel="stylesheet" href="../css/game_estilo.css">
 </head>
 <body>
     <section class="game">
-        <div class="content">
-            <img class="title" src="../img/Backgrouds/Text_title.png" alt="Fullscreen Title">
-            <div class="options">
-                <a class="button" href="#" onclick="redirigirNuevaPartida()">Nueva partida</a>
-                <br>
-                <a class="button" href="#" onclick="cargarPartida()">Cargar partida</a>
-            </div>
+        <!-- Título del juego (imagen) -->
+        <img src="../img/Backgrouds/Text_title.png" alt="Project Dungeon" class="title-image">
+
+        <!-- Opciones de juego -->
+        <div class="options">
+            <button onclick="loadScenario('../html/nueva_partida.html')">Nueva Partida</button>
+            <button onclick="loadScenario('../html/cargar_partida.html')">Cargar Partida</button>
         </div>
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function redirigirNuevaPartida() {
-            console.log('Se ha llamado a la función redirigirNuevaPartida.');
-            parent.postMessage('redirigirNuevaPartida', '*'); // Envia un mensaje al padre (game.php)
-        }
-
-        function cargarPartida() {
-            console.log('Se ha llamado a la función cargarPartida.');
-            parent.postMessage('cargarPartida', '*'); // Envia un mensaje al padre (game.php)
+        // Función para cargar el contenido del escenario
+        function loadScenario(scenarioURL) {
+            $('#game-content').load(scenarioURL);
         }
     </script>
 </body>
