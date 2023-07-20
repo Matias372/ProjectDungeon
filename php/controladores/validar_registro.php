@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
-include("conexion.php");
+include("../sesion/conexion.php");
 include("GetRandCod.php");
 
 // Verificar si se ha enviado el formulario
@@ -13,9 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener la ruta de la imagen
     $user_img = "Logo_sesion.png";
 
-    // Obtener el código aleatorio llamando a GetRandCod()
-    $codid = GetRandCod();
-
     // Verificar si el usuario ya existe en la base de datos por nombre de usuario
     $sql_verificar_usuario = "SELECT * FROM usuarios WHERE Usuario = '$usuario'";
     $result_verificar_usuario = $conn->query($sql_verificar_usuario);
@@ -26,26 +23,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result_verificar_usuario->num_rows > 0) {
         // El nombre de usuario ya está registrado
-        header("Location: registro.php?error=usuario_existente");
+        header("Location: ../sesion/registro.php?error=usuario_existente");
         exit();
     } elseif ($result_verificar_email->num_rows > 0) {
         // El correo electrónico ya está registrado
-        header("Location: registro.php?error=email_existente");
+        header("Location: ../sesion/registro.php?error=email_existente");
         exit();
     } else {
+        // Generar un UUID para el "Id" del usuario
+        $id = generateUUID();
+
         // Generar el hash de la clave
         $hashed_clave = password_hash($clave, PASSWORD_DEFAULT);
 
-        // Insertar los datos del usuario en la base de datos con la clave hash y el código aleatorio
-        $sql_insertar_usuario = "INSERT INTO usuarios (Usuario, Email, Clave, Codigo_Id, User_Img) VALUES ('$usuario', '$email', '$hashed_clave', '$codid', '$user_img')";
+        // Insertar los datos del usuario en la base de datos con la clave hash y el UUID
+        $sql_insertar_usuario = "INSERT INTO usuarios (Id, Usuario, Email, Clave, User_Img) VALUES ('$id', '$usuario', '$email', '$hashed_clave', '$user_img')";
 
         if ($conn->query($sql_insertar_usuario) === TRUE) {
             // Insertar un nuevo registro en la tabla usuarios_logros
             $logro_id = 1; // ID del logro a insertar
-            $sql_insertar_logro = "INSERT INTO usuarios_logros (Codigo_Usuario, Logro_Id) VALUES ('$codid', '$logro_id')";
+            $sql_insertar_logro = "INSERT INTO usuarios_logros (Id_usuario, Logro_Id) VALUES ('$id', '$logro_id')";
             
             if ($conn->query($sql_insertar_logro) === TRUE) {
-                header("Location: ../index.php?mensaje=exito");
+                header("Location: ../../index.php?mensaje=exito");
                 exit();
             } else {
                 echo "Error al insertar el logro: " . $conn->error;

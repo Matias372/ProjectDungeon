@@ -66,7 +66,7 @@ session_start();
         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) { ?>
             window.location.href = "php/game.php";
         <?php } else { ?>
-            window.location.href = "php/inicio_sesion.php";
+            window.location.href = "php/sesion/inicio_sesion.php";
         <?php } ?>
     }
     </script>

@@ -26,7 +26,7 @@ function RegistrarLogro($codigo_id, $logro_id) {
     global $conn;
 
     // Verificar si el usuario ya tiene el logro registrado
-    $sql_verificar_logro = "SELECT * FROM usuarios_logros WHERE usuario_id = '$codigo_id' AND logro_id = '$logro_id'";
+    $sql_verificar_logro = "SELECT * FROM usuarios_logros WHERE Id_usuario = '$codigo_id' AND Logro_Id = '$logro_id'";
     $result_verificar_logro = $conn->query($sql_verificar_logro);
 
     if ($result_verificar_logro->num_rows > 0) {
@@ -34,7 +34,7 @@ function RegistrarLogro($codigo_id, $logro_id) {
         return false;
     } else {
         // Insertar el logro en la tabla usuarios_logros
-        $sql_insertar_logro = "INSERT INTO usuarios_logros (usuario_id, logro_id) VALUES ('$codigo_id', '$logro_id')";
+        $sql_insertar_logro = "INSERT INTO usuarios_logros (Id_usuario, Logro_Id) VALUES ('$codigo_id', '$logro_id')";
 
         if ($conn->query($sql_insertar_logro) === TRUE) {
             return true; // El logro se registró exitosamente

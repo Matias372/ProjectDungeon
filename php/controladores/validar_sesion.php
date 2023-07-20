@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clave = $_POST['password'];
 
     // Incluir el archivo de conexión a la base de datos
-    include("conexion.php");
+    include("../sesion/conexion.php");
 
     // Verificar si el usuario existe en la base de datos
     $sql_verificar = "SELECT * FROM usuarios WHERE Email = '$email'";
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($estado === "BLOQUEADO") {
                 // Si el estado del usuario es "BLOQUEADO", cancelar la sesión y redirigir con un mensaje de error
                 error_log('Usuario bloqueado');
-                header("Location: inicio_sesion.php?error=UsuarioBloqueado");
+                header("Location: ../sesion/inicio_sesion.php?error=UsuarioBloqueado");
                 exit();
             }
 
@@ -35,23 +35,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['loggedin'] = true;
             $_SESSION['email'] = $email;
             $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
-            $_SESSION['Codigo_Id'] = $row['Codigo_Id']; // Almacenar el Codigo_Id en la sesión
+            $_SESSION['Id'] = $row['Id']; // Almacenar el Codigo_Id en la sesión
             $_SESSION['User_Img'] = $row['User_Img']; // Almacenar el User_Img en la sesión
             $_SESSION['Fecha_Creacion'] = $row['Fecha']; // Almacenar la fecha de creación en la sesión
 
             // Redirigir al index.php con la señal de sesión iniciada
-            header("Location: ../index.php?sesion_iniciada=true");
+            header("Location: ../../index.php?sesion_iniciada=true");
             exit();
         } else {
             // La contraseña es incorrecta
             error_log('contraseña incorrecta');
-            header("Location: inicio_sesion.php?error=contraseña_incorrecta");
+            header("Location: ../sesion/inicio_sesion.php?error=contraseña_incorrecta");
             exit();
         }
     } else {
         // El usuario no existe
         error_log('Usuario no encontrado.');
-        header("Location: inicio_sesion.php?error=usuario_no_encontrado");
+        header("Location: ../sesion/inicio_sesion.php?error=usuario_no_encontrado");
         exit();
     }
 
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Redirigir al formulario de inicio de sesión si se accede directamente a este archivo
     error_log('se redirige directo a inicio_sesion.php');
-    header("Location: inicio_sesion.php");
+    header("Location: ../sesion/inicio_sesion.php");
     exit();
 }
 ?>

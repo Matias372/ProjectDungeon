@@ -1,5 +1,4 @@
-generar funcion function CreateDataGame() en nueva_partida.html. que tome siguientes datos:
-"Codigo_Id" de $_SESSION
+
 "Nombre" de pesonaje de nueva_partida.html
 "Clase" de id de la clase seleccionada en nueva_partida.html
 "ubicacion_actual" = "city.html"
@@ -14,7 +13,22 @@ generar funcion function CreateDataGame() en nueva_partida.html. que tome siguie
 "resistencia_bonif"=0
 "magia_bonif"=0
 "stat_point"=0
+HP_max = (10 + (nivel * 5)) + (fuerza_total * 2) + (resistencia_total * 2)
+MP_max = (5 + (nivel * 3)) + (magia_total * 2) + (destreza_total * 2)
+Ataque Físico = (fuerza * 2) + (destreza * 1.5)
+Ataque Mágico = (magia * 2) + (destreza * 1.5)
+Velocidad de Ataque = 100 - (nivel * 2) + (destreza * 2)
+Probabilidad de Esquivar/Bloquear = (destreza * 2) + (resistencia * 1.5)
+hit rate= (Destreza / 2) + (Nivel / 4)
+defensa fisica= Defensa Física = Resistencia + (Nivel / 2) + (Destreza / 4)
+defensa magica= Defensa Mágica = Magia + (Nivel / 2) + (Resistencia / 4)
+probabilidad de critico= Probabilidad de Crítico = (Destreza / 2) + (Nivel / 4)
 
+
+
+-------------------------------------------
+en batalla tomando en cuenta los datos de personaje y enemigo
+atk_total
 
 ----------------------------------------------------------------------
 generar funcion datos_partida() en game.js en el cual se verifique si existe el archivo Game-data.txt.

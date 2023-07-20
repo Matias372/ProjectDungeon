@@ -7,8 +7,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['Codigo_Id'])) {
-    $codigoId = $_SESSION['Codigo_Id'];
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['Id'])) {
+    $codigoId = $_SESSION['Id'];
 
     // Realizar la consulta para verificar si existe una partida para el usuario actual
     $sql = "SELECT * FROM partidas WHERE Cod_User = '$codigoId'";
