@@ -15,8 +15,8 @@ function seleccionarClase(clase) {
 // Function to create a new game and character
 function createNewGame() {
     const codigoId = <?php echo $_SESSION['Id']; ?>;
-    const nombrePartida = document.getElementById('nombre').value.trim(); // You can set the default name for the game here
-    const nivelPartida = 1; // You can set the default level for the game here
+    const nombrePartida = document.getElementById('nombre').value.trim();
+    const nivelPartida = 1;
 
     const nombrePersonaje = document.getElementById('nombre').value.trim();
     const claseSeleccionada = document.querySelector('.personaje.seleccionado');
@@ -28,7 +28,7 @@ function createNewGame() {
 
     const clase = claseSeleccionada.id;
     const character = initializeCharacter(nombrePersonaje, clase);
-    const characterJSON = JSON.stringify(character);
+    const characterJSON = JSON.stringify(character); // Convert the character object to JSON
 
     const gameData = {
         Cod_User: codigoId,
@@ -77,7 +77,9 @@ function initializeCharacter(nombre, clase) {
         resistencia_bonif: 0,
         destreza_bonif: 0,
         magia_bonif: 0,
-        stat_point: 0
+        stat_point: 0,
+        HP_actual: (nivel * 10) + (fuerzaBasic * 5) + (fuerzaBonif * 10),
+        MP_actual: (nivel * 5) + (magiaBasic * 10) + (magiaBonif * 5)
     };
 }
 
@@ -101,6 +103,16 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
             alert('Error al guardar los datos del personaje y la partida: ' + error);
         }
     });
+}
+
+// Function to cargar el contenido del escenario (Similar to game.js)
+function loadScenario(scenarioURL) {
+    $('#game-content').load(scenarioURL);
+}
+
+// Function to go back to game.html when "Volver" button is clicked
+function goToIndex() {
+    loadScenario('../../html/game/game.html');
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-require_once 'conexion.php';
+require_once '../sesion/conexion.php';
 
 // Check if the request is a POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,15 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $partida = json_decode($partidaJSON, true);
 
     // Prepare the SQL statements to insert data into the respective tables
-    $personajeStmt = $conn->prepare("INSERT INTO personajes (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point) 
+    $personajeStmt = $conn->prepare("INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point,HP_actual,MP_actual) 
                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $partidaStmt = $conn->prepare("INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) 
                                    VALUES (?, ?, ?, ?)");
 
     // Bind the parameters and execute the statements
-    $personajeStmt->bind_param("ssiiiiiiiiisii", $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual']);
+    $personajeStmt->bind_param("sssiiiiiiiiiiii", $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual']);
 
-    $partidaStmt->bind_param("siss", $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
+    $partidaStmt->bind_param("ssis", $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
 
 
     // Execute the statements and check for success
@@ -46,6 +46,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "error";
 }
 
-// Close the database connection
-$conn->close();
+
 ?>

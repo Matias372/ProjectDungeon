@@ -261,8 +261,8 @@ session_start();
         <input type="text" id="nombre" placeholder="Ingresa el nombre del personaje">
     </div>
 
-    <button class="crear-btn" onclick="Create_newgame()">Crear</button>
-    <button onclick="loadScenario('../../html/game.html')">Volver</button>
+    <button class="crear-btn" onclick="createNewGame()">Crear</button>
+    <button class="crear-btn" onclick="goToIndex()">Volver</button>
 
     
 </body>

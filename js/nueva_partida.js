@@ -4,15 +4,16 @@ function seleccionarClase(clase) {
     personajes.forEach(personaje => {
         personaje.classList.remove('seleccionado');
     });
+
     const personajeSeleccionado = document.getElementById(clase);
     personajeSeleccionado.classList.add('seleccionado');
 
-    claseSeleccionada = clase;
+    // Aquí puedes hacer algo con la variable 'clase' si es necesario
 }
 
 // Function to create a new game and character
 function createNewGame() {
-    const codigoId = <?php echo $_SESSION['Id']; ?>;
+    const codigoId = document.getElementById('game-content').dataset.codigoId;
     const nombrePartida = document.getElementById('nombre').value.trim();
     const nivelPartida = 1;
 
@@ -63,21 +64,33 @@ function createNewGame() {
 
 // Function to set initial values for the character (Personaje) object
 function initializeCharacter(nombre, clase) {
+    const nivel = 1;
+    const fuerza_basic= 10;
+    const resistencia_basic= 10;
+    const destreza_basic= 10;
+    const magia_basic= 10;
+    const fuerza_bonif= 0;
+    const resistencia_bonif= 0;
+    const destreza_bonif= 0;
+    const magia_bonif= 0;
+    const stat_point= 0;
+    const HP_actual= (nivel * 10) + (fuerza_basic * 5) + (fuerza_bonif * 10);
+    const MP_actual= (nivel * 5) + (magia_basic * 10) + (magia_bonif * 5);
     return {
         nombre: nombre,
         clase: clase,
-        nivel: 1,
-        fuerza_basic: 10,
-        resistencia_basic: 10,
-        destreza_basic: 10,
-        magia_basic: 10,
-        fuerza_bonif: 0,
-        resistencia_bonif: 0,
-        destreza_bonif: 0,
-        magia_bonif: 0,
-        stat_point: 0,
-        HP_actual: (nivel * 10) + (fuerzaBasic * 5) + (fuerzaBonif * 10),
-        MP_actual: (nivel * 5) + (magiaBasic * 10) + (magiaBonif * 5)
+        nivel: nivel,
+        fuerza_basic: fuerza_basic,
+        resistencia_basic: resistencia_basic,
+        destreza_basic: destreza_basic,
+        magia_basic: magia_basic,
+        fuerza_bonif: fuerza_bonif,
+        resistencia_bonif: resistencia_bonif,
+        destreza_bonif: destreza_bonif,
+        magia_bonif: magia_bonif,
+        stat_point: stat_point,
+        HP_actual: HP_actual,
+        MP_actual: MP_actual
     };
 }
 
@@ -95,7 +108,7 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
             // Character and game data saved successfully
             alert('Los datos del personaje y la partida se han guardado correctamente en la base de datos.');
             // Redirect to "city.html" after saving
-            window.location.href = '../html/city.html';
+            loadScenario('../../html/game/Ciudad/city.html');
         },
         error: function(xhr, status, error) {
             alert('Error al guardar los datos del personaje y la partida: ' + error);
@@ -103,9 +116,13 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
     });
 }
 
-// Function to cargar el contenido del escenario (Similar to game.js)
+// Función para cargar el contenido del escenario
 function loadScenario(scenarioURL) {
-    $('#game-content').load(scenarioURL);
+    $('#game-content').load(scenarioURL, function(response, status, xhr) {
+        if (status === "error") {
+            console.log("Error al cargar el escenario: " + xhr.statusText);
+        }
+    });
 }
 
 // Function to go back to game.html when "Volver" button is clicked

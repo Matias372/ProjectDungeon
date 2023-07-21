@@ -19,7 +19,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <link rel="stylesheet" href="../../css/footer_estilo.css">
     <link rel="stylesheet" href="../../css/game_extern_estilo.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/nueva_partida.js"></script>
     <script src="../../js/game.js"></script>
+    
 </head>
 <body>
     <!-- Incluir el encabezado -->
@@ -27,7 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
     <!-- Agregar el section "game" -->
     <section class="game">
-        <div class="content" id="game-content">
+        <div class="content" id="game-content" data-codigo-id="<?php echo $_SESSION['Id']; ?>">
             <!-- Aquí se cargará el contenido del escenario seleccionado -->
             <!-- Por defecto, cargar el menú principal (game.html) -->
             <?php include '../../html/game/game.html'; ?>
