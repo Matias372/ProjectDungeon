@@ -1,0 +1,553 @@
+====== validar_sesion.php ======
+
+<?php
+session_start();
+
+// Inicializar la variable de sesión $_SESSION
+$_SESSION = array();
+
+// Verificar si se ha enviado el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtener los datos del formulario
+    $email = $_POST['email'];
+    $clave = $_POST['password'];
+
+    // Incluir el archivo de conexión a la base de datos
+    include("../sesion/conexion.php");
+
+    // Verificar si el usuario existe en la base de datos
+    $sql_verificar = "SELECT * FROM usuarios WHERE Email = '$email'";
+    $result_verificar = $conn->query($sql_verificar);
+
+    if ($result_verificar->num_rows > 0) {
+        // El usuario existe, verificar la contraseña y el estado
+        $row = $result_verificar->fetch_assoc();
+        $hashed_password = $row['Clave'];
+        $estado = $row['Estado'];
+
+        if (password_verify($clave, $hashed_password)) {
+            if ($estado === "BLOQUEADO") {
+                // Si el estado del usuario es "BLOQUEADO", cancelar la sesión y redirigir con un mensaje de error
+                error_log('Usuario bloqueado');
+                header("Location: ../sesion/inicio_sesion.php?error=UsuarioBloqueado");
+                exit();
+            }
+
+            // La contraseña es correcta y el usuario no está bloqueado, iniciar sesión
+            $_SESSION['loggedin'] = true;
+            $_SESSION['email'] = $email;
+            $_SESSION['usuario'] = $row['Usuario']; // Almacenar el nombre de usuario en la sesión
+            $_SESSION['Id'] = $row['Id']; // Almacenar el Codigo_Id en la sesión
+            $_SESSION['User_Img'] = $row['User_Img']; // Almacenar el User_Img en la sesión
+            $_SESSION['Fecha_Creacion'] = $row['Fecha']; // Almacenar la fecha de creación en la sesión
+
+            // Redirigir al index.php con la señal de sesión iniciada
+            header("Location: ../../index.php?sesion_iniciada=true");
+            exit();
+        } else {
+            // La contraseña es incorrecta
+            error_log('contraseña incorrecta');
+            header("Location: ../sesion/inicio_sesion.php?error=contraseña_incorrecta");
+            exit();
+        }
+    } else {
+        // El usuario no existe
+        error_log('Usuario no encontrado.');
+        header("Location: ../sesion/inicio_sesion.php?error=usuario_no_encontrado");
+        exit();
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+} else {
+    // Redirigir al formulario de inicio de sesión si se accede directamente a este archivo
+    error_log('se redirige directo a inicio_sesion.php');
+    header("Location: ../sesion/inicio_sesion.php");
+    exit();
+}
+?>
+
+
+====== game.php ======
+
+<?php
+session_start();
+
+// Verificar si no hay una sesión iniciada
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: ../sesion/inicio_sesion.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="../../css/general_estilo.css">
+    <link rel="stylesheet" href="../../css/header_estilo.css">
+    <link rel="stylesheet" href="../../css/footer_estilo.css">
+    <link rel="stylesheet" href="../../css/game_extern_estilo.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/game.js"></script>
+</head>
+<body>
+    <!-- Incluir el encabezado -->
+    <?php include '../../html/header.html'; ?>
+
+    <!-- Agregar el section "game" -->
+    <section class="game">
+        <div class="content" id="game-content">
+            <!-- Aquí se cargará el contenido del escenario seleccionado -->
+            <!-- Por defecto, cargar el menú principal (game.html) -->
+            <?php include '../../html/game/game.html'; ?>
+        </div>
+    </section>
+
+    <!-- Incluir el pie de página -->
+    <?php include '../../html/footer.html'; ?>
+</body>
+</html>
+
+
+
+====== guardar_partida.php ======
+
+<?php
+// Include the database connection file
+require_once 'conexion.php';
+
+// Check if the request is a POST request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the data from the POST request
+    $codigoId = $_POST['Cod_User'] ?? '';
+    $personajeJSON = $_POST['Personaje'] ?? '';
+    $partidaJSON = $_POST['Partida'] ?? '';
+
+    // Validate the data (you may add further validation here if needed)
+
+    // Decode the JSON data into PHP arrays
+    $personaje = json_decode($personajeJSON, true);
+    $partida = json_decode($partidaJSON, true);
+
+    // Prepare the SQL statements to insert data into the respective tables
+    $personajeStmt = $conn->prepare("INSERT INTO personajes (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point) 
+                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $partidaStmt = $conn->prepare("INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) 
+                                   VALUES (?, ?, ?, ?)");
+
+    // Bind the parameters and execute the statements
+    $personajeStmt->bind_param("isiiiiiiiiii", $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point']);
+    
+    $partidaStmt->bind_param("issi", $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
+
+    // Execute the statements and check for success
+    $personajeSuccess = $personajeStmt->execute();
+    $partidaSuccess = $partidaStmt->execute();
+
+    // Close the statements
+    $personajeStmt->close();
+    $partidaStmt->close();
+
+    // Check if both insertions were successful
+    if ($personajeSuccess && $partidaSuccess) {
+        echo "success";
+    } else {
+        echo "error";
+    }
+} else {
+    // If the request is not a POST request, return an error
+    echo "error";
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+
+====== Personaje.php ======
+
+// Personaje.php
+
+class Personaje {
+    public $nombre;
+    public $clase;
+    public $nivel;
+    public $fuerzaBasic;
+    public $resistenciaBasic;
+    public $destrezaBasic;
+    public $magiaBasic;
+    public $fuerzaBonif;
+    public $resistenciaBonif;
+    public $destrezaBonif;
+    public $magiaBonif;
+    public $statPoint;
+
+    public function __construct($nombre, $clase, $nivel, $fuerzaBasic, $resistenciaBasic, $destrezaBasic, $magiaBasic, $fuerzaBonif, $resistenciaBonif, $destrezaBonif, $magiaBonif, $statPoint) {
+        $this->nombre = $nombre;
+        $this->clase = $clase;
+        $this->nivel = $nivel;
+        $this->fuerzaBasic = $fuerzaBasic;
+        $this->resistenciaBasic = $resistenciaBasic;
+        $this->destrezaBasic = $destrezaBasic;
+        $this->magiaBasic = $magiaBasic;
+        $this->fuerzaBonif = $fuerzaBonif;
+        $this->resistenciaBonif = $resistenciaBonif;
+        $this->destrezaBonif = $destrezaBonif;
+        $this->magiaBonif = $magiaBonif;
+        $this->statPoint = $statPoint;
+    }
+}
+
+
+====== Partida.php ======
+
+<?php
+
+class Partida
+{
+    private $codigoId;
+    private $nombre;
+    private $nivel;
+    private $ubicacion;
+
+    public function __construct($codigoId, $nombre, $nivel, $ubicacion)
+    {
+        $this->codigoId = $codigoId;
+        $this->nombre = $nombre;
+        $this->nivel = $nivel;
+        $this->ubicacion = $ubicacion;
+    }
+
+    // Getters and Setters
+    // ...
+
+    // Save partida data to the database
+    public function saveToDatabase($conn)
+    {
+        $sql_insertar_partida = "INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql_insertar_partida);
+        $stmt->bind_param("issi", $this->codigoId, $this->nombre, $this->nivel, $this->ubicacion);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+
+====== conexion.php ======
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "project_dungeon";
+
+// Crear la conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error al conectar a la base de datos: " . $conn->connect_error);
+}
+
+
+?>
+
+
+====== cuenta.php ======
+
+<?php
+session_start();
+
+// Verificar si hay una sesión iniciada
+if(!isset($_SESSION['email'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+// Incluir el archivo de conexión a la base de datos y lista de logros
+include("../sesion/conexion.php");
+include("../logros.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta</title>
+    <!-- Agrega aquí tus enlaces a los estilos CSS y otros archivos de JavaScript si es necesario -->
+    <link rel="stylesheet" href="../../css/general_estilo.css">
+    <link rel="stylesheet" href="../../css/header_estilo.css">
+    <link rel="stylesheet" href="../../css/footer_estilo.css">
+</head>
+<body>
+    <!-- Incluir el archivo header.html -->
+    <?php include("../../html/header.html"); ?>
+
+    <section class= datos>
+    <div>
+            <img src="../../img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
+            <h2><?php echo $_SESSION['usuario']; ?></h2>
+            <form action="cambiar_avatar.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="avatar" accept="image/jpeg" required>
+                <input type="submit" value="Cambiar avatar">
+            </form>
+            <?php
+            if (isset($_SESSION['error_avatar'])) {
+                echo '<p class="error-message">' . $_SESSION['error_avatar'] . '</p>';
+                unset($_SESSION['error_avatar']);
+            }
+            ?>
+            <p>Fecha de creación: <?php echo $_SESSION['Fecha_Creacion']; ?></p>
+        </div>
+    </section>
+
+    <section class="logros">
+        <h3>Mis logros</h3>
+        <div class="logros-container">
+            <?php
+            // Obtener los logros del usuario desde la base de datos
+            $codigo_id = $_SESSION['Id']; // Obtener el ID del usuario desde la sesión
+            $logros_obtenidos = array(); // Array para almacenar los logros obtenidos por el usuario
+
+            // Realizar una consulta a la base de datos para obtener los logros obtenidos por el usuario
+            // Aquí debes utilizar tu propia lógica de consulta y conexión a la base de datos
+            
+            // Ejemplo básico de consulta utilizando mysqli
+            $sql = "SELECT Logro_Id FROM usuarios_logros WHERE Id_Usuario = '$codigo_id'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Iterar sobre los resultados de la consulta y almacenar los logros obtenidos en el array $logros_obtenidos
+                while ($row = $result->fetch_assoc()) {
+                    $logro_id = $row['Logro_Id'];
+                    // Buscar el logro en el array $logros y agregarlo al array $logros_obtenidos
+                    foreach ($logros as $logro) {
+                        if ($logro['id'] == $logro_id) {
+                            $logros_obtenidos[] = $logro;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Iterar sobre los logros obtenidos y mostrar su información
+            foreach ($logros_obtenidos as $logro) {
+                echo '<div class="logro">';
+                echo '<img src="../../img/' . $logro['imagen'] . '" alt="' . $logro['nombre'] . '">';
+                echo '<h4>' . $logro['nombre'] . '</h4>';
+                echo '<p>' . $logro['descripcion'] . '</p>';
+                echo '</div>';
+            }
+            ?>
+        </div>
+    </section>
+
+
+
+    <!-- Incluir el archivo footer.html -->
+    <?php include("../html/footer.html"); ?>
+</body>
+</html>
+
+
+====== inicio_sesion.php ======
+
+<?php
+session_start();
+
+// Verificar si hay una sesión iniciada
+if(isset($_SESSION['email'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Dungeon</title>
+    <link rel="stylesheet" href="../../css/general_estilo.css">
+    <link rel="stylesheet" href="../../css/ini_sesion_estilos.css">
+    <link rel="stylesheet" href="../../css/header_estilo.css">
+    <link rel="stylesheet" href="../../css/footer_estilo.css">
+</head>
+<body>
+
+    <!-- Incluir el encabezado -->
+    
+    <?php include '../../html/header.html'; ?>
+    
+
+    <h2>Iniciar sesión</h2>
+
+    <?php
+    // Verificar si se ha enviado el formulario
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Obtener los mensajes de error, si existen
+        $error = $_GET['error'] ?? '';
+        
+        // Mostrar el mensaje de error correspondiente
+        if ($error === 'contraseña_incorrecta') {
+            echo '<p class="mensaje-error">La contraseña es incorrecta.</p>';
+        } elseif ($error === 'usuario_no_encontrado') {
+            echo '<p class="mensaje-error">El usuario no ha sido encontrado.</p>';
+        } elseif ($error === 'UsuarioBloqueado') {
+            echo '<p class="mensaje-error">Usuario bloqueado. Por favor, contacte al administrador.</p>';
+        }
+    }
+    ?>
+    
+    <form action="../controladores/validar_sesion.php" method="POST">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required><br><br>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required><br><br>
+      <input type="submit" value="Iniciar sesión">
+    </form>
+    <a href="../../index.php" class="cancel-link">Cancelar</a>
+  
+    <header>
+        <?php include '../../html/footer.html'; ?>
+    </header>
+
+</body>
+</html>
+
+
+====== registro.php ======
+
+<?php
+session_start();
+
+// Verificar si hay una sesión iniciada
+if(isset($_SESSION['email'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectDungeon</title>
+    <link rel="stylesheet" href="../../css/general_estilo.css">
+    <link rel="stylesheet" href="../../css/registro_estilo.css">
+    <link rel="stylesheet" href="../../css/header_estilo.css">
+    <link rel="stylesheet" href="../../css/footer_estilo.css">
+</head>
+<body>
+
+    <!-- Incluir el encabezado -->
+    
+        <?php include '../../html/header.html'; ?>
+    
+
+    <form class="registro-form" action="../controladores/validar_registro.php" method="POST">
+        <h2>Registro</h2>
+        <div class="form-group">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+" title="Solo se permiten letras y números" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[A-Z]).{8,}" title="La contraseña debe tener al menos 8 caracteres, una mayúscula y un número" required>
+        </div>
+        <div class="form-buttons">
+            <button type="submit">Registrarse</button>
+            <button type="button"><a href="../../index.php" class="cancel-link">Cancelar</a></button>
+        </div>
+        <p>O registra con:</p>
+        <button type="button" class="google-btn">Google</button>
+    </form>
+
+    <section id="mensaje-error-usuario" style="display: none;">
+        <div class="mensaje-error">
+            <p>El usuario ya está registrado.</p>
+            <button onclick="cerrarMensajeErrorUsuario()">OK</button>
+        </div>
+
+    </section>
+
+    <section id="mensaje-error-email" style="display: none;">
+        <div class="mensaje-error">
+            <p>El correo electrónico ya está registrado.</p>
+            <button onclick="cerrarMensajeErrorEmail()">OK</button>
+        </div>
+    </section>
+
+    
+    <!-- Incluir el pie de página -->        
+    <?php include '../../html/footer.html'; ?>
+
+    <script src="../../js/registro.js"></script>
+</body>
+</html>
+
+
+====== logout.php ======
+
+<?php
+session_start();
+
+// Destruir todas las variables de sesión
+session_destroy();
+
+// Redirigir al usuario a la página de inicio de sesión o a cualquier otra página deseada
+header("Location: ../../index.php");
+exit();
+?>
+
+
+====== game.js ======
+
+// Función para cargar el contenido del escenario
+function loadScenario(scenarioURL) {
+    $('#game-content').load(scenarioURL);
+}
+
+// Cargar el escenario game.html al cargar la página
+$(document).ready(function() {
+    loadScenario('../../html/game.html');
+});
+
+
+
+====== index.js ======
+
+// Obtener el parámetro de la URL para mostrar el mensaje si es necesario
+const urlParams = new URLSearchParams(window.location.search);
+const mensaje = urlParams.get('mensaje');
+
+// Mostrar el mensaje si el parámetro "mensaje" es "exito"
+if (mensaje === 'exito') {
+  document.getElementById('mensaje-exito').style.display = 'block';
+}
+
+// Función para cerrar el mensaje
+function cerrarMensaje() {
+  document.getElementById('mensaje-exito').style.display = 'none';
+}
+
+// Restablecer el mensaje al recargar la página
+window.addEventListener('load', function() {
+  if (mensaje === 'exito') {
+    history.replaceState({}, document.title, location.pathname);
+  }
+});
+
+

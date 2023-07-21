@@ -1,3 +1,5 @@
+====== nueva_partida.js ======
+
 // Function to resaltar la clase seleccionada visualmente
 function seleccionarClase(clase) {
     const personajes = document.querySelectorAll('.personaje');
@@ -13,8 +15,8 @@ function seleccionarClase(clase) {
 // Function to create a new game and character
 function createNewGame() {
     const codigoId = <?php echo $_SESSION['Id']; ?>;
-    const nombrePartida = document.getElementById('nombre').value.trim();
-    const nivelPartida = 1;
+    const nombrePartida = document.getElementById('nombre').value.trim(); // You can set the default name for the game here
+    const nivelPartida = 1; // You can set the default level for the game here
 
     const nombrePersonaje = document.getElementById('nombre').value.trim();
     const claseSeleccionada = document.querySelector('.personaje.seleccionado');
@@ -26,7 +28,7 @@ function createNewGame() {
 
     const clase = claseSeleccionada.id;
     const character = initializeCharacter(nombrePersonaje, clase);
-    const characterJSON = JSON.stringify(character); // Convert the character object to JSON
+    const characterJSON = JSON.stringify(character);
 
     const gameData = {
         Cod_User: codigoId,
@@ -75,9 +77,7 @@ function initializeCharacter(nombre, clase) {
         resistencia_bonif: 0,
         destreza_bonif: 0,
         magia_bonif: 0,
-        stat_point: 0,
-        HP_actual: (nivel * 10) + (fuerzaBasic * 5) + (fuerzaBonif * 10),
-        MP_actual: (nivel * 5) + (magiaBasic * 10) + (magiaBonif * 5)
+        stat_point: 0
     };
 }
 
@@ -103,12 +103,52 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
     });
 }
 
-// Function to cargar el contenido del escenario (Similar to game.js)
-function loadScenario(scenarioURL) {
-    $('#game-content').load(scenarioURL);
+
+====== registro.js ======
+
+function goToIndex() {
+    window.location.href = "../index.php";
 }
 
-// Function to go back to game.html when "Volver" button is clicked
-function goToIndex() {
-    loadScenario('../../html/game/game.html');
+// Obtener el parámetro de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const error = urlParams.get('error');
+
+// Mostrar el mensaje de error si el parámetro está presente
+if (error === 'usuario_existente') {
+    mostrarMensajeErrorUsuario();
+} else if (error === 'email_existente') {
+    mostrarMensajeErrorEmail();
 }
+
+// Función para mostrar el mensaje de error de usuario
+function mostrarMensajeErrorUsuario() {
+    const mensajeErrorUsuario = document.getElementById('mensaje-error-usuario');
+    mensajeErrorUsuario.style.display = 'block';
+}
+
+// Función para mostrar el mensaje de error de email
+function mostrarMensajeErrorEmail() {
+    const mensajeErrorEmail = document.getElementById('mensaje-error-email');
+    mensajeErrorEmail.style.display = 'block';
+}
+
+// Función para cerrar el mensaje de error de usuario
+function cerrarMensajeErrorUsuario() {
+    const mensajeErrorUsuario = document.getElementById('mensaje-error-usuario');
+    mensajeErrorUsuario.style.display = 'none';
+}
+
+// Función para cerrar el mensaje de error de email
+function cerrarMensajeErrorEmail() {
+    const mensajeErrorEmail = document.getElementById('mensaje-error-email');
+    mensajeErrorEmail.style.display = 'none';
+}
+
+// Detectar cuando se recarga la página
+window.addEventListener('beforeunload', function(event) {
+    cerrarMensajeErrorUsuario();
+    cerrarMensajeErrorEmail();
+});
+
+

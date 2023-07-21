@@ -22,9 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                    VALUES (?, ?, ?, ?)");
 
     // Bind the parameters and execute the statements
-    $personajeStmt->bind_param("isiiiiiiiiii", $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point']);
-    
-    $partidaStmt->bind_param("issi", $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
+    $personajeStmt->bind_param("ssiiiiiiiiisii", $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual']);
+
+    $partidaStmt->bind_param("siss", $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
+
 
     // Execute the statements and check for success
     $personajeSuccess = $personajeStmt->execute();
