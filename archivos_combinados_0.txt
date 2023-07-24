@@ -192,6 +192,7 @@ session_start();
     <title>Project Dungeon</title>
     <link rel="stylesheet" href="../../css/general_estilo.css">
     <link rel="stylesheet" href="../../css/game_estilo.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <section class="game">
@@ -205,7 +206,7 @@ session_start();
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script>
         // Función para cargar el contenido del escenario
         function loadScenario(scenarioURL) {
@@ -227,8 +228,8 @@ session_start();
     <title>Nueva Partida</title>
     <link rel="stylesheet" href="../../css/general_estilo.css">
     <link rel="stylesheet" href="../../css/nueva_partida_estilo.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../js/nueva_partida.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
 <body>

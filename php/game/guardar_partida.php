@@ -1,4 +1,7 @@
-<?php 
+<?php
+// Habilitar la visualización de todos los errores
+error_reporting(E_ALL);
+
 // Include the database connection file
 include("../sesion/conexion.php");
 
@@ -15,42 +18,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $personaje = json_decode($personajeJSON, true);
     $partida = json_decode($partidaJSON, true);
 
-    // Prepare the SQL statements to insert data into the respective tables
-    $personajeStmt = $conn->prepare("INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point,HP_actual,MP_actual) 
-                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $partidaStmt = $conn->prepare("INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) 
-                                   VALUES (?, ?, ?, ?)");
+    // Check if there's a row with the same ID in the "partidas" table
+    $queryPartida = "SELECT * FROM partidas WHERE Cod_User = $codigoId";
+    $resultPartida = mysqli_query($conn, $queryPartida);
 
-    // Verify if the connection and table access are successful
-    if (!$personajeStmt || !$partidaStmt) {
-        die('Error en la preparación de las consultas: ' . $conn->error);
-    }
-
-
-    // Bind the parameters and execute the statements
-    $personajeStmt->bind_param("sssiiiiiiiiiiii", $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual']);
-
-    $partidaStmt->bind_param("ssis", $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
-
-    // Execute the statements and check for success
-    $personajeSuccess = $personajeStmt->execute();
-    $partidaSuccess = $partidaStmt->execute();
-
-    // Close the statements
-    $personajeStmt->close();
-    $partidaStmt->close();
-
-    // Check if both insertions were successful
-    if ($personajeSuccess && $partidaSuccess) {
-        echo "success";
+    if (mysqli_num_rows($resultPartida) > 0) {
+        // If the row exists, use "ALTER TABLE" to update the existing row
+        $queryUpdatePartida = "UPDATE partidas SET 
+                                Nombre = '{$partida['Nombre']}', 
+                                Nivel = '{$partida['Nivel']}', 
+                                Ubicacion = '{$partida['Ubicacion']}' 
+                                WHERE ID = $codigoId";
+        // Replace campo1, campo2, valor1, valor2 with actual field names and values you want to update
+        mysqli_query($conn, $queryUpdatePartida);
     } else {
-        echo "error";
+        // If the row doesn't exist, use "INSERT INTO" to add a new row
+        $queryInsertPartida = "INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) VALUES ('$codigoId', '{$partida['Nombre']}', '{$partida['Nivel']}', '{$partida['Ubicacion']}')";
+        // Replace campo1, campo2, valor1, valor2 with actual field names and values you want to insert
+        mysqli_query($conn, $queryInsertPartida);
     }
-} else {
-    // If the request is not a POST request, return an error
-    echo "error";
+
+    // Check if there's a row with the same ID in the "personaje" table
+    $queryPersonaje = "SELECT * FROM personaje WHERE ID = $codigoId";
+    $resultPersonaje = mysqli_query($conn, $queryPersonaje);
+
+    if (mysqli_num_rows($resultPersonaje) > 0) {
+        // If the row exists, use "UPDATE" to update the existing row
+        $queryUpdatePersonaje = "UPDATE personaje SET 
+                                 Nombre = '{$personaje['nombre']}',
+                                 Clase = '{$personaje['clase']}',
+                                 Nivel = '{$personaje['nivel']}',
+                                 Fuerza_Basic = '{$personaje['fuerza_basic']}',
+                                 Resistencia_Basic = '{$personaje['resistencia_basic']}',
+                                 Destreza_Basic = '{$personaje['destreza_basic']}',
+                                 Magia_Basic = '{$personaje['magia_basic']}',
+                                 Fuerza_Bonif = '{$personaje['fuerza_bonif']}',
+                                 Resistencia_Bonif = '{$personaje['resistencia_bonif']}',
+                                 Destreza_Bonif = '{$personaje['destreza_bonif']}',
+                                 Magia_Bonif = '{$personaje['magia_bonif']}',
+                                 Stat_Point = '{$personaje['stat_point']}',
+                                 HP_actual = '{$personaje['HP_actual']}',
+                                 MP_actual = '{$personaje['MP_actual']}'
+                                 WHERE ID = $codigoId";
+    
+        mysqli_query($conn, $queryUpdatePersonaje);
+    } else {
+        // If the row doesn't exist, use "INSERT INTO" to add a new row
+        $queryInsertPersonaje = "INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual) 
+                                VALUES ('$codigoId', '{$personaje['nombre']}', '{$personaje['clase']}', '{$personaje['nivel']}', '{$personaje['fuerza_basic']}', '{$personaje['resistencia_basic']}', '{$personaje['destreza_basic']}', '{$personaje['magia_basic']}', '{$personaje['fuerza_bonif']}', '{$personaje['resistencia_bonif']}', '{$personaje['destreza_bonif']}', '{$personaje['magia_bonif']}', '{$personaje['stat_point']}', '{$personaje['HP_actual']}', '{$personaje['MP_actual']}')";
+    
+        mysqli_query($conn, $queryInsertPersonaje);
+    }
 }
 ?>
-
-
-

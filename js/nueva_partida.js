@@ -13,6 +13,7 @@ function seleccionarClase(clase) {
 
 // Function to create a new game and character
 function createNewGame() {
+    include("../../php/sesion/conexion.php");
     const codigoId = document.getElementById('game-content').dataset.codigoId;
     const nombrePartida = document.getElementById('nombre').value.trim();
     const nivelPartida = 1;

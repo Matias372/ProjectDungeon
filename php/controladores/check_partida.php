@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
-require_once 'conexion.php';
+include("../sesion/conexion.php");
 
 // Verificar si existe una sesión iniciada y obtener el Codigo_Id del usuario
 if (session_status() === PHP_SESSION_NONE) {
