@@ -23,18 +23,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultPartida = mysqli_query($conn, $queryPartida);
 
     if (mysqli_num_rows($resultPartida) > 0) {
-        // If the row exists, use "ALTER TABLE" to update the existing row
+        // "ALTER TABLE" to update the existing row
         $queryUpdatePartida = "UPDATE partidas SET 
                                 Nombre = '{$partida['Nombre']}', 
                                 Nivel = '{$partida['Nivel']}', 
                                 Ubicacion = '{$partida['Ubicacion']}' 
                                 WHERE ID = $codigoId";
-        // Replace campo1, campo2, valor1, valor2 with actual field names and values you want to update
+        
         mysqli_query($conn, $queryUpdatePartida);
     } else {
-        // If the row doesn't exist, use "INSERT INTO" to add a new row
+        // "INSERT INTO" to add a new row
         $queryInsertPartida = "INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) VALUES ('$codigoId', '{$partida['Nombre']}', '{$partida['Nivel']}', '{$partida['Ubicacion']}')";
-        // Replace campo1, campo2, valor1, valor2 with actual field names and values you want to insert
+        
         mysqli_query($conn, $queryInsertPartida);
     }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultPersonaje = mysqli_query($conn, $queryPersonaje);
 
     if (mysqli_num_rows($resultPersonaje) > 0) {
-        // If the row exists, use "UPDATE" to update the existing row
+        //"UPDATE" to update the existing row
         $queryUpdatePersonaje = "UPDATE personaje SET 
                                  Nombre = '{$personaje['nombre']}',
                                  Clase = '{$personaje['clase']}',
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         mysqli_query($conn, $queryUpdatePersonaje);
     } else {
-        // If the row doesn't exist, use "INSERT INTO" to add a new row
+        //"INSERT INTO" to add a new row
         $queryInsertPersonaje = "INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual) 
                                 VALUES ('$codigoId', '{$personaje['nombre']}', '{$personaje['clase']}', '{$personaje['nivel']}', '{$personaje['fuerza_basic']}', '{$personaje['resistencia_basic']}', '{$personaje['destreza_basic']}', '{$personaje['magia_basic']}', '{$personaje['fuerza_bonif']}', '{$personaje['resistencia_bonif']}', '{$personaje['destreza_bonif']}', '{$personaje['magia_bonif']}', '{$personaje['stat_point']}', '{$personaje['HP_actual']}', '{$personaje['MP_actual']}')";
     

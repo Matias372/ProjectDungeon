@@ -2,31 +2,24 @@
 // Incluir el archivo de conexión a la base de datos
 include("../sesion/conexion.php");
 
-// Verificar si existe una sesión iniciada y obtener el Codigo_Id del usuario
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['Id'])) {
-    $codigoId = $_SESSION['Id'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Obtener el valor del ID enviado desde el formulario
+    $id = $_POST["Cod_User"];
 
-    // Realizar la consulta para verificar si existe una partida para el usuario actual
-    $sql = "SELECT * FROM partidas WHERE Cod_User = '$codigoId'";
-    $result = $conn->query($sql);
-
-    // Verificar si se obtuvieron resultados
-    if ($result->num_rows > 0) {
-        // Si existe una partida, enviar respuesta 'exist'
-        echo 'exist';
+    // Realizar la consulta en la tabla "partidas" para verificar si existe una fila con el mismo ID
+    $query = "SELECT COUNT(*) as count FROM partidas WHERE Cod_User = $id";
+    $result = mysqli_query($conexion, $query);
+    
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $exists = $row["count"] > 0;
+        
+        // Devolver la respuesta al script AJAX
+        echo json_encode(array("exists" => $exists));
     } else {
-        // Si no existe una partida, enviar respuesta 'not_exist'
-        echo 'not_exist';
+        // Manejo de errores si ocurre algún problema con la consulta
+        echo json_encode(array("exists" => false));
     }
-} else {
-    // Si no hay una sesión iniciada o no se pudo obtener el Codigo_Id del usuario, enviar respuesta de error
-    echo 'error';
 }
-
-// Cerrar la conexión a la base de datos (opcional si no se va a realizar más consultas)
-$conn->close();
 ?>

@@ -1,5 +1,6 @@
 // Function to resaltar la clase seleccionada visualmente
 function seleccionarClase(clase) {
+    alert("Función ejecutándose: seleccionarClase"); //ELIMINAR DESPUES
     const personajes = document.querySelectorAll('.personaje');
     personajes.forEach(personaje => {
         personaje.classList.remove('seleccionado');
@@ -10,9 +11,10 @@ function seleccionarClase(clase) {
 
     // Aquí puedes hacer algo con la variable 'clase' si es necesario
 }
-
+//====================================================================================
 // Function to create a new game and character
 function createNewGame() {
+    alert("Función ejecutándose: createNewGame");//ELIMINAR DESPUES
     include("../../php/sesion/conexion.php");
     const codigoId = document.getElementById('game-content').dataset.codigoId;
     const nombrePartida = document.getElementById('nombre').value.trim();
@@ -38,33 +40,14 @@ function createNewGame() {
     };
     const gameDataJSON = JSON.stringify(gameData);
 
-    // Check if a game already exists for the user
-    $.ajax({
-        url: '../../php/controladores/check_partida.php',
-        type: 'POST',
-        data: { Cod_User: codigoId },
-        success: function(response) {
-            if (response === 'exist') {
-                const confirmacion = confirm('Ya existe una partida guardada. ¿Desea sobrescribir los datos?');
-                if (confirmacion) {
-                    // Send the character and game data to guardar_partida.php to save in the database
-                    saveGameData(codigoId, characterJSON, gameDataJSON);
-                } else {
-                    // Do nothing or handle the user's decision accordingly
-                }
-            } else {
-                // No existing game, directly save the character and game data in the database
-                saveGameData(codigoId, characterJSON, gameDataJSON);
-            }
-        },
-        error: function(xhr, status, error) {
-            alert('Error en la consulta a la base de datos: ' + error);
-        }
-    });
+    enviarFormulario(codigoId, characterJSON, gameDataJSON);
 }
+
+//====================================================================================
 
 // Function to set initial values for the character (Personaje) object
 function initializeCharacter(nombre, clase) {
+    alert("Función ejecutándose: initializeCharacter"); //ELIMINAR DESPUES
     const nivel = 1;
     const fuerza_basic= 10;
     const resistencia_basic= 10;
@@ -95,8 +78,11 @@ function initializeCharacter(nombre, clase) {
     };
 }
 
+//====================================================================================
+
 // Function to save the character and game data in the database
 function saveGameData(codigoId, characterJSON, gameDataJSON) {
+    alert("Función ejecutándose: saveGameData");
     $.ajax({
         url: '../../php/game/guardar_partida.php',
         type: 'POST',
@@ -117,8 +103,11 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
     });
 }
 
+//====================================================================================
+
 // Función para cargar el contenido del escenario
 function loadScenario(scenarioURL) {
+    alert("Función ejecutándose: loadScenario");
     $('#game-content').load(scenarioURL, function(response, status, xhr) {
         if (status === "error") {
             console.log("Error al cargar el escenario: " + xhr.statusText);
@@ -126,7 +115,40 @@ function loadScenario(scenarioURL) {
     });
 }
 
+//====================================================================================
+
 // Function to go back to game.html when "Volver" button is clicked
 function goToIndex() {
     loadScenario('../../html/game/game.html');
+}
+
+//====================================================================================
+
+// Función para enviar el formulario mediante AJAX
+function enviarFormulario(codigoId, characterJSON, gameDataJSON) {
+    alert("Función ejecutándose: enviarFormulario");
+    
+    $.ajax({
+        url:  '../../php/controladores/check_partida.php',
+        type: 'POST',
+        data: {
+            Cod_User: codigoId,
+        },
+        success: function(response) {
+            // Respuesta recibida desde validar.php
+            if (response.exists) {
+                // Si existe una fila con el mismo ID, preguntar al usuario
+                if (confirm("¿Deseas sobrescribir los datos?")) {
+                    saveGameData(codigoId, characterJSON, gameDataJSON);
+                }
+            } else {
+                // Si no existe una fila con el mismo ID, ejecutar la función directamente
+                saveGameData(codigoId, characterJSON, gameDataJSON);
+            }
+        },
+        error: function() {
+            // Manejo de errores si ocurre algún problema con la llamada AJAX
+            alert("Ha ocurrido un error al validar los datos.");
+        }
+    });
 }
