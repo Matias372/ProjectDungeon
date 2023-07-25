@@ -1,6 +1,5 @@
 // Function to resaltar la clase seleccionada visualmente
 function seleccionarClase(clase) {
-    alert("Función ejecutándose: seleccionarClase"); //ELIMINAR DESPUES
     const personajes = document.querySelectorAll('.personaje');
     personajes.forEach(personaje => {
         personaje.classList.remove('seleccionado');
@@ -14,8 +13,6 @@ function seleccionarClase(clase) {
 //====================================================================================
 // Function to create a new game and character
 function createNewGame() {
-    alert("Función ejecutándose: createNewGame");//ELIMINAR DESPUES
-    include("../../php/sesion/conexion.php");
     const codigoId = document.getElementById('game-content').dataset.codigoId;
     const nombrePartida = document.getElementById('nombre').value.trim();
     const nivelPartida = 1;
@@ -47,7 +44,6 @@ function createNewGame() {
 
 // Function to set initial values for the character (Personaje) object
 function initializeCharacter(nombre, clase) {
-    alert("Función ejecutándose: initializeCharacter"); //ELIMINAR DESPUES
     const nivel = 1;
     const fuerza_basic= 10;
     const resistencia_basic= 10;
@@ -58,7 +54,7 @@ function initializeCharacter(nombre, clase) {
     const destreza_bonif= 0;
     const magia_bonif= 0;
     const stat_point= 0;
-    const HP_actual= (nivel * 10) + (fuerza_basic * 5) + (fuerza_bonif * 10);
+    const HP_actual= (nivel * 10) + (fuerza_basic * 5) + (fuerza_bonif * 10); //MODIFICAR
     const MP_actual= (nivel * 5) + (magia_basic * 10) + (magia_bonif * 5);
     return {
         nombre: nombre,
@@ -82,7 +78,7 @@ function initializeCharacter(nombre, clase) {
 
 // Function to save the character and game data in the database
 function saveGameData(codigoId, characterJSON, gameDataJSON) {
-    alert("Función ejecutándose: saveGameData");
+    
     $.ajax({
         url: '../../php/game/guardar_partida.php',
         type: 'POST',
@@ -91,11 +87,16 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
             Personaje: characterJSON,
             Partida: gameDataJSON
         },
+        dataType: 'json', // Expect JSON response from the server
         success: function(response) {
-            // Character and game data saved successfully
-            alert('Los datos del personaje y la partida se han guardado correctamente en la base de datos.');
-            // Redirect to "city.html" after saving
-            loadScenario('../../html/game/Ciudad/city.html');
+            // Check the response status and show appropriate alert
+            if (response.status === 'success') {
+                alert(response.message);
+                // Redirect to "city.html" after saving
+                loadScenario('../../html/game/Ciudad/city.html');
+            } else {
+                alert('Error: ' + response.message);
+            }
         },
         error: function(xhr, status, error) {
             alert('Error al guardar los datos del personaje y la partida: ' + error);
@@ -107,7 +108,6 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
 
 // Función para cargar el contenido del escenario
 function loadScenario(scenarioURL) {
-    alert("Función ejecutándose: loadScenario");
     $('#game-content').load(scenarioURL, function(response, status, xhr) {
         if (status === "error") {
             console.log("Error al cargar el escenario: " + xhr.statusText);
@@ -126,7 +126,7 @@ function goToIndex() {
 
 // Función para enviar el formulario mediante AJAX
 function enviarFormulario(codigoId, characterJSON, gameDataJSON) {
-    alert("Función ejecutándose: enviarFormulario");
+    
     
     $.ajax({
         url:  '../../php/controladores/check_partida.php',
@@ -134,16 +134,17 @@ function enviarFormulario(codigoId, characterJSON, gameDataJSON) {
         data: {
             Cod_User: codigoId,
         },
+        dataType: 'json', 
         success: function(response) {
             // Respuesta recibida desde validar.php
-            if (response.exists) {
-                // Si existe una fila con el mismo ID, preguntar al usuario
-                if (confirm("¿Deseas sobrescribir los datos?")) {
+            if (response.status === "success") {
+                if (confirm("Ya tienes una partida guardada. ¿Deseas sobrescribir los datos?")) {
                     saveGameData(codigoId, characterJSON, gameDataJSON);
                 }
+            } else if (response.status === "error") {
+                alert("Ha ocurrido un error dentro del check... "); 
             } else {
-                // Si no existe una fila con el mismo ID, ejecutar la función directamente
-                saveGameData(codigoId, characterJSON, gameDataJSON);
+                alert("Respuesta desconocida. A->n_p->eF()");
             }
         },
         error: function() {

@@ -30,12 +30,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 Ubicacion = '{$partida['Ubicacion']}' 
                                 WHERE ID = $codigoId";
         
-        mysqli_query($conn, $queryUpdatePartida);
+        if (mysqli_query($conn, $queryUpdatePartida)) {
+            $response["status"] = "success";
+            $response["message"] = "Partida actualizada correctamente en la base de datos.";
+        } else {
+            $response["status"] = "success";
+            $response["message"] = "Error al actualizar la partida en la base de datos: 1";
+            
+        }
     } else {
         // "INSERT INTO" to add a new row
         $queryInsertPartida = "INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) VALUES ('$codigoId', '{$partida['Nombre']}', '{$partida['Nivel']}', '{$partida['Ubicacion']}')";
         
-        mysqli_query($conn, $queryInsertPartida);
+        if (mysqli_query($conn, $queryInsertPartida)) {
+            $response["status"] = "success";
+            $response["message"] = "Partida insertada correctamente en la base de datos.";
+            
+        } else {
+            $response["status"] = "success";
+            $response["message"] = "Error al insertar la partida en la base de datos: 2";
+        }
     }
 
     // Check if there's a row with the same ID in the "personaje" table
@@ -61,13 +75,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                  MP_actual = '{$personaje['MP_actual']}'
                                  WHERE ID = $codigoId";
     
-        mysqli_query($conn, $queryUpdatePersonaje);
+        if (mysqli_query($conn, $queryUpdatePersonaje)) {
+            $response["status"] = "success";
+            $response["message"] = "Personaje actualizado correctamente en la base de datos.";
+        } else {
+            $response["status"] = "error";
+            $response["message"] = "Error al actualizar el personaje en la base de datos: 3";
+        }
     } else {
         //"INSERT INTO" to add a new row
         $queryInsertPersonaje = "INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual) 
                                 VALUES ('$codigoId', '{$personaje['nombre']}', '{$personaje['clase']}', '{$personaje['nivel']}', '{$personaje['fuerza_basic']}', '{$personaje['resistencia_basic']}', '{$personaje['destreza_basic']}', '{$personaje['magia_basic']}', '{$personaje['fuerza_bonif']}', '{$personaje['resistencia_bonif']}', '{$personaje['destreza_bonif']}', '{$personaje['magia_bonif']}', '{$personaje['stat_point']}', '{$personaje['HP_actual']}', '{$personaje['MP_actual']}')";
     
-        mysqli_query($conn, $queryInsertPersonaje);
+        if (mysqli_query($conn, $queryInsertPersonaje)) {
+            $response["status"] = "success";
+            $response["message"] = "Personaje insertado correctamente en la base de datos.";
+        } else {
+            $response["status"] = "error";
+            $response["message"] = "Error al insertar el personaje en la base de datos: 4";
+        }
     }
+
+    // Return the response as JSON
+    echo json_encode($response);
 }
 ?>
+

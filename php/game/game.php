@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>Project Dungeon - Game</title>
     <link rel="stylesheet" href="../../css/general_estilo.css">
     <link rel="stylesheet" href="../../css/header_estilo.css">
     <link rel="stylesheet" href="../../css/footer_estilo.css">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
     <!-- Agregar el section "game" -->
     <section class="game">
-        <div class="content" id="game-content" data-codigo-id="<?php echo $_SESSION['Id']; ?>">
+        <div class="content" id="game-content" data-codigo-id="<?php echo $_SESSION['Id'];?>">
             <!-- Aquí se cargará el contenido del escenario seleccionado -->
             <!-- Por defecto, cargar el menú principal (game.html) -->
             <?php include '../../html/game/game.html'; ?>

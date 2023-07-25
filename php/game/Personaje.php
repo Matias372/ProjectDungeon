@@ -57,7 +57,7 @@ class Personaje {
     
     // Calculate the maximum HP based on attributes
     public function calculateHPMax() {
-        return ($this->nivel * 10) + ($this->fuerzaBasic * 5) + ($this->fuerzaBonif * 10);
+        return ($this->nivel * 10) + ($this->fuerzaBasic * 5) + ($this->fuerzaBonif * 10); //modificar
     }
 
     // Calculate the maximum MP based on attributes
