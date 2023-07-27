@@ -1,1 +1,56 @@
-<p>ciudad</p>
+<!-- Section "estado" -->
+<section class="estado">
+    <div class="personaje">
+        <img src="ruta/imagen_personaje.png" alt="Imagen del personaje" class="personaje-img">
+    </div>
+    <div class="datos-personaje">
+        <p class="nombre-personaje">Nombre del Personaje</p>
+        <p class="nivel-personaje">Nivel: 1</p>
+        <p class="vida-personaje">Vida: 100 / 100</p>
+        <p class="mana-personaje">Mana: 50 / 50</p>
+    </div>
+</section>
+
+<!-- Section con las opciones "Mover a", "Personaje", "Guardar" -->
+<section class="opciones">
+    <div class="menu-opciones">
+        <button onclick="mostrarMoverA()">Mover a</button>
+        <button onclick="mostrarPersonaje()">Personaje</button>
+        <button onclick="guardarPartida()">Guardar</button>
+    </div>
+
+    <!-- Section para la opción "Mover a" -->
+    <section class="mover-a oculto">
+        <!-- Aquí coloca el contenido correspondiente a la opción "Mover a" -->
+        <!-- Por ejemplo: -->
+        <p>Selecciona el lugar al que deseas moverte:</p>
+        <ul>
+            <li><button onclick="moverseALugar('Lugar 1')">Lugar 1</button></li>
+            <li><button onclick="moverseALugar('Lugar 2')">Lugar 2</button></li>
+            <!-- Agrega más opciones de lugares según necesites -->
+        </ul>
+    </section>
+
+    <!-- Section para la opción "Personaje" -->
+    <section class="personaje oculto">
+        <!-- Aquí coloca el contenido correspondiente a la opción "Personaje" -->
+        <!-- Por ejemplo: -->
+        <p>Información del personaje:</p>
+        <ul>
+            <li>Clase: Bárbaro</li>
+            <li>Fuerza: 10</li>
+            <li>Resistencia: 8</li>
+            <li>Destreza: 5</li>
+            <!-- Agrega más información del personaje según necesites -->
+        </ul>
+    </section>
+
+    <!-- Section para la opción "Guardar" -->
+    <section class="guardar oculto">
+        <!-- Aquí coloca el contenido correspondiente a la opción "Guardar" -->
+        <!-- Por ejemplo: -->
+        <p>¿Deseas guardar la partida?</p>
+        <button onclick="guardarPartidaEnBaseDeDatos()">Guardar Partida</button>
+        <!-- Puedes agregar más elementos relacionados con la opción "Guardar" -->
+    </section>
+</section>

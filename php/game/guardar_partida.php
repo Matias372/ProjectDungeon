@@ -5,12 +5,14 @@ error_reporting(E_ALL);
 // Include the database connection file
 include("../sesion/conexion.php");
 
+$response = array();
+
 // Check if the request is a POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the data from the POST request
-    $codigoId = $_POST['Cod_User'] ?? '';
-    $personajeJSON = $_POST['Personaje'] ?? '';
-    $partidaJSON = $_POST['Partida'] ?? '';
+    $codigoId = isset($_POST['Cod_User']) ? $_POST['Cod_User'] : '';
+    $personajeJSON = isset($_POST['Personaje']) ? $_POST['Personaje'] : '';
+    $partidaJSON = isset($_POST['Partida']) ? $_POST['Partida'] : '';
 
     // Validate the data (you may add further validation here if needed)
 
@@ -19,85 +21,103 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $partida = json_decode($partidaJSON, true);
 
     // Check if there's a row with the same ID in the "partidas" table
-    $queryPartida = "SELECT * FROM partidas WHERE Cod_User = $codigoId";
-    $resultPartida = mysqli_query($conn, $queryPartida);
+    $queryPartida = "SELECT COUNT(*) as count FROM partidas WHERE Cod_User = ?";
+    $stmt = mysqli_prepare($conn, $queryPartida);
+    mysqli_stmt_bind_param($stmt, 'i', $codigoId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $count);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 
-    if (mysqli_num_rows($resultPartida) > 0) {
-        // "ALTER TABLE" to update the existing row
+    if ($count > 0) {
+        // Update the existing row
         $queryUpdatePartida = "UPDATE partidas SET 
-                                Nombre = '{$partida['Nombre']}', 
-                                Nivel = '{$partida['Nivel']}', 
-                                Ubicacion = '{$partida['Ubicacion']}' 
-                                WHERE ID = $codigoId";
-        
-        if (mysqli_query($conn, $queryUpdatePartida)) {
+                                Nombre = ?, 
+                                Nivel = ?, 
+                                Ubicacion = ? 
+                                WHERE Cod_User = ?";
+        $stmt = mysqli_prepare($conn, $queryUpdatePartida);
+        mysqli_stmt_bind_param($stmt, 'sssi', $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion'], $codigoId);
+        if (mysqli_stmt_execute($stmt)) {
             $response["status"] = "success";
             $response["message"] = "Partida actualizada correctamente en la base de datos.";
         } else {
-            $response["status"] = "success";
-            $response["message"] = "Error al actualizar la partida en la base de datos: 1";
-            
+            $response["status"] = "error";
+            $response["message"] = "Error al actualizar la partida en la base de datos: " . mysqli_error($conn);
         }
+        mysqli_stmt_close($stmt);
     } else {
-        // "INSERT INTO" to add a new row
-        $queryInsertPartida = "INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) VALUES ('$codigoId', '{$partida['Nombre']}', '{$partida['Nivel']}', '{$partida['Ubicacion']}')";
-        
-        if (mysqli_query($conn, $queryInsertPartida)) {
+        // Insert a new row
+        $queryInsertPartida = "INSERT INTO partidas (Cod_User, Nombre, Nivel, Ubicacion) VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $queryInsertPartida);
+        mysqli_stmt_bind_param($stmt, 'isss', $codigoId, $partida['Nombre'], $partida['Nivel'], $partida['Ubicacion']);
+        if (mysqli_stmt_execute($stmt)) {
             $response["status"] = "success";
             $response["message"] = "Partida insertada correctamente en la base de datos.";
-            
         } else {
-            $response["status"] = "success";
-            $response["message"] = "Error al insertar la partida en la base de datos: 2";
+            $response["status"] = "error";
+            $response["message"] = "Error al insertar la partida en la base de datos: " . mysqli_error($conn);
         }
+        mysqli_stmt_close($stmt);
     }
 
     // Check if there's a row with the same ID in the "personaje" table
-    $queryPersonaje = "SELECT * FROM personaje WHERE ID = $codigoId";
-    $resultPersonaje = mysqli_query($conn, $queryPersonaje);
+    $queryPersonaje = "SELECT COUNT(*) as count FROM personaje WHERE Cod_User = ?";
+    $stmt = mysqli_prepare($conn, $queryPersonaje);
+    mysqli_stmt_bind_param($stmt, 'i', $codigoId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $count);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 
-    if (mysqli_num_rows($resultPersonaje) > 0) {
-        //"UPDATE" to update the existing row
+    if ($count > 0) {
+        // Update the existing row
         $queryUpdatePersonaje = "UPDATE personaje SET 
-                                 Nombre = '{$personaje['nombre']}',
-                                 Clase = '{$personaje['clase']}',
-                                 Nivel = '{$personaje['nivel']}',
-                                 Fuerza_Basic = '{$personaje['fuerza_basic']}',
-                                 Resistencia_Basic = '{$personaje['resistencia_basic']}',
-                                 Destreza_Basic = '{$personaje['destreza_basic']}',
-                                 Magia_Basic = '{$personaje['magia_basic']}',
-                                 Fuerza_Bonif = '{$personaje['fuerza_bonif']}',
-                                 Resistencia_Bonif = '{$personaje['resistencia_bonif']}',
-                                 Destreza_Bonif = '{$personaje['destreza_bonif']}',
-                                 Magia_Bonif = '{$personaje['magia_bonif']}',
-                                 Stat_Point = '{$personaje['stat_point']}',
-                                 HP_actual = '{$personaje['HP_actual']}',
-                                 MP_actual = '{$personaje['MP_actual']}'
-                                 WHERE ID = $codigoId";
-    
-        if (mysqli_query($conn, $queryUpdatePersonaje)) {
+                                 Nombre = ?,
+                                 Clase = ?,
+                                 Nivel = ?,
+                                 Fuerza_Basic = ?,
+                                 Resistencia_Basic = ?,
+                                 Destreza_Basic = ?,
+                                 Magia_Basic = ?,
+                                 Fuerza_Bonif = ?,
+                                 Resistencia_Bonif = ?,
+                                 Destreza_Bonif = ?,
+                                 Magia_Bonif = ?,
+                                 Stat_Point = ?,
+                                 HP_actual = ?,
+                                 MP_actual = ?
+                                 WHERE Cod_User = ?";
+        $stmt = mysqli_prepare($conn, $queryUpdatePersonaje);
+        mysqli_stmt_bind_param($stmt, 'ssssssssssssssi', $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual'], $codigoId);
+        if (mysqli_stmt_execute($stmt)) {
             $response["status"] = "success";
             $response["message"] = "Personaje actualizado correctamente en la base de datos.";
         } else {
             $response["status"] = "error";
-            $response["message"] = "Error al actualizar el personaje en la base de datos: 3";
+            $response["message"] = "Error al actualizar el personaje en la base de datos: " . mysqli_error($conn);
         }
+        mysqli_stmt_close($stmt);
     } else {
-        //"INSERT INTO" to add a new row
+        // Insert a new row
         $queryInsertPersonaje = "INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual) 
-                                VALUES ('$codigoId', '{$personaje['nombre']}', '{$personaje['clase']}', '{$personaje['nivel']}', '{$personaje['fuerza_basic']}', '{$personaje['resistencia_basic']}', '{$personaje['destreza_basic']}', '{$personaje['magia_basic']}', '{$personaje['fuerza_bonif']}', '{$personaje['resistencia_bonif']}', '{$personaje['destreza_bonif']}', '{$personaje['magia_bonif']}', '{$personaje['stat_point']}', '{$personaje['HP_actual']}', '{$personaje['MP_actual']}')";
-    
-        if (mysqli_query($conn, $queryInsertPersonaje)) {
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $queryInsertPersonaje);
+        mysqli_stmt_bind_param($stmt, 'isssssssssssss', $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual']);
+        if (mysqli_stmt_execute($stmt)) {
             $response["status"] = "success";
             $response["message"] = "Personaje insertado correctamente en la base de datos.";
         } else {
             $response["status"] = "error";
-            $response["message"] = "Error al insertar el personaje en la base de datos: 4";
+            $response["message"] = "Error al insertar el personaje en la base de datos: " . mysqli_error($conn);
         }
+        mysqli_stmt_close($stmt);
     }
-
-    // Return the response as JSON
-    echo json_encode($response);
+} else {
+    $response["status"] = "error";
+    $response["message"] = "Invalid request method.";
 }
-?>
 
+// Return the response as JSON
+echo json_encode($response);
+?>

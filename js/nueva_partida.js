@@ -83,7 +83,7 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
         url: '../../php/game/guardar_partida.php',
         type: 'POST',
         data: {
-            Cod_User: codigoId,
+            Codigo_User: codigoId,
             Personaje: characterJSON,
             Partida: gameDataJSON
         },
@@ -98,7 +98,21 @@ function saveGameData(codigoId, characterJSON, gameDataJSON) {
                 alert('Error: ' + response.message);
             }
         },
-        error: function(xhr, status, error) {
+        error: function(xhr, status, error, cod_test) {
+            console.log(xhr); 
+            console.log(status); 
+            console.log(error); // Imprimir el mensaje de error
+            console.log(codigoId);
+            console.log(cod_test);
+            alert("Código de Usuario recibido: " + response.cod_test);
+
+            // Si la respuesta del servidor es una cadena JSON, puedes intentar analizarla para obtener más información
+            try {
+                const responseJSON = JSON.parse(xhr.responseText);
+                console.log(responseJSON);
+            } catch (e) {
+                console.log("No se pudo analizar la respuesta JSON del servidor.");
+            }
             alert('Error al guardar los datos del personaje y la partida: ' + error);
         }
     });
