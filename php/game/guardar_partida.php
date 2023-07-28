@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                  MP_actual = ?
                                  WHERE Cod_User = ?";
         $stmt = mysqli_prepare($conn, $queryUpdatePersonaje);
-        mysqli_stmt_bind_param($stmt, 'ssssssssssssssi', $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual'], $codigoId);
+        mysqli_stmt_bind_param($stmt, 'ssssssssssssssi', $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerzaBasic'], $personaje['resistenciaBasic'], $personaje['destrezaBasic'], $personaje['magiaBasic'], $personaje['fuerzaBonif'], $personaje['resistenciaBonif'], $personaje['destrezaBonif'], $personaje['magiaBonif'], $personaje['statPoint'], $personaje['HP_actual'], $personaje['MP_actual'], $codigoId);
         if (mysqli_stmt_execute($stmt)) {
             $response["status"] = "success";
             $response["message"] = "Personaje actualizado correctamente en la base de datos.";
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $queryInsertPersonaje = "INSERT INTO personaje (Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $queryInsertPersonaje);
-        mysqli_stmt_bind_param($stmt, 'isssssssssssss', $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerza_basic'], $personaje['resistencia_basic'], $personaje['destreza_basic'], $personaje['magia_basic'], $personaje['fuerza_bonif'], $personaje['resistencia_bonif'], $personaje['destreza_bonif'], $personaje['magia_bonif'], $personaje['stat_point'], $personaje['HP_actual'], $personaje['MP_actual']);
+        mysqli_stmt_bind_param($stmt, 'isssssssssssss', $codigoId, $personaje['nombre'], $personaje['clase'], $personaje['nivel'], $personaje['fuerzaBasic'], $personaje['resistenciaBasic'], $personaje['destrezaBasic'], $personaje['magiaBasic'], $personaje['fuerzaBonif'], $personaje['resistenciaBonif'], $personaje['destrezaBonif'], $personaje['magiaBonif'], $personaje['statPoint'], $personaje['HP_actual'], $personaje['MP_actual']);
         if (mysqli_stmt_execute($stmt)) {
             $response["status"] = "success";
             $response["message"] = "Personaje insertado correctamente en la base de datos.";
