@@ -59,11 +59,28 @@ function initializeCharacter(nombre, clase) {
     const stat_point = 0;
     const HP_actual = (nivel * 10) + (fuerza_basic * 5) + (fuerza_bonif * 10); //MODIFICAR
     const MP_actual = (nivel * 5) + (magia_basic * 10) + (magia_bonif * 5);
+    const bonificacionesAplicadas = false;
 
-    // Crear una instancia de la clase Personaje y establecer las propiedades
-    const personaje = new Personaje(nombre, clase, nivel, fuerza_basic, resistencia_basic, destreza_basic, magia_basic, fuerza_bonif, resistencia_bonif, destreza_bonif, magia_bonif, stat_point, HP_actual, MP_actual);
+    // Crear un objeto con las propiedades del personaje
+    const character = {
+        nombre: nombre,
+        clase: clase,
+        nivel: nivel,
+        fuerzaBasic: fuerza_basic,
+        resistenciaBasic: resistencia_basic,
+        destrezaBasic: destreza_basic,
+        magiaBasic: magia_basic,
+        fuerzaBonif: fuerza_bonif,
+        resistenciaBonif: resistencia_bonif,
+        destrezaBonif: destreza_bonif,
+        magiaBonif: magia_bonif,
+        statPoint: stat_point,
+        HP_actual: HP_actual,
+        MP_actual: MP_actual,
+        bonificacionesAplicadas: bonificacionesAplicadas
+    };
 
-    return personaje;
+    return character;
 }
 
 // Función para cargar el contenido del escenario

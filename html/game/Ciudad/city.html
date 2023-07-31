@@ -4,10 +4,10 @@
         <img src="ruta/imagen_personaje.png" alt="Imagen del personaje" class="personaje-img">
     </div>
     <div class="datos-personaje">
-        <p class="nombre-personaje" id="nombrePersonaje"></p>
-        <p class="nivel-personaje" id="nivelPersonaje"></p>
-        <p class="vida-personaje" id="vidaPersonaje"></p>
-        <p class="mana-personaje" id="manaPersonaje"></p>
+        <p class="nombre-personaje" id="nombrePersonaje"><?php echo $PJ_active->getNombre(); ?></p>
+        <p class="nivel-personaje" id="nivelPersonaje"><?php echo $PJ_active->getNivel(); ?></p>
+        <p class="vida-personaje" id="vidaPersonaje"><?php echo $PJ_active->getHP_actual(); ?></p>
+        <p class="mana-personaje" id="manaPersonaje"><?php echo $PJ_active->getMP_actual(); ?></p>
     </div>
 </section>
 

@@ -19,8 +19,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <link rel="stylesheet" href="../../css/footer_estilo.css">
     <link rel="stylesheet" href="../../css/game_extern_estilo.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/control_partida.js"></script>
     <script src="../../js/nueva_partida.js"></script>
-    <script src="../../js/control_partida.js" type="module"></script>
     <script src="../../js/game.js"></script>
     
 </head>

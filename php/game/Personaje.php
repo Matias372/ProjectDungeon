@@ -25,6 +25,8 @@ class Personaje {
     private $HP_actual;
     private $MP_actual;
 
+    private $bonificacionesAplicadas;
+
     //=============================CONSTRUCTOR=============================
 
     // Función para aplicar bonificación según la clase del personaje
@@ -48,7 +50,7 @@ class Personaje {
         }
     }
 
-    public function __construct($nombre, $clase, $nivel, $fuerzaBasic, $resistenciaBasic, $destrezaBasic, $magiaBasic, $fuerzaBonif, $resistenciaBonif, $destrezaBonif, $magiaBonif, $statPoint, $HP_actual, $MP_actual) {
+    public function __construct($nombre, $clase, $nivel, $fuerzaBasic, $resistenciaBasic, $destrezaBasic, $magiaBasic, $fuerzaBonif, $resistenciaBonif, $destrezaBonif, $magiaBonif, $statPoint, $HP_actual, $MP_actual, $bonificacionesAplicadas) {
         $this->nombre = $nombre;
         $this->clase = $clase;
         $this->nivel = $nivel;
@@ -72,13 +74,17 @@ class Personaje {
         $this->Hit_rate = $this->calculateHitRate();
         $this->atk_speed = $this->calculateAtkSpeed();
         $this->Crit_chance = $this->calculateCritChance();
+        $this->bonificacionesAplicadas = $bonificacionesAplicadas;
 
         // Initialize HP_actual and MP_actual with the values from HP_Max and MP_Max
         $this->HP_actual = $HP_actual;
         $this->MP_actual = $MP_actual;
 
         // Llamar a la función para aplicar bonificación de clase
-        $this->Clase_bonif();
+        if (bonificacionesAplicadas == false) {
+            $this->Clase_bonif();
+            $this->bonificacionesAplicadas = true;
+        }
     }
 
     //=============================GETTERS=============================
@@ -106,6 +112,16 @@ class Personaje {
     // Getter para obtener el MP máximo del personaje
     public function getMPMax() {
         return $this->MP_Max;
+    }
+
+    // Getter para obtener el HP actual del personaje
+    public function getHP_actual() {
+        return $this->HP_actual;
+    }
+
+    // Getter para obtener el MP actual del personaje
+    public function getMP_actual() {
+        return $this->MP_actual;
     }
 
     // Getter para obtener la fuerza básica del personaje

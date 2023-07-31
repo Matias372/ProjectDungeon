@@ -1,5 +1,5 @@
 // Función para guardar los datos del personaje y la partida en la base de datos
-export function saveGameData(codigoId, characterJSON, gameDataJSON) {
+ function saveGameData(codigoId, characterJSON, gameDataJSON) {
     $.ajax({
         url: '../../php/game/guardar_partida.php',
         type: 'POST',
@@ -19,14 +19,12 @@ export function saveGameData(codigoId, characterJSON, gameDataJSON) {
                 alert('Error: ' + response.message);
             }
         },
-        error: function(xhr, status, error, cod_test) { // BORRAR DESPUES
+        error: function(xhr, status, error) { // <-- Cambiar 'response' por 'xhr'
             console.log(xhr);
             console.log(status);
             console.log(error); // Imprimir el mensaje de error
             console.log(codigoId);
-            console.log(cod_test);
-            alert("Código de Usuario recibido: " + response.cod_test);
-
+        
             // Si la respuesta del servidor es una cadena JSON, puedes intentar analizarla para obtener más información
             try {
                 const responseJSON = JSON.parse(xhr.responseText);
@@ -41,7 +39,7 @@ export function saveGameData(codigoId, characterJSON, gameDataJSON) {
 
 //====================================================================================
 // Función para enviar el formulario mediante AJAX
-export function verificarPartida(codigoId, characterJSON, gameDataJSON) {
+ function verificarPartida(codigoId, characterJSON, gameDataJSON) {
     $.ajax({
         url: '../../php/controladores/check_partida.php',
         type: 'POST',
