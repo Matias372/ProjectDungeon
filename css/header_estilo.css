@@ -1,16 +1,20 @@
 /* HEADER ----------------------------------*/
 
-
 header {
-  background-color: #17202A;
-  padding: 10px;
+  background-color: #023E4C;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 200px;
 }
 
-.logo img {
-  width: 100%;
+.logo #logimg {
+  width: 150px;
+}
+
+.logo #lognam {
+  width: 300px;
+  height: 100px;
 }
 
 nav ul {
@@ -34,7 +38,6 @@ nav ul li a {
   color: #FFFFFF;
   font-size: 16px;
   display: inline-block;
-  padding: 10px 20px;
   border: 1px solid #FFFFFF;
   border-radius: 4px;
 }
@@ -53,8 +56,8 @@ nav ul li a:hover {
 }
 
 .user-avatar {
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: 1px solid #FFFFFF;
   overflow: hidden;
@@ -75,6 +78,7 @@ nav ul li a:hover {
 .username {
   color: #FFFFFF;
   margin-right: 10px;
+  font-size: 20px;
 }
 
 .dropdown-content {
@@ -118,4 +122,28 @@ nav ul li a:hover {
 
 .user-dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* PLAY LINK ------------------------------*/
+
+#play-boton {
+  position: absolute;
+  top: 175px; /* Ubicación vertical, 75px sobre el borde superior del header */
+  left: 50%; /* Lo centramos horizontalmente */
+  transform: translateX(-50%); /* Ajustamos para centrarlo exactamente */
+  width: 100px;
+  height: 50px; /* Altura del botón */
+  color: #E18222;
+  background-color: #FCCE63;
+  border: 2px solid #E18222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  overflow: hidden; /* Ocultamos el contenido que se salga del botón */
+  cursor: pointer;
+}
+
+#play-boton:hover {
+  background-color: #ffc53d; /* Cambiamos el color ligeramente más oscuro en :hover */
 }

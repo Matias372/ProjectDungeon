@@ -8,9 +8,11 @@
     
     <div class="logo">
         <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-            <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa"></a>
+            <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
+            <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
         <?php else: ?>
-            <a href="../../index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa"></a>
+            <a href="../../index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
+            <a href="index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
         <?php endif; ?>
     </div>
     
@@ -42,9 +44,9 @@
             </li>
             <li class="play-link"> <!-- Agrega una nueva lista para el enlace "Play" -->
                 <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-                    <a href="php/game/game.php">Play</a>
+                    <a href="php/game/game.php" id="play-boton">Play</a>
                 <?php else: ?>
-                    <a href="../game/game.php">Play</a>
+                    <a href="../game/game.php" id="play-boton">Play</a>
                 <?php endif; ?>
             </li>
         </ul>
@@ -52,9 +54,11 @@
     <?php } else { ?>
         <div class="logo">
             <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-                <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa"></a>
+                <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
+                <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
             <?php else: ?>
-                <a href="../../index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa"></a>
+                <a href="../../index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
+                <a href="index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
             <?php endif; ?>
         </div>
         

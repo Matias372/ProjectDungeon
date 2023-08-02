@@ -1,56 +1,54 @@
-<!-- Section "estado" -->
-<section class="estado">
-    <div class="personaje">
-        <img src="ruta/imagen_personaje.png" alt="Imagen del personaje" class="personaje-img">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="../../css/city_estilo.css">
+    <script src="../../js/control_city.js"></script>
+</head>
+<body>
+    <div class="game-content">
+        <section id="estado">
+            <!-- Aquí mostramos los datos del personaje desde PJ_active -->
+            <h2 id="nombrePersonaje">Nombre del Personaje</h2>
+            <p>Nivel: <span id="nivelPersonaje">10</span></p>
+            <div class="barra">
+                <div id="vidaPersonaje" class="vida" style="width: 70%;"></div>
+            </div>
+            <div class="barra">
+                <div id="manaPersonaje" class="mana" style="width: 50%;"></div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu">
+            <div class="opcion" onclick="mostrarSeleccion('Mover')">Mover a</div>
+            <div class="opcion" onclick="mostrarSeleccion('Personaje')">Personaje</div>
+            <div class="opcion" onclick="mostrarSeleccion('Guardar')">Guardar</div>
+        </section>
+
+        <section id="seleccion" class="seleccion">
+            <!-- Aquí mostrar las opciones adicionales según lo seleccionado en el menú -->
+        </section>
+
+        <section id="confirmacion" class="confirmacion">
+            <!-- Aquí mostrar la confirmación si se quiere usar, ver o cancelar la opción seleccionada -->
+        </section>
     </div>
-    <div class="datos-personaje">
-        <p class="nombre-personaje" id="nombrePersonaje"><?php echo $PJ_active->getNombre(); ?></p>
-        <p class="nivel-personaje" id="nivelPersonaje"><?php echo $PJ_active->getNivel(); ?></p>
-        <p class="vida-personaje" id="vidaPersonaje"><?php echo $PJ_active->getHP_actual(); ?></p>
-        <p class="mana-personaje" id="manaPersonaje"><?php echo $PJ_active->getMP_actual(); ?></p>
-    </div>
-</section>
 
-<!-- Section con las opciones "Mover a", "Personaje", "Guardar" -->
-<section class="opciones">
-    <div class="menu-opciones">
-        <button onclick="mostrarMoverA()">Mover a</button>
-        <button onclick="mostrarPersonaje()">Personaje</button>
-        <button onclick="guardarPartida()">Guardar</button>
-    </div>
+    
+    <script>
+        // Script para cargar los datos del personaje desde PJ_active y mostrarlos en el escenario
+        const nombrePersonajeElement = document.getElementById('nombrePersonaje');
+        const nivelPersonajeElement = document.getElementById('nivelPersonaje');
+        const vidaPersonajeElement = document.getElementById('vidaPersonaje');
+        const manaPersonajeElement = document.getElementById('manaPersonaje');
 
-    <!-- Section para la opción "Mover a" -->
-    <section class="mover-a oculto">
-        <!-- Aquí coloca el contenido correspondiente a la opción "Mover a" -->
-        <!-- Por ejemplo: -->
-        <p>Selecciona el lugar al que deseas moverte:</p>
-        <ul>
-            <li><button onclick="moverseALugar('Lugar 1')">Lugar 1</button></li>
-            <li><button onclick="moverseALugar('Lugar 2')">Lugar 2</button></li>
-            <!-- Agrega más opciones de lugares según necesites -->
-        </ul>
-    </section>
-
-    <!-- Section para la opción "Personaje" -->
-    <section class="personaje oculto">
-        <!-- Aquí coloca el contenido correspondiente a la opción "Personaje" -->
-        <!-- Por ejemplo: -->
-        <p>Información del personaje:</p>
-        <ul>
-            <li>Clase: Bárbaro</li>
-            <li>Fuerza: 10</li>
-            <li>Resistencia: 8</li>
-            <li>Destreza: 5</li>
-            <!-- Agrega más información del personaje según necesites -->
-        </ul>
-    </section>
-
-    <!-- Section para la opción "Guardar" -->
-    <section class="guardar oculto">
-        <!-- Aquí coloca el contenido correspondiente a la opción "Guardar" -->
-        <!-- Por ejemplo: -->
-        <p>¿Deseas guardar la partida?</p>
-        <button onclick="guardarPartidaEnBaseDeDatos()">Guardar Partida</button>
-        <!-- Puedes agregar más elementos relacionados con la opción "Guardar" -->
-    </section>
-</section>
+        // Cargar los datos del personaje desde PJ_active
+        nombrePersonajeElement.textContent = PJ_active.nombre;
+        nivelPersonajeElement.textContent = PJ_active.nivel;
+        vidaPersonajeElement.style.width = (PJ_active.HP_actual / PJ_active.HP_Max) * 100 + '%';
+        manaPersonajeElement.style.width = (PJ_active.MP_actual / PJ_active.MP_Max) * 100 + '%';
+    </script>
+</body>
+</html>

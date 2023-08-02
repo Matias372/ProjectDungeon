@@ -1,113 +1,66 @@
 /*FOOTER----------------------------------*/
 
-
-
-
 footer {
-    background-color: #17202A;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-wrap: inherit;
-    justify-content: center;
-  }
-  
-  .logo {
-    flex-basis: 50%;
-    margin-bottom: 20px;
-  }
-  
-  .logo img {
-    width: 100px;
-    height: auto;
-  }
-  
-  .about-us,
-  .social-media {
-    flex-basis: content;
-    text-align: initial;
-    padding: 0 10px;
-  }
-  
-  .about-us h4,
-  .social-media h4 {
-    color: #FFFFFF;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .about-us p,
-  .social-media ul {
-    color: #D3D3D3;
-    font-size: 14px;
-  }
-  
-  .social-media ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .social-media li {
-    margin-bottom: 8px;
-  }
-  
-  .social-media a {
-    color: #D3D3D3;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .social-media a:hover {
-    color: #FFFFFF;
-  }
-  
-
-
-/*FOOTER----------------------------------*/
-/*
-* {
-  margin: 0;
-  padding: 0;
-}
-
-footer {
-  background-color: #17202A;
+  background-color: #231203;
   padding: 20px;
   text-align: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: inherit;
   justify-content: center;
 }
 
-.logo {
-  flex-basis: 50%;
-  margin-bottom: 20px;
-}
-
-.logo img {
-  width: 100px;
-  height: auto;
-}
-
-.about-us,
-.social-media {
-  flex-basis: content;
-  text-align: left;
-  padding: 0 10px;
-}
-
-.about-us h4,
-.social-media h4 {
+/* Estilo para el "attribution" */
+.attribution h4 {
   color: #FFFFFF;
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 20px;
 }
 
-.about-us p,
-.social-media ul {
-  color: #D3D3D3;
+.attribution ul {
+  list-style: none;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.attribution li {
+  margin-bottom: 8px;
+}
+
+.attribution a {
+  color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+  text-decoration: none;
   font-size: 14px;
-  line-height: 1.5; 
+}
+
+.attribution a:hover {
+  color: #0071BC;
+}
+
+.attribution p{
+  color: #FFFFFF;
+  font-size: 5px;
+}
+
+/* Estilo para el "about-us" */
+.about-us h4 {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.about-us p {
+  color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+
+
+/* Estilo para el "social-media" */
+.social-media h4{
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .social-media ul {
@@ -120,16 +73,11 @@ footer {
 }
 
 .social-media a {
-  color: #D3D3D3;
+  color: #FFFFFF; /* Cambiar el color de las letras a blanco */
   text-decoration: none;
   font-size: 14px;
 }
 
 .social-media a:hover {
-  color: #FFFFFF;
+  color: #0071BC;
 }
-
-.social-media h4 {
-  display: inline-block;
-}
-*/

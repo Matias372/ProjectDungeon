@@ -27,7 +27,7 @@ session_start();
 
         <!-- Primer div -->
         <div>
-            <img src="img/Character/NPC_Inn_Icon_Mesa-de-trabajo-1.png" alt="Descripción de la imagen 1">
+            <img src="img/Character/NPC_Inn_Icon_M.png" alt="Descripción de la imagen 1" id=im1>
             <p id=in1>Hola Aventurero, bienvenido a "Project Dungeon". Nuestra ciudad es un lugar simple,
                 los aventureros como vos vienen por lo mismo, el portal. Si vuelves vivo trae unas monedas
                 y te recibire en la posada con una cerveza lista.
@@ -37,22 +37,22 @@ session_start();
 
         <!-- Segundo div -->
         <div>
-            <img src="img/Character/NPC_Shop_Icon_Mesa-de-trabajo-1.png" alt="Descripción de la imagen 2">
-            <p>En la ciudad puedes ir a la tienda para ver los equipos disponibles o puedes ir a la posada
+            <img src="img/Character/NPC_Shop_Icon_M.png" alt="Descripción de la imagen 2" id=im2>
+            <p id=in2>En la ciudad puedes ir a la tienda para ver los equipos disponibles o puedes ir a la posada
                 para descansar y comprar suministros. 
             </p>
         </div>
 
         <!-- Tercer div -->
         <div>
-            <img src="img/Character/NPC_Guild_Icon_Mesa-de-trabajo-1.png" alt="Descripción de la imagen 3">
-            <p>Recuerda pasar por el gremio para solicitar y entregar misiones.</p>
+            <img src="img/Character/NPC_Guild_Icon_M.png" alt="Descripción de la imagen 3" id=im3>
+            <p id=in3>Recuerda pasar por el gremio para solicitar y entregar misiones.</p>
         </div>
 
         <!-- Cuarto div -->
         <div>
-            <img src="img/Character/Monsters/Goblinrunts_Icon.png" alt="Descripción de la imagen 4">
-            <p>¡¡ESPERAMOS QUE TE DIVIERTAS!!</p>
+            <img src="img/Character/Monsters/Goblinrunts_Icon.png" alt="Descripción de la imagen 4" id=im4>
+            <p id=in4>¡¡ESPERAMOS QUE TE DIVIERTAS!!</p>
         </div>
     </section>
 

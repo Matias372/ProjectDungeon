@@ -1,0 +1,43 @@
+/* Estilos CSS para la barra de vida y mana */
+.barra {
+    width: 200px;
+    height: 20px;
+    border: 1px solid #000;
+    background-color: #f0f0f0;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.vida {
+    background-color: #ff0000;
+    height: 100%;
+}
+
+.mana {
+    background-color: #0000ff;
+    height: 100%;
+}
+
+/* Estilos CSS para el menú */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.opcion {
+    cursor: pointer;
+}
+
+.seleccion {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: none;
+}
+
+.confirmacion {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: none;
+}
