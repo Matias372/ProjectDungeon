@@ -26,7 +26,7 @@ if(isset($_SESSION['email'])) {
     <?php include '../../html/header.html'; ?>
     
 
-    <h2>Iniciar sesión</h2>
+    
 
     <?php
     // Verificar si se ha enviado el formulario
@@ -46,17 +46,19 @@ if(isset($_SESSION['email'])) {
     ?>
     
     <form action="../controladores/validar_sesion.php" method="POST">
-      <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" name="email" required><br><br>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" name="password" required><br><br>
-      <input type="submit" value="Iniciar sesión">
+        <h2>Iniciar sesión</h2>
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Iniciar sesión">
+        <button type="button"><a href="../../index.php" class="cancel-link">Cancelar</a></button>
     </form>
-    <a href="../../index.php" class="cancel-link">Cancelar</a>
+    
   
-    <header>
-        <?php include '../../html/footer.html'; ?>
-    </header>
+    
+    <?php include '../../html/footer.html'; ?>
+    
 
 </body>
 </html>

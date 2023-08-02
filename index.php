@@ -27,32 +27,38 @@ session_start();
 
         <!-- Primer div -->
         <div>
-            <img src="img/Character/NPC_Inn_Icon_M.png" alt="Descripción de la imagen 1" id=im1>
+            <span></span>
             <p id=in1>Hola Aventurero, bienvenido a "Project Dungeon". Nuestra ciudad es un lugar simple,
                 los aventureros como vos vienen por lo mismo, el portal. Si vuelves vivo trae unas monedas
                 y te recibire en la posada con una cerveza lista.
             </p>
+            <img src="img/Character/NPC_Inn.png" alt="Descripción de la imagen 1" id=im1>
+            
             
         </div>
 
         <!-- Segundo div -->
         <div>
-            <img src="img/Character/NPC_Shop_Icon_M.png" alt="Descripción de la imagen 2" id=im2>
+            <img src="img/Character/NPC_Shop.png" alt="Descripción de la imagen 2" id=im2>
             <p id=in2>En la ciudad puedes ir a la tienda para ver los equipos disponibles o puedes ir a la posada
                 para descansar y comprar suministros. 
             </p>
+            <span></span>
         </div>
 
         <!-- Tercer div -->
         <div>
-            <img src="img/Character/NPC_Guild_Icon_M.png" alt="Descripción de la imagen 3" id=im3>
+            <span></span>
             <p id=in3>Recuerda pasar por el gremio para solicitar y entregar misiones.</p>
+            <img src="img/Character/NPC_Guild.png" alt="Descripción de la imagen 3" id=im3>
+            
         </div>
 
         <!-- Cuarto div -->
         <div>
-            <img src="img/Character/Monsters/Goblinrunts_Icon.png" alt="Descripción de la imagen 4" id=im4>
+            <img src="img/Character/Monsters/Goblinrunts.png" alt="Descripción de la imagen 4" id=im4>
             <p id=in4>¡¡ESPERAMOS QUE TE DIVIERTAS!!</p>
+            <span></span>
         </div>
     </section>
 

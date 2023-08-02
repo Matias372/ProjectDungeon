@@ -8,8 +8,14 @@ header {
   height: 200px;
 }
 
+.logo{
+  display: flex;
+  align-items: center;
+}
+
 .logo #logimg {
   width: 150px;
+  margin-left: 10px;
 }
 
 .logo #lognam {
@@ -146,4 +152,24 @@ nav ul li a:hover {
 
 #play-boton:hover {
   background-color: #ffc53d; /* Cambiamos el color ligeramente más oscuro en :hover */
+}
+
+/*===== iniciar sesion, registrar =====*/
+nav ul li.login-link a,
+nav ul li.register-link a {
+    width: 300px;
+    height: 30px;
+    background-color: black;
+    border: 3px solid white;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+nav ul li.login-link a:hover,
+nav ul li.register-link a:hover {
+    background-color: #333; /* Cambio de color al pasar el cursor */
 }

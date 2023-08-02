@@ -44,8 +44,6 @@ if(isset($_SESSION['email'])) {
             <button type="submit">Registrarse</button>
             <button type="button"><a href="../../index.php" class="cancel-link">Cancelar</a></button>
         </div>
-        <p>O registra con:</p>
-        <button type="button" class="google-btn">Google</button>
     </form>
 
     <section id="mensaje-error-usuario" style="display: none;">

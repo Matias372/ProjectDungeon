@@ -9,10 +9,10 @@
     <div class="logo">
         <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
             <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
-            <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
+            <a href="index.php"><img src="img/Name_log.png" alt="Logo de la empresa" id= "lognam"></a>
         <?php else: ?>
             <a href="../../index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
-            <a href="index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
+            <a href="../../index.php"><img src="../../img/Name_log.png" alt="Logo de la empresa" id= "lognam"></a>
         <?php endif; ?>
     </div>
     
@@ -55,10 +55,10 @@
         <div class="logo">
             <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
                 <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
-                <a href="index.php"><img src="img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
+                <a href="index.php"><img src="img/Name_log.png" alt="Logo de la empresa" id= "lognam"></a>
             <?php else: ?>
                 <a href="../../index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "logimg"></a>
-                <a href="index.php"><img src="../../img/NewLogo-01.png" alt="Logo de la empresa" id= "lognam"></a>
+                <a href="../../index.php"><img src="../../img/Name_log.png" alt="Logo de la empresa" id= "lognam"></a>
             <?php endif; ?>
         </div>
         
@@ -67,11 +67,11 @@
         <nav>
             <ul>
                 <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-                    <li><a href="php/sesion/inicio_sesion.php">Iniciar sesión</a></li>
-                    <li><a href="php/sesion/registro.php">Registrarse</a></li>
+                    <li class="login-link"><a href="php/sesion/inicio_sesion.php">Iniciar sesión</a></li>
+                    <li class="register-link"><a href="php/sesion/registro.php">Registrarse</a></li>
                 <?php else: ?>
-                    <li><a href="inicio_sesion.php">Iniciar sesión</a></li>
-                    <li><a href="registro.php">Registrarse</a></li>
+                    <li class="login-link"><a href="inicio_sesion.php">Iniciar sesión</a></li>
+                    <li class="register-link"><a href="registro.php">Registrarse</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
