@@ -1,162 +1,46 @@
-/* HEADER ----------------------------------*/
+/* HEADER PARA PANTALLAS MAYORES A 1200PX */
 
-header {
-  background-color: #023E4C;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 200px;
-}
+@media screen and (min-width: 1200px) {
+  header {
+    background-color: #023E4C;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+  }
 
-.logo{
-  display: flex;
-  align-items: center;
-}
+  .logo {
+    display: flex;
+    align-items: center;
+  }
 
-.logo #logimg {
-  width: 150px;
-  margin-left: 10px;
-}
+  .logo #logimg {
+    width: 150px;
+    margin-left: 10px;
+  }
 
-.logo #lognam {
-  width: 300px;
-  height: 100px;
-}
+  .logo #lognam {
+    width: 300px;
+    height: 100px;
+  }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
 
-nav ul li {
-  margin-left: 20px;
-}
+  nav ul li {
+    margin-left: 20px;
+  }
 
-nav ul li:first-child {
-  margin-left: 0;
-}
+  nav ul li:first-child {
+    margin-left: 0;
+  }
 
-nav ul li a {
-  text-decoration: none;
-  color: #FFFFFF;
-  font-size: 16px;
-  display: inline-block;
-  border: 1px solid #FFFFFF;
-  border-radius: 4px;
-}
-
-nav ul li a:hover {
-  background-color: #FFFFFF;
-  color: #17202A;
-}
-
-/* LOGO DEL USUARIO ----------------------*/
-
-.user-dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.user-avatar {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border: 1px solid #FFFFFF;
-  overflow: hidden;
-}
-
-.user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.username {
-  color: #FFFFFF;
-  margin-right: 10px;
-  font-size: 20px;
-}
-
-.dropdown-content {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #FFFFFF;
-  padding: 10px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  display: none;
-}
-
-.dropdown-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-content ul li {
-  margin-bottom: 8px;
-}
-
-.dropdown-content ul li:last-child {
-  margin-bottom: 0;
-}
-
-.dropdown-content a {
-  display: block;
-  color: #17202A;
-  font-size: 14px;
-  text-decoration: none;
-  padding: 6px 0;
-}
-
-.dropdown-content a:hover {
-  background-color: #F2F2F2;
-}
-
-.user-dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* PLAY LINK ------------------------------*/
-
-#play-boton {
-  position: absolute;
-  top: 175px; /* Ubicación vertical, 75px sobre el borde superior del header */
-  left: 50%; /* Lo centramos horizontalmente */
-  transform: translateX(-50%); /* Ajustamos para centrarlo exactamente */
-  width: 100px;
-  height: 50px; /* Altura del botón */
-  color: #E18222;
-  background-color: #FCCE63;
-  border: 2px solid #E18222;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  overflow: hidden; /* Ocultamos el contenido que se salga del botón */
-  cursor: pointer;
-}
-
-#play-boton:hover {
-  background-color: #ffc53d; /* Cambiamos el color ligeramente más oscuro en :hover */
-}
-
-/*===== iniciar sesion, registrar =====*/
-nav ul li.login-link a,
-nav ul li.register-link a {
+  nav ul li a {
     width: 300px;
     height: 30px;
     background-color: black;
@@ -167,9 +51,295 @@ nav ul li.register-link a {
     color: white;
     text-decoration: none;
     margin-right: 20px;
+  }
+
+  nav ul li a:hover {
+    background-color: #FFFFFF;
+    color: #17202A;
+  }
+
+  /* LOGO DEL USUARIO */
+
+  .user-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .user-avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1px solid #FFFFFF;
+    overflow: hidden;
+  }
+
+  .user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .username {
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-right: 10px;
+    font-size: 20px;
+  }
+
+  .dropdown-content {
+    width: 200px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  .dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropdown-content ul li {
+    margin-bottom: 8px;
+  }
+
+  .dropdown-content ul li a {
+    width: 100px;
+    height: 20px;
+    background-color: white;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin-right: 0px;
+  }
+
+  .dropdown-content ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  .dropdown-content a {
+    display: block;
+    color: #17202A;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 6px 0;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #F2F2F2;
+  }
+
+  .user-dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  /* PLAY LINK */
+
+  #play-boton {
+    position: absolute;
+    top: 175px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 50px;
+    color: #E18222;
+    background-color: #FCCE63;
+    border: 2px solid #E18222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  #play-boton:hover {
+    background-color: #ffc53d;
+  }
 }
 
-nav ul li.login-link a:hover,
-nav ul li.register-link a:hover {
-    background-color: #333; /* Cambio de color al pasar el cursor */
+/* HEADER PARA PANTALLAS ENTRE 1200PX Y 850PX */
+@media screen and (min-width: 850px) and (max-width: 1200px) {
+  header {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #023E4C;
+  }
+
+  #introduccion{
+    margin-top: 5%;
+  }
+
+  .logo {
+    margin-left: 20px;
+  }
+
+  .logo #logimg {
+    width: 100px;
+  }
+
+  .logo #lognam {
+    width: 200px;
+    height: 75px;
+  }
+
+  nav ul li a {
+    width: 200px;
+    height: 25px;
+    background-color: black;
+    border: 3px solid white;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: small;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* LOGO DEL USUARIO */
+
+  .user-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .user-avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1px solid #FFFFFF;
+    overflow: hidden;
+  }
+
+  .user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .username {
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-right: 10px;
+    font-size: 20px;
+  }
+
+  .dropdown-content {
+    width: 200px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  .dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropdown-content ul li {
+    margin-bottom: 8px;
+  }
+
+  .dropdown-content ul li a {
+    width: 100px;
+    height: 20px;
+    background-color: white;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin-right: 0px;
+  }
+
+  .dropdown-content ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  .dropdown-content a {
+    display: block;
+    color: #17202A;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 6px 0;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #F2F2F2;
+  }
+
+  .user-dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  /* PLAY LINK */
+
+  #play-boton {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 50px;
+    color: #E18222;
+    background-color: #FCCE63;
+    border: 2px solid #E18222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  #play-boton:hover {
+    background-color: #ffc53d;
+  }
+  
 }

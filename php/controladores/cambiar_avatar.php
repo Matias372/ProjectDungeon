@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['User_Img'] = $avatar_nombre;
 
         // Redirigir de vuelta a la página de cuenta
-        header("Location: cuenta.php");
+        header("Location: ../sesion/cuenta.php");
         exit();
     }
 }

@@ -1,97 +1,205 @@
-/*FOOTER----------------------------------*/
+/* FOOTER PARA PANTALLAS ENTRE 1200PX Y 850PX */
+@media screen and (min-width: 1200px) {
+  
+  /*FOOTER----------------------------------*/
 
-footer {
-  background-color: #231203;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-wrap: inherit;
-  justify-content: space-between;
+  footer {
+    background-color: #231203;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: inherit;
+    justify-content: space-between;
+  }
+
+  /* Estilo para el "attribution" */
+  .attribution{
+    margin-left: 5%;
+  }
+  .attribution h4 {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .attribution ul {
+    list-style: none;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: initial;
+  }
+
+  .attribution li {
+    margin-bottom: 8px;
+  }
+
+  .attribution a {
+    color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .attribution a:hover {
+    color: #0071BC;
+  }
+
+  .attribution p{
+    color: #FFFFFF;
+    font-size: 8px;
+    text-align: initial;
+    width: 230px;
+  }
+
+  /* Estilo para el "about-us" */
+
+
+  .about-us h4 {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .about-us p {
+    color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    width: 650px;
+  }
+
+
+
+  /* Estilo para el "social-media" */
+  .social-media{
+    margin-right: 5%;
+  }
+  .social-media h4{
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .social-media ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .social-media li {
+    margin-bottom: 8px;
+
+  }
+
+  .social-media a {
+    color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .social-media a:hover {
+    color: #0071BC;
+  }
+
 }
 
-/* Estilo para el "attribution" */
-.attribution{
-  margin-left: 5%;
-}
-.attribution h4 {
-  color: #FFFFFF;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
+/* FOOTER PARA PANTALLAS ENTRE 1200PX Y 850PX */
+@media screen and (min-width: 850px) and (max-width: 1200px) {
+  
+  /*FOOTER----------------------------------*/
 
-.attribution ul {
-  list-style: none;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  text-align: initial;
-}
+  footer {
+    background-color: #231203;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: inherit;
+    justify-content: space-between;
+  }
 
-.attribution li {
-  margin-bottom: 8px;
-}
+  /* Estilo para el "attribution" */
+  .attribution{
+    margin-left: 3%;
+  }
+  .attribution h4 {
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 
-.attribution a {
-  color: #FFFFFF; /* Cambiar el color de las letras a blanco */
-  text-decoration: none;
-  font-size: 14px;
-}
+  .attribution ul {
+    list-style: none;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: initial;
+  }
 
-.attribution a:hover {
-  color: #0071BC;
-}
+  .attribution li {
+    margin-bottom: 8px;
+  }
 
-.attribution p{
-  color: #FFFFFF;
-  font-size: 8px;
-  text-align: initial;
-  width: 230px;
-}
+  .attribution a {
+    color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+    text-decoration: none;
+    font-size: 12px;
+  }
 
-/* Estilo para el "about-us" */
+  .attribution a:hover {
+    color: #0071BC;
+  }
 
+  .attribution p{
+    color: #FFFFFF;
+    font-size: 8px;
+    text-align: initial;
+    width: 180px;
+  }
 
-.about-us h4 {
-  color: #FFFFFF;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.about-us p {
-  color: #FFFFFF; /* Cambiar el color de las letras a blanco */
-  font-size: 18px;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  width: 650px;
-}
-
+  /* Estilo para el "about-us" */
 
 
-/* Estilo para el "social-media" */
-.social-media{
-  margin-right: 5%;
-}
-.social-media h4{
-  color: #FFFFFF;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
+  .about-us h4 {
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 
-.social-media ul {
-  list-style: none;
-  padding: 0;
-}
+  .about-us p {
+    color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    width: 380px;
+  }
 
-.social-media li {
-  margin-bottom: 8px;
 
-}
 
-.social-media a {
-  color: #FFFFFF; /* Cambiar el color de las letras a blanco */
-  text-decoration: none;
-  font-size: 14px;
-}
+  /* Estilo para el "social-media" */
+  .social-media{
+    margin-right: 3%;
+  }
+  .social-media h4{
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 
-.social-media a:hover {
-  color: #0071BC;
+  .social-media ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .social-media li {
+    margin-bottom: 8px;
+
+  }
+
+  .social-media a {
+    color: #FFFFFF; /* Cambiar el color de las letras a blanco */
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .social-media a:hover {
+    color: #0071BC;
+  }
+
 }

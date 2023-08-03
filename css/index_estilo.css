@@ -1,4 +1,3 @@
-
 /*MENSAJE DE EXITO EN EL REGISTRO----------------*/
 
 /* Estilos para el mensaje de registro exitoso */
@@ -33,17 +32,17 @@
 }
 
 /*==============ESTILOS BODY==============*/
-body{
+body {
   background-color: #0071BC;
 }
 
-#play{
+#play {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 5vh; /* Margen superior del 5% del viewport height */
 }
 
-#play button{
+#play button {
   background-color: #FCCE63;
   border: 3px solid #E18222;
   color: #E18222;
@@ -53,68 +52,53 @@ body{
   border-radius: 20px;
   font-size: 25px;
 }
-#play button:hover{
+
+#play button:hover {
   color: black;
   background-color: #f9c753;
 }
 
-
 #introduccion div {
   display: flex;
-  justify-content: space-between; /* Ajuste para separar en tres columnas */
+  margin-bottom: 20px;
   align-items: center;
-  
+  justify-content: center;
 }
 
 #introduccion img {
-  width: 400px;
+  width: 25%; /* Ajustar al 20% del ancho del div padre */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 #introduccion p {
-  width: 590px; /* Dividir el div en tres columnas con 20px de separación entre ellas */
+  width: 50%; /* Ajustar al 60% del ancho del div padre */
   padding: 5px;
   background-color: black;
   border: 3px solid white;
   color: white;
   font-size: 18px;
-  display: flex;
-  align-items: center;
   line-height: 1.4;
 }
 
 #introduccion span {
-  width: 400px; /* Dividir el div en tres columnas con 20px de separación entre ellas */
+  width: 25%; /* Ajustar al 20% del ancho del div padre */
 }
 
-
-
-#in1{
-  height: 200px;
-}
-#in2{
-  height: 120px;
-}
-#in3{
-  height: 75px;
-}
-#in4{
-  height: 35px;
+#in1 {
+  min-height: 200px; /* Altura mínima de 200px para el div */
 }
 
-#im1{
-  position: relative;
-  right: 200px;
-}
-#im2{
-  position: relative;
-  left: 200px;
-}
-#im3{
-  position: relative;
-  right: 200px;
-}
-#im4{
-  position: relative;
-  left: 200px;
+#in2 {
+  min-height: 120px; /* Altura mínima de 120px para el div */
 }
 
+#in3 {
+  min-height: 75px; /* Altura mínima de 75px para el div */
+}
+
+#in4 {
+  min-height: 35px; /* Altura mínima de 35px para el div */
+}

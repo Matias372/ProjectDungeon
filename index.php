@@ -17,10 +17,15 @@ session_start();
     <!-- Incluir el encabezado -->
     <?php include 'html/header.html'; ?>
 
+    <?php 
+    // Definir la variable $isLoggedIn
+    $isLoggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
+    if (!$isLoggedIn) { // Si el usuario NO ha iniciado sesión, mostrar la sección "play" ?>
     <!-- Agregar el section "play" -->
     <section id="play">
         <button onclick="playGame()">Play</button>
     </section>
+    <?php } ?>
 
     <!-- Agregar el section "introduccion" -->
     <section id="introduccion">

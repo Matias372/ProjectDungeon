@@ -1,0 +1,125 @@
+/* Estilos específicos para la sección de datos */
+body {
+    background-color: #003333;
+}
+
+section.datos {
+    width: 70%;
+    margin-top: 50px;
+    margin-left: 20%;
+}
+
+#imgname {
+    display: flex;
+    align-items: center;
+}
+
+section.datos img {
+    width: 150px;
+    height: 150px;
+    border: 3px solid white;
+    margin-bottom: 20px;
+}
+
+section.datos h2 {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin: 10px;
+    margin-left: 5%;
+}
+
+section.datos p {
+    height: 20px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: end;
+}
+
+.datos form {
+    margin-bottom: 5%;
+}
+
+section.datos form input[type="file"] {
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    font-family: arial;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+section.datos form input[type="submit"] {
+    color: #FFFFFF;
+    background-color: #023E4C;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+section.datos form input[type="submit"]:hover {
+    background-color: #0071BC;
+}
+
+p.error-message {
+    color: #FF0000;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Estilos específicos para la sección de logros */
+section.logros {
+    text-align: center;
+    padding: 30px;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+section.logros h3 {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+div.logros-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #1E1E1E;
+    height: 750px;
+    overflow-x: auto; /* Agregamos esta propiedad para permitir desplazamiento horizontal */
+}
+
+div.logro {
+    display: inline-table;
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #2C2C2C;
+}
+
+div.logro img {
+    width: 200px;
+    height: 200px;
+}
+
+div.logro h4 {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-top: 10px;
+    font-family: arial;
+    width: 230px;
+}
+
+div.logro p {
+    color: #FFFFFF;
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: arial;
+    width: 230px;
+}

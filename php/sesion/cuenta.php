@@ -21,16 +21,21 @@ include("../logros.php");
     <link rel="stylesheet" href="../../css/general_estilo.css">
     <link rel="stylesheet" href="../../css/header_estilo.css">
     <link rel="stylesheet" href="../../css/footer_estilo.css">
+    <link rel="stylesheet" href="../../css/cuenta_estilo.css">
+    
 </head>
 <body>
     <!-- Incluir el archivo header.html -->
     <?php include("../../html/header.html"); ?>
 
     <section class= datos>
-    <div>
-            <img src="../../img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
-            <h2><?php echo $_SESSION['usuario']; ?></h2>
-            <form action="cambiar_avatar.php" method="POST" enctype="multipart/form-data">
+    <div>   
+            <nav id="imgname">
+                <img src="../../img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
+                <h2><?php echo $_SESSION['usuario']; ?></h2>
+            </nav>
+            
+            <form action="../controladores/cambiar_avatar.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="avatar" accept="image/jpeg" required>
                 <input type="submit" value="Cambiar avatar">
             </form>
@@ -40,7 +45,7 @@ include("../logros.php");
                 unset($_SESSION['error_avatar']);
             }
             ?>
-            <p>Fecha de creación: <?php echo $_SESSION['Fecha_Creacion']; ?></p>
+            <p id="date">Fecha de creación: <?php echo $_SESSION['Fecha_Creacion']; ?></p>
         </div>
     </section>
 
@@ -88,6 +93,6 @@ include("../logros.php");
 
 
     <!-- Incluir el archivo footer.html -->
-    <?php include("../html/footer.html"); ?>
+    <?php include("../../html/footer.html"); ?>
 </body>
 </html>
