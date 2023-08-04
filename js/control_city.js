@@ -65,3 +65,14 @@ const vidaMaxima = PJ_active.getVidaMaxima();
 const porcentajeVida = (vidaActual / vidaMaxima) * 100;
 barraVida.style.width = porcentajeVida + '%';
 barraVida.textContent = vidaActual + '/' + vidaMaxima;
+
+
+// Script para cargar los datos del personaje desde PJ_active y mostrarlos en el escenario
+const nombrePersonajeElement = document.getElementById('nombrePersonaje');
+const nivelPersonajeElement = document.getElementById('nivelPersonaje');
+const manaPersonajeElement = document.getElementById('manaPersonaje');
+
+// Cargar los datos del personaje desde PJ_active
+nombrePersonajeElement.textContent = PJ_active.nombre;
+nivelPersonajeElement.textContent = PJ_active.nivel;
+manaPersonajeElement.style.width = (PJ_active.MP_actual / PJ_active.MP_Max) * 100 + '%';
