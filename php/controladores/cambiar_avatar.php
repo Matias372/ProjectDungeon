@@ -3,11 +3,11 @@ session_start();
 
 // Verificar si hay una sesión iniciada
 if(!isset($_SESSION['email'])) {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
 // Incluir el archivo de conexión a la base de datos
-include("conexion.php");
+include("../sesion/conexion.php");
 
 // Verificar si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagen_tipo = $imagen_info['mime'];
         if ($imagen_tipo !== 'image/jpeg') {
             $_SESSION['error_avatar'] = 'Solo se permiten imágenes JPEG (JPG).';
-            header("Location: cuenta.php");
+            header("Location: ../sesion/cuenta.php");
             exit();
         }
 
         // Ruta y nombre del archivo de destino
-        $destino = "../img/User_Img/" . $avatar_nombre;
+        $destino = "../../img/User_Img/" . $avatar_nombre;
 
         // Redimensionar la imagen a una anchura de 50px
         $anchura_deseada = 100;

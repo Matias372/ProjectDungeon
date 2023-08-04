@@ -15,8 +15,8 @@ section.datos {
 }
 
 section.datos img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border: 3px solid white;
     margin-bottom: 20px;
 }
@@ -45,7 +45,7 @@ section.datos form input[type="file"] {
     border: none;
     padding: 8px 16px;
     font-family: arial;
-    font-size: 16px;
+    font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -54,8 +54,8 @@ section.datos form input[type="submit"] {
     color: #FFFFFF;
     background-color: #023E4C;
     border: none;
-    padding: 8px 16px;
-    font-size: 14px;
+    padding: 8px 1px;
+    font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;

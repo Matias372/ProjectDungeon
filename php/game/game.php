@@ -24,12 +24,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <script src="../../js/game.js"></script>
     
 </head>
-<body>
+<body id= "PageGame">
     <!-- Incluir el encabezado -->
     <?php include '../../html/header.html'; ?>
 
     <!-- Agregar el section "game" -->
-    <section class="game">
+    <section class="ext-game">
         <div class="content" id="game-content" data-codigo-id="<?php echo $_SESSION['Id'];?>">
             <!-- Aquí se cargará el contenido del escenario seleccionado -->
             <!-- Por defecto, cargar el menú principal (game.html) -->

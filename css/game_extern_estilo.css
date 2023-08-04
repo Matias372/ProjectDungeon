@@ -1,4 +1,8 @@
-section.game {
+#PageGame{
+    background-color: #001522;
+}
+
+section.ext-game {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,10 +11,14 @@ section.game {
     margin: 0 auto;
     margin-top: 5%;
     margin-bottom: 5%;
-    border: 1px solid black; /* Añadir borde de 1px de color negro */
+    border: 4px solid white; /* Añadir borde de 1px de color negro */
 }
 
 section .content {
     width: 100%;
     height: 100%;
+}
+
+#game-content{
+    background-color: brown;
 }

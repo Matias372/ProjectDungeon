@@ -56,3 +56,12 @@ function limpiarSecciones() {
     seleccion.style.display = 'none';
     confirmacion.style.display = 'none';
 }
+
+
+//==========BARRA DE VIDA==========
+const barraVida = document.getElementById('barra-vida');
+const vidaActual = PJ_active.getVidaActual();
+const vidaMaxima = PJ_active.getVidaMaxima();
+const porcentajeVida = (vidaActual / vidaMaxima) * 100;
+barraVida.style.width = porcentajeVida + '%';
+barraVida.textContent = vidaActual + '/' + vidaMaxima;

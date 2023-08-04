@@ -5,7 +5,9 @@
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
-  flex-wrap: wrap;
+  position: relative;
+  flex-wrap: nowrap;
+  top: 80px;
 }
 
 /* Estilo para cada personaje */
@@ -24,12 +26,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  top: 180px;
+}
+
+.nombre-personaje input{
+  margin-top: 20px;
+  width: 200px;
+  height: 20px;
 }
 
 .crear-btn {
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100px;
+  height: 20px;
+  align-items: center;
+  left: 350px;
+  top: 190px;
+  justify-content: center;
 }
 
 .personaje.seleccionado {
   border: 2px solid blue;
+}
+
+#text-SP{
+  text-align: center;
+  position: relative;
+  top: 20px;
+  font-size: 24px;
 }
