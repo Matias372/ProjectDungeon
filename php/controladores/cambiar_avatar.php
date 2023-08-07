@@ -27,10 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        // Ruta y nombre del archivo de destino
-        $destino = "../../img/User_Img/" . $avatar_nombre;
+        // Generar un nombre de archivo único basado en el tiempo actual y el ID del usuario
+        $nombre_uniq = time() . '_' . $_SESSION['Id'] . '_' . $avatar_nombre;
 
-        // Redimensionar la imagen a una anchura de 50px
+        // Ruta y nombre del archivo de destino
+        $destino = "../../img/User_Img/" . $nombre_uniq;
+
+        // Redimensionar la imagen a una anchura de 100px
         $anchura_deseada = 100;
         list($ancho, $alto) = getimagesize($avatar_temporal);
         $ratio = $ancho / $alto;
@@ -43,13 +46,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Guardar la imagen redimensionada en el destino
         imagejpeg($imagen_redimensionada, $destino);
 
-        // Actualizar el campo User_Img en la tabla usuarios
+        // Obtener el nombre de la imagen anterior del usuario
         $email = $_SESSION['email'];
-        $sql_actualizar = "UPDATE usuarios SET User_Img = '$avatar_nombre' WHERE Email = '$email'";
+        $sql_obtener_img = "SELECT User_Img FROM usuarios WHERE Email = '$email'";
+        $resultado = $conn->query($sql_obtener_img);
+        $row = $resultado->fetch_assoc();
+        $imagen_anterior = $row['User_Img'];
+
+        // Eliminar la imagen anterior del usuario si existe
+        if (!empty($imagen_anterior) && file_exists("../../img/User_Img/" . $imagen_anterior)) {
+            unlink("../../img/User_Img/" . $imagen_anterior);
+        }
+
+        // Actualizar el campo User_Img en la tabla usuarios
+        $sql_actualizar = "UPDATE usuarios SET User_Img = '$nombre_uniq' WHERE Email = '$email'";
         $conn->query($sql_actualizar);
         
         // Asignar la nueva imagen como el logo de usuario en $_SESSION['User_Img']
-        $_SESSION['User_Img'] = $avatar_nombre;
+        $_SESSION['User_Img'] = $nombre_uniq;
 
         // Redirigir de vuelta a la página de cuenta
         header("Location: ../sesion/cuenta.php");

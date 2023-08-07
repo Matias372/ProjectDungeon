@@ -1,3 +1,9 @@
+body .menugame{
+    background-image: url('../img/Backgrouds/Menu.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .title-menu-game{
     width: 400px;
     position: relative;

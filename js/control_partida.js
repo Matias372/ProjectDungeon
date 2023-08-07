@@ -90,7 +90,8 @@ function SetClass(characterJSON) {
         magiaBonif: characterObj.magiaBonif,
         statPoint: characterObj.statPoint,
         HP_actual: characterObj.HP_actual,
-        MP_actual: characterObj.MP_actual
+        MP_actual: characterObj.MP_actual,
+        bonificacionesAplicadas: characterObj.BonificacionesAplicadas
     };
 
     // Asignar la instancia de PJ_active a la variable globalPJ en game.php

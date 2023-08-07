@@ -6,9 +6,10 @@
     <title>Game</title>
     <link rel="stylesheet" href="../../css/city_estilo.css">
     <script src="../../js/control_city.js"></script>
+    <script src="../../js/estado_personaje.js"></script>
 </head>
 <body>
-    <div class="game-content">
+    <div class="city-content">
         <section id="estado">
             <!-- Aquí mostramos los datos del personaje desde PJ_active -->
             <img src="../../../img/Character/{{PJ_active.Clase}}.png" alt="">
@@ -18,25 +19,30 @@
                 <div id="barra-vida" class="barra-vida"></div>
             </div>
             <div class="barra">
-                <div id="manaPersonaje" class="mana" style="width: 50%;"></div>
+                <div id="barra-mana" class="barra-mana" style="width: 50%;"></div>
             </div>
         </section>
 
-        <section id="menu" class="menu">
-            <div class="opcion" onclick="mostrarSeleccion('Mover')">Mover a</div>
-            <div class="opcion" onclick="mostrarSeleccion('Personaje')">Personaje</div>
-            <div class="opcion" onclick="mostrarSeleccion('Guardar')">Guardar</div>
-        </section>
+        <section class="accion">
 
-        <section id="seleccion" class="seleccion">
-            <!-- Aquí mostrar las opciones adicionales según lo seleccionado en el menú -->
+            <section id="menu" class="menu">
+                <div class="opcion" id="opcion-mover" onclick="mostrarSeleccion('Mover')">Mover a</div>
+                <div class="opcion" id="opcion-personaje" onclick="mostrarSeleccion('Personaje')">Personaje</div>
+                <div class="opcion" id="opcion-guardar" onclick="mostrarSeleccion('Guardar')">Guardar</div>
+            </section>
+    
+            <section id="seleccion" class="seleccion">
+                <!-- Aquí mostrar las opciones adicionales según lo seleccionado en el menú -->
+            </section>
+    
+            <section id="confirmacion" class="confirmacion">
+                <!-- Aquí mostrar la confirmación si se quiere usar, ver o cancelar la opción seleccionada -->
+            </section>
+            
         </section>
-
-        <section id="confirmacion" class="confirmacion">
-            <!-- Aquí mostrar la confirmación si se quiere usar, ver o cancelar la opción seleccionada -->
-        </section>
+        
     </div>
 
-    
+
 </body>
 </html>

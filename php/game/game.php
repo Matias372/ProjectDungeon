@@ -22,6 +22,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <script src="../../js/control_partida.js"></script>
     <script src="../../js/nueva_partida.js"></script>
     <script src="../../js/game.js"></script>
+    <script src="../../js/cargar_partida.js"></script>
     
 </head>
 <body id= "PageGame">

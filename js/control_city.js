@@ -1,36 +1,35 @@
 function mostrarSeleccion(opcion) {
     const seleccion = document.getElementById('seleccion');
     const confirmacion = document.getElementById('confirmacion');
-    seleccion.style.display = 'block';
-    confirmacion.style.display = 'none';
+    
 
     // Lógica para mostrar las opciones adicionales según lo seleccionado en el menú
     seleccion.innerHTML = ''; // Limpiamos el contenido previo
 
     if (opcion === 'Mover') {
         seleccion.innerHTML = `
-            <div class="opcion" onclick="mostrarConfirmacion('ir a la Tienda')">Tienda</div>
-            <div class="opcion" onclick="mostrarConfirmacion('ir al Gremio')">Gremio</div>
-            <div class="opcion" onclick="mostrarConfirmacion('ir a la Posada')">Posada</div>
-            <div class="opcion" onclick="mostrarConfirmacion('ir al Portal')">Portal</div>
-            <div class="opcion" onclick="">Cancelar</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('ir a la Tienda')">Tienda</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('ir al Gremio')">Gremio</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('ir a la Posada')">Posada</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('ir al Portal')">Portal</div>
+            <div style="display: block;" onclick="cancelarAccion()">Cancelar</div>
         `;
     } else if (opcion === 'Personaje') {
         seleccion.innerHTML = `
-            <div class="opcion" onclick="mostrarConfirmacion('Ver estadísticas')">Ver estadísticas</div>
-            <div class="opcion" onclick="mostrarConfirmacion('Ver Inventario')">Inventario</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('Ver estadísticas')">Ver estadísticas</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('Ver Inventario')">Inventario</div>
         `;
     } else if (opcion === 'Guardar') {
         seleccion.innerHTML = `
-            <div class="opcion" onclick="mostrarConfirmacion('Guardar partida')">Guardar partida</div>
-            <div class="opcion" onclick="mostrarConfirmacion('Guardar y salir')">Guardar y salir</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('Guardar partida')">Guardar partida</div>
+            <div style="display: block;" onclick="mostrarConfirmacion('Guardar y salir')">Guardar y salir</div>
         `;
     }
 }
 
 function mostrarConfirmacion(accion) {
     const confirmacion = document.getElementById('confirmacion');
-    confirmacion.style.display = 'block';
+    
     confirmacion.innerHTML = `
         <p>¿Quieres ${accion}?</p>
         <button onclick="realizarAccion()">Confirmar</button>
@@ -53,26 +52,5 @@ function cancelarAccion() {
 function limpiarSecciones() {
     const seleccion = document.getElementById('seleccion');
     const confirmacion = document.getElementById('confirmacion');
-    seleccion.style.display = 'none';
-    confirmacion.style.display = 'none';
+    
 }
-
-
-//==========BARRA DE VIDA==========
-const barraVida = document.getElementById('barra-vida');
-const vidaActual = PJ_active.getVidaActual();
-const vidaMaxima = PJ_active.getVidaMaxima();
-const porcentajeVida = (vidaActual / vidaMaxima) * 100;
-barraVida.style.width = porcentajeVida + '%';
-barraVida.textContent = vidaActual + '/' + vidaMaxima;
-
-
-// Script para cargar los datos del personaje desde PJ_active y mostrarlos en el escenario
-const nombrePersonajeElement = document.getElementById('nombrePersonaje');
-const nivelPersonajeElement = document.getElementById('nivelPersonaje');
-const manaPersonajeElement = document.getElementById('manaPersonaje');
-
-// Cargar los datos del personaje desde PJ_active
-nombrePersonajeElement.textContent = PJ_active.nombre;
-nivelPersonajeElement.textContent = PJ_active.nivel;
-manaPersonajeElement.style.width = (PJ_active.MP_actual / PJ_active.MP_Max) * 100 + '%';

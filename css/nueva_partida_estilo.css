@@ -1,3 +1,13 @@
+section .SeleccionPersonajeMenu {
+  background-image: url('../img/Backgrouds/texture.png');
+  background-repeat: no-repeat;
+  background-size: 800px 600px;
+  width: 800px;
+  height: 600px;
+  color: white;
+}
+
+
 /* Estilo para la clase "clase" que contiene los personajes */
 .clase {
   display: flex;
