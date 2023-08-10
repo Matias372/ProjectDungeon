@@ -2,8 +2,8 @@ $(document).ready(function() {
     
     // Obtener la partida guardada al cargar la página
     const codigoId = document.getElementById('game-content').dataset.codigoId;
-    alert("se conecto al js");
     obtenerPartidaGuardada(codigoId);
+    alert("se ingreso a funcion");
     
     // Función para obtener la partida guardada
     function obtenerPartidaGuardada(codigoId) {
@@ -17,7 +17,6 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.status === "success") {
                     // Obtener los datos de la partida guardada
-                    alert("se verifico que existe partida");
                     obtenerDatosPartida(codigoId);
                 } else {
                     // Mostrar un mensaje de que no hay partida guardada
@@ -33,6 +32,7 @@ $(document).ready(function() {
     
     // Función para obtener los datos de la partida guardada
     function obtenerDatosPartida(codigoId) {
+        
         $.ajax({
             url: "../../php/controladores/obtener_partida.php",
             type: "POST",
@@ -43,14 +43,13 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.status === "success") {
                     // Mostrar los datos de la partida
-                    alert("se obtuvo dato de partida");
                     mostrarPartida(response.data);
                 } else {
                     // Mostrar un mensaje de error al obtener los datos de la partida
                     mostrarMensaje("Ha ocurrido un error dentro del check...");
                 }
             },
-            error: function() {
+            error: function(jqXHR, textStatus, errorThrown) {
                 // Mostrar un mensaje de error
                 mostrarMensaje("Error al obtener los datos de la partida.");
             }
