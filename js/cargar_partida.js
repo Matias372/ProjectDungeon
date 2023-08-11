@@ -3,7 +3,6 @@ $(document).ready(function() {
     // Obtener la partida guardada al cargar la página
     const codigoId = document.getElementById('game-content').dataset.codigoId;
     obtenerPartidaGuardada(codigoId);
-    alert("se ingreso a funcion");
     
     // Función para obtener la partida guardada
     function obtenerPartidaGuardada(codigoId) {
@@ -60,25 +59,30 @@ $(document).ready(function() {
     function mostrarPartida(partida) {
         // Obtener el contenedor de la partida
         var partidaContainer = $("#partida-container");
-        
+    
         // Limpiar el contenedor
         partidaContainer.empty();
-        
+    
         // Crear elementos HTML para mostrar los datos de la partida
         var nombrePersonaje = $("<p>").text("Nombre de personaje: " + partida.Nombre);
         var nivel = $("<p>").text("Nivel: " + partida.Nivel);
-        var ubicacion = $("<p>").text("Ubicación: " + partida.Ubicacion);
+    
+        // Obtener la ubicación sin la extensión .html
+        var ubicacionSinExtension = partida.Ubicacion.replace(".html", "");
+    
+        // Crear un párrafo para mostrar la ubicación
+        var ubicacionParrafo = $("<p>").text("Ubicación: " + ubicacionSinExtension);
+    
         var cargarBtn = $("<button>").text("Cargar Partida");
-        
+    
         // Agregar los elementos al contenedor
-        partidaContainer.append(nombrePersonaje, nivel, ubicacion, cargarBtn);
-        
+        partidaContainer.append(nombrePersonaje, nivel, ubicacionParrafo, cargarBtn);
+    
         // Asignar un evento click al botón de cargar partida
         cargarBtn.on("click", function() {
-            alert("se inicia a cargar datos");
             cargarPartida(partida);
         });
-    }
+    }    
     
     // Función para cargar la partida
     function cargarPartida(partida) {
@@ -110,7 +114,7 @@ $(document).ready(function() {
                     mostrarMensaje("Ha ocurrido un error dentro al cargar partida");
                 }
             },
-            error: function() {
+            error: function(jqXHR, textStatus, errorThrown) {
                 // Mostrar un mensaje de error
                 mostrarMensaje("Error al obtener los datos de la personaje.");
             }

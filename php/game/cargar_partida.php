@@ -1,14 +1,14 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
-include("../sesion/conexion.php");
+include "../sesion/conexion.php";
 
 // Obtener el ID del usuario enviado por AJAX
 $codUser = $_POST['Cod_User'];
 
 // Consultar los datos del personaje en la tabla "personaje"
-$query = "SELECT Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual, BonificacionesAplicadas FROM personaje WHERE Cod_User = :codUser";
+$query = "SELECT Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual, BonificacionesAplicadas FROM personaje WHERE Cod_User = ?";
 $stmt = $pdo->prepare($query);
-$stmt->bindParam(':codUser', $codUser);
+$stmt->bindParam('s', $codUser);
 $stmt->execute();
 
 // Verificar si se encontraron resultados
