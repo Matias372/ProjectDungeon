@@ -1,38 +1,40 @@
 <?php
 session_start(); // Asegurarse de que la sesión esté iniciada
 
-include "../sesion/conexion.php"; // Incluye tu archivo de conexión
+
 include "../game/Objetos.php"; // Incluye tu archivo de objetos
 
-$codigoId = $_SESSION['Id']; // Obtén el ID del usuario de la sesión
+
 
 // Función para obtener el inventario de un usuario
 function obtenerInventario($codigoId, $conn) {
     global $objetos; // Acceso a la variable $objetos definida en Objetos.php
 
-    $query = "SELECT * FROM Inventarios WHERE usuario_id = '$codigoId' ORDER BY posicion";
+    $query = "SELECT * FROM inventarios WHERE Usuario_id = '$codigoId'";
     $result = $conn->query($query);
     $inventario = array(); // Aquí almacenaremos la información de cada objeto en el inventario
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $objeto_id = $row['objeto_id']; // ID del objeto en la fila actual
-            $cantidad = $row['cantidad'];   // Cantidad del objeto en el inventario
-
+            $objeto_id = $row['Objeto_id']; // ID del objeto en la fila actual
+            $cantidad = $row['Cantidad'];   // Cantidad del objeto en el inventario
+            $tipo = $row['Tipo']; 
+    
             // Usamos el ID del objeto para acceder a la información definida en Objetos.php
             $infoObjeto = $objetos[$objeto_id]; 
-
+    
             // Creamos un array con la información del objeto y la cantidad
             $objetoEnInventario = array(
                 'objeto' => $infoObjeto,
-                'cantidad' => $cantidad
+                'cantidad' => $cantidad,
+                'tipo' => $tipo
             );
-
+    
             // Agregamos el objeto al array del inventario
             $inventario[] = $objetoEnInventario;
         }
     }
-
+    
     return $inventario; // Devolvemos el array con la información del inventario
 }
 

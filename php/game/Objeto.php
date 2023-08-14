@@ -34,16 +34,18 @@ class Consumible extends Objeto {
 class Equipo extends Objeto {
     public $nivelMinimo;
     public $tipoEquipo;
-    public $estadisticas;
+    public $estadisticasFisicas; // Estadísticas físicas del equipo
+    public $estadisticasMagicas; // Estadísticas mágicas del equipo
     public $precioCompra;
     public $precioVenta;
     public $claseRequerida;
 
-    public function __construct($id, $nombre, $descripcion, $tipo, $nivelMinimo, $tipoEquipo, $estadisticas, $precioCompra, $precioVenta, $claseRequerida) {
+    public function __construct($id, $nombre, $descripcion, $tipo, $nivelMinimo, $tipoEquipo, $estadisticasFisicas, $estadisticasMagicas, $precioCompra, $precioVenta, $claseRequerida) {
         parent::__construct($id, $nombre, $descripcion, $tipo);
         $this->nivelMinimo = $nivelMinimo;
         $this->tipoEquipo = $tipoEquipo;
-        $this->estadisticas = $estadisticas;
+        $this->estadisticasFisicas = $estadisticasFisicas;
+        $this->estadisticasMagicas = $estadisticasMagicas;
         $this->precioCompra = $precioCompra;
         $this->precioVenta = $precioVenta;
         $this->claseRequerida = $claseRequerida;
@@ -321,16 +323,32 @@ $ElixirArcano = new Consumible(
 
 // Crear instancia de equipo
 $espadaBasica = new Equipo(
-    EE_00##,
+    "EE_0001",
     "Espada Básica",
     "Una espada simple para principiantes.",
     "equipo",
     1,
     "arma",
-    ["ataque" => 5],
+    5, // Solo daño físico
+    0, // Sin daño mágico
     50,
     25,
     "guerrero"
+);
+
+// Crear instancia de equipo (Bastón Mágico)
+$bastonMagico = new Equipo(
+    "EE_0002",
+    "Bastón Mágico",
+    "Un bastón que canaliza el poder mágico.",
+    "equipo",
+    1,
+    "arma",
+    0, // Solo daño mágico
+    5, // Sin daño físico
+    60,
+    30,
+    "mago"
 );
 
 //========================================MISION========================================

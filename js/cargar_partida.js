@@ -105,9 +105,21 @@ $(document).ready(function() {
                     };
                     alert("se colocan los datos en la variable global de partida");
 
-                    SetClass(response.data);
+                    SetClass(JSON.stringify(response.data));
                     alert("se colocan los datos en la variable global de personaje");
-                    loadScenario(partida.Ubicacion);
+                    switch (partida.Ubicacion) {
+                        case "city.html":
+                            loadScenario("../../html/game/Ciudad/" + partida.Ubicacion);
+                            break;
+                        case "portal.html":
+                            loadScenario("../../html/game/Ciudad/" + partida.Ubicacion);
+                            break;
+                    
+                        default:
+                            loadScenario("../../html/game/portal/" + partida.Ubicacion);
+                            break;
+                    }
+                    
 
                 } else {
                     // Mostrar un mensaje de error al obtener los datos de la partida
@@ -116,6 +128,9 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 // Mostrar un mensaje de error
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
                 mostrarMensaje("Error al obtener los datos de la personaje.");
             }
         });

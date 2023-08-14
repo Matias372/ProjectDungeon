@@ -7,14 +7,15 @@ $codUser = $_POST['Cod_User'];
 
 // Consultar los datos del personaje en la tabla "personaje"
 $query = "SELECT Cod_User, Nombre, Clase, Nivel, Fuerza_Basic, Resistencia_Basic, Destreza_Basic, Magia_Basic, Fuerza_Bonif, Resistencia_Bonif, Destreza_Bonif, Magia_Bonif, Stat_Point, HP_actual, MP_actual, BonificacionesAplicadas FROM personaje WHERE Cod_User = ?";
-$stmt = $pdo->prepare($query);
-$stmt->bindParam('s', $codUser);
+$stmt = $conn->prepare($query);
+$stmt->bind_param('s', $codUser);
 $stmt->execute();
+$result = $stmt->get_result();
 
 // Verificar si se encontraron resultados
-if ($stmt->rowCount() > 0) {
+if ($result->num_rows > 0) {
     // Obtener los datos del personaje como un arreglo asociativo
-    $personajeData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $personajeData = $result->fetch_assoc();
 
     // Crear un arreglo de respuesta con los datos del personaje
     $response = array(

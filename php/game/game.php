@@ -21,8 +21,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../js/variables_globales.js"></script>
     <script src="../../js/control_partida.js"></script>
+    <script src="../../js/guardar_partida.js"></script>
     <script src="../../js/nueva_partida.js"></script>
     <script src="../../js/game.js"></script> <!--SE PASO EL SCRIPT DESDE GAME.PHP a cargar_partida.html-->
+    <script src="../../js/cargar_partida.js"></script>
     
 </head>
 <body id= "PageGame">
