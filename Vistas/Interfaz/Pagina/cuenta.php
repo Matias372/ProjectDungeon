@@ -3,12 +3,12 @@ session_start();
 
 // Verificar si hay una sesión iniciada
 if(!isset($_SESSION['email'])) {
-    header("Location: ../../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
 // Incluir el archivo de conexión a la base de datos y lista de logros
-include("../sesion/conexion.php");
-include("../logros.php");
+include("../../../Modelos/conexion.php");
+include("../../../Modelos/Pagina/logros.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,24 +18,24 @@ include("../logros.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuenta</title>
     <!-- Agrega aquí tus enlaces a los estilos CSS y otros archivos de JavaScript si es necesario -->
-    <link rel="stylesheet" href="../../css/general_estilo.css">
-    <link rel="stylesheet" href="../../css/header_estilo.css">
-    <link rel="stylesheet" href="../../css/footer_estilo.css">
-    <link rel="stylesheet" href="../../css/cuenta_estilo.css">
+    <link rel="stylesheet" href="../../CSS/Pagina/general_estilo.css">
+    <link rel="stylesheet" href="../../CSS/Pagina/header_estilo.css">
+    <link rel="stylesheet" href="../../CSS/Pagina/footer_estilo.css">
+    <link rel="stylesheet" href="../../CSS/Pagina/cuenta_estilo.css">
     
 </head>
 <body>
     <!-- Incluir el archivo header.html -->
-    <?php include("../../html/header.html"); ?>
+    <?php include("header.html"); ?>
 
     <section class= datos>
     <div>   
             <nav id="imgname">
-                <img src="../../img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
+                <img src="../../Recursos/img/User_Img/<?php echo $_SESSION['User_Img']; ?>" alt="Avatar de usuario">
                 <h2><?php echo $_SESSION['usuario']; ?></h2>
             </nav>
             
-            <form action="../controladores/cambiar_avatar.php" method="POST" enctype="multipart/form-data">
+            <form action="../../../Modelos/Pagina/cambiar_avatar.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="avatar" accept="image/jpeg" required>
                 <input type="submit" value="Cambiar avatar">
             </form>
@@ -81,7 +81,7 @@ include("../logros.php");
             // Iterar sobre los logros obtenidos y mostrar su información
             foreach ($logros_obtenidos as $logro) {
                 echo '<div class="logro">';
-                echo '<img src="../../img/' . $logro['imagen'] . '" alt="' . $logro['nombre'] . '">';
+                echo '<img src="../../Recursos/img/Logros/' . $logro['imagen'] . '" alt="' . $logro['nombre'] . '">';
                 echo '<h4>' . $logro['nombre'] . '</h4>';
                 echo '<p>' . $logro['descripcion'] . '</p>';
                 echo '</div>';
@@ -93,6 +93,6 @@ include("../logros.php");
 
 
     <!-- Incluir el archivo footer.html -->
-    <?php include("../../html/footer.html"); ?>
+    <?php include("footer.html"); ?>
 </body>
 </html>

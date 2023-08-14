@@ -7,7 +7,7 @@ if(!isset($_SESSION['email'])) {
     exit();
 }
 // Incluir el archivo de conexión a la base de datos
-include("../sesion/conexion.php");
+include("../conexion.php");
 
 // Verificar si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,15 +23,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagen_tipo = $imagen_info['mime'];
         if ($imagen_tipo !== 'image/jpeg') {
             $_SESSION['error_avatar'] = 'Solo se permiten imágenes JPEG (JPG).';
-            header("Location: ../sesion/cuenta.php");
+            header("Location: Pagina/cuenta.php");
             exit();
         }
 
         // Generar un nombre de archivo único basado en el tiempo actual y el ID del usuario
         $nombre_uniq = time() . '_' . $_SESSION['Id'] . '_' . $avatar_nombre;
 
+        // Limitar la longitud del nombre de archivo a 145 caracteres
+        $nombre_uniq = substr($nombre_uniq, 0, 145);
+
         // Ruta y nombre del archivo de destino
-        $destino = "../../img/User_Img/" . $nombre_uniq;
+        $destino = "../../Vistas/Recursos/img/User_Img/" . $nombre_uniq;
 
         // Redimensionar la imagen a una anchura de 100px
         $anchura_deseada = 100;
@@ -54,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagen_anterior = $row['User_Img'];
 
         // Eliminar la imagen anterior del usuario si existe
-        if (!empty($imagen_anterior) && file_exists("../../img/User_Img/" . $imagen_anterior)) {
-            unlink("../../img/User_Img/" . $imagen_anterior);
+        if (!empty($imagen_anterior) && file_exists("../../Vistas/Recursos/img/User_Img/" . $imagen_anterior)) {
+            unlink("../../Vistas/Recursos/img/User_Img/" . $imagen_anterior);
         }
 
         // Actualizar el campo User_Img en la tabla usuarios
@@ -66,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['User_Img'] = $nombre_uniq;
 
         // Redirigir de vuelta a la página de cuenta
-        header("Location: ../sesion/cuenta.php");
+        header("Location: ../../Vistas/Interfaz/Pagina/cuenta.php");
         exit();
     }
 }

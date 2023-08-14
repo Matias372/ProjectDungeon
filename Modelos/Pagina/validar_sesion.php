@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clave = $_POST['password'];
 
     // Incluir el archivo de conexión a la base de datos
-    include("../sesion/conexion.php");
+    include("../conexion.php");
 
     // Verificar si el usuario existe en la base de datos
     $sql_verificar = "SELECT * FROM usuarios WHERE Email = '$email'";
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($estado === "BLOQUEADO") {
                 // Si el estado del usuario es "BLOQUEADO", cancelar la sesión y redirigir con un mensaje de error
                 error_log('Usuario bloqueado');
-                header("Location: ../sesion/inicio_sesion.php?error=UsuarioBloqueado");
+                header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php?error=UsuarioBloqueado");
                 exit();
             }
 
@@ -45,13 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // La contraseña es incorrecta
             error_log('contraseña incorrecta');
-            header("Location: ../sesion/inicio_sesion.php?error=contraseña_incorrecta");
+            header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php?error=contraseña_incorrecta");
             exit();
         }
     } else {
         // El usuario no existe
         error_log('Usuario no encontrado.');
-        header("Location: ../sesion/inicio_sesion.php?error=usuario_no_encontrado");
+        header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php?error=usuario_no_encontrado");
         exit();
     }
 
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Redirigir al formulario de inicio de sesión si se accede directamente a este archivo
     error_log('se redirige directo a inicio_sesion.php');
-    header("Location: ../sesion/inicio_sesion.php");
+    header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php");
     exit();
 }
 ?>

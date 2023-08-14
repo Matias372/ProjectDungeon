@@ -25,6 +25,7 @@ form {
   max-width: 350px; /* Ancho aumentado */
   margin: auto; /* Para centrar horizontalmente */
   margin-top: 100px; /* Espacio entre el encabezado y el formulario */
+  margin-bottom: 100px;
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #e2e2e2;

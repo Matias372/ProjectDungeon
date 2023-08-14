@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
-include("../sesion/conexion.php");
+include("../conexion.php");
 include("GetRandCod.php");
 
 // Verificar si se ha enviado el formulario
@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result_verificar_usuario->num_rows > 0) {
         // El nombre de usuario ya está registrado
-        header("Location: ../sesion/registro.php?error=usuario_existente");
+        header("Location: ../../Vistas/Interfaz/Pagina/registro.php?error=usuario_existente");
         exit();
     } elseif ($result_verificar_email->num_rows > 0) {
         // El correo electrónico ya está registrado
-        header("Location: ../sesion/registro.php?error=email_existente");
+        header("Location: ../../Vistas/Interfaz/Pagina/registro.php?error=email_existente");
         exit();
     } else {
         // Generar un UUID para el "Id" del usuario

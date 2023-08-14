@@ -2,13 +2,13 @@
 $logros = array(
     array(
         'id' => 1,
-        'imagen' => 'Under_construction.jpg',
+        'imagen' => 'Registrado-logro.png',
         'nombre' => 'Registrado',
         'descripcion' => 'Bienvenido a Project Dungeon.'
     ),
     array(
         'id' => 2,
-        'imagen' => 'Under_construction.jpg',
+        'imagen' => 'Avatar-logro.png',
         'nombre' => 'Personaliza',
         'descripcion' => 'Cambiemos un poco el avatar.'
     ),
@@ -20,19 +20,19 @@ $logros = array(
     ),
     array(
         'id' => 4,
-        'imagen' => 'Under_construction.jpg',
+        'imagen' => 'Horizontes-logro.png',
         'nombre' => 'Nuevos horizontes',
         'descripcion' => 'Atraviesa el portal por primera vez.'
     ),
     array(
         'id' => 5,
-        'imagen' => 'Under_construction.jpg',
+        'imagen' => 'Asesinato-logro.png',
         'nombre' => 'Primer asesinato',
         'descripcion' => 'Vence un enemigo.'
     ),
     array(
         'id' => 6,
-        'imagen' => 'Under_construction.jpg',
+        'imagen' => 'Goblin-logro.png',
         'nombre' => 'Cazador de Goblins',
         'descripcion' => 'Mata 10 Goblins.'
     ),

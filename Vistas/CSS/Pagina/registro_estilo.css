@@ -13,6 +13,7 @@ body {
   max-width: 400px;
   margin: auto; /* Para centrar horizontalmente */
   margin-top: 100px; /* Espacio entre el encabezado y el formulario */
+  margin-bottom: 100px;
   padding: 20px;
   background-color: #dbdbdb;
   border-radius: 4px;
