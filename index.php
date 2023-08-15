@@ -12,6 +12,7 @@ session_start();
     <link rel="stylesheet" href="Vistas/CSS/Pagina/index_estilo.css">
     <link rel="stylesheet" href="Vistas/CSS/Pagina/header_estilo.css">
     <link rel="stylesheet" href="Vistas/CSS/Pagina/footer_estilo.css">
+    <script src="Controladores/Pagina/404.js"></script>
 </head>
 <body>
     <!-- Incluir el encabezado -->

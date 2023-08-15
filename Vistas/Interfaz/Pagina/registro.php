@@ -18,6 +18,7 @@ if(isset($_SESSION['email'])) {
     <link rel="stylesheet" href="../../CSS/Pagina/registro_estilo.css">
     <link rel="stylesheet" href="../../CSS/Pagina/header_estilo.css">
     <link rel="stylesheet" href="../../CSS/Pagina/footer_estilo.css">
+    <script src="../../../Controladores/Pagina/404.js"></script>
 </head>
 <body>
 

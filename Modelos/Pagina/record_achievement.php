@@ -1,25 +1,6 @@
-<!--   CODIGO PARA LLAMAR A LA FUNCION DESDE LOS OTROS ARCHIVOS
-// Incluir el archivo de funciones
-include("funciones.php");
-
-// Llamar a la función RegistrarLogro() para registrar un logro
-$codigo_id = $_SESSION['Codigo_Id']; // Obtener el código ID del usuario desde la sesión
-$logro_id = 1; // ID del logro a registrar
-$resultado = RegistrarLogro($codigo_id, $logro_id);
-
-if ($resultado) {
-    echo "El logro se registró exitosamente.";
-} else {
-    echo "Error al registrar el logro.";
-}
--->
-
-
-
-
 <?php
 // Incluir el archivo de conexión a la base de datos
-include("conexion.php");
+include("../conexion.php");
 
 // Función para registrar un logro en la tabla usuarios_logros
 function RegistrarLogro($codigo_id, $logro_id) {

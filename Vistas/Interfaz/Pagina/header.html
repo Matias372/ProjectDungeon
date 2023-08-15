@@ -32,9 +32,11 @@
                     <div class="dropdown-content">
                         <ul>
                             <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
+                                <li><a href="Vistas/Interfaz/Pagina/Clasificaciones.php">Lista</a></li>
                                 <li><a href="Vistas/Interfaz/Pagina/cuenta.php">Cuenta</a></li>
                                 <li><a href="Modelos/Pagina/logout.php">Salir</a></li>
                             <?php else: ?>
+                                <li><a href="Clasificaciones.php">Lista</a></li>
                                 <li><a href="cuenta.php">Cuenta</a></li>
                                 <li><a href="../../../Modelos/Pagina/logout.php">Salir</a></li>
                             <?php endif; ?>

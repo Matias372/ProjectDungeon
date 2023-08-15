@@ -2,7 +2,7 @@
 session_start(); // Asegurarse de que la sesión esté iniciada
 
 
-include "../game/Objetos.php"; // Incluye tu archivo de objetos
+include "Objetos.php"; // Incluye tu archivo de objetos
 
 
 

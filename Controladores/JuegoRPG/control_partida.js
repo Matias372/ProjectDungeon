@@ -4,7 +4,7 @@
     // Función para enviar el formulario mediante AJAX
     function verificarPartida(codigoId, characterJSON, gameDataJSON) {
         $.ajax({
-            url: '../../php/controladores/check_partida.php',
+            url: '../../Modelos/check_partida.php',
             type: 'POST',
             data: {
                 Cod_User: codigoId,

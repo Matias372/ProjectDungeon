@@ -1,7 +1,7 @@
  // Función para guardar los datos del personaje y la partida en la base de datos
  function saveGameData(codigoId, characterJSON, gameDataJSON) {
     $.ajax({
-        url: '../../php/game/guardar_partida.php',
+        url: '../../Modelos/JuegoRPG/guardar_partida.php',
         type: 'POST',
         data: {
             Codigo_User: codigoId,
@@ -14,19 +14,7 @@
                 alert(response.message);
                 // Redirect to "city.html" after saving
                 SetClass(characterJSON);
-                switch (gameData.Ubicacion) {
-                    case "city.html":
-                            loadScenario("../../html/game/Ciudad/" + gameData.Ubicacion);
-                            break;
-                        case "portal.html":
-                            loadScenario("../../html/game/Ciudad/" + gameData.Ubicacion);
-                            break;
-                    
-                        default:
-                            console.log(gameData.Ubicacion);
-                            loadScenario("../../html/game/portal/" + gameData.Ubicacion);
-                            break;
-                    }
+                loadScenario("../../Vistas/Interfaz/JuegoRPG/Escenarios/" + gameData.Ubicacion);
             } else {
                 alert('Error: ' + response.message);
             }

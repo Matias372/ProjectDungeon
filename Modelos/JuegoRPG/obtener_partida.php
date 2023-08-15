@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
-include "../sesion/conexion.php";
+include "../conexion.php";
 
 // Obtener el Cod_User del cuerpo de la solicitud POST
 $codUser = $_POST["Cod_User"];

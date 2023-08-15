@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 
 // Include the database connection file
-include("../sesion/conexion.php");
+include("../conexion.php");
 
 $response = array();
 

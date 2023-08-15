@@ -94,7 +94,7 @@ function loadScenario(scenarioURL) {
 
 // Function to go back to game.html when "Volver" button is clicked
 function goToIndex() {
-    loadScenario('../../html/game/game.html');
+    loadScenario('../../Vistas/Interfaz/JuegoRPG/game.html');
 }
 
 

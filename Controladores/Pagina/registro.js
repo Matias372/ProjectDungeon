@@ -1,5 +1,5 @@
 function goToIndex() {
-    window.location.href = "../index.php";
+    window.location.href = "../../index.php";
 }
 
 // Obtener el parámetro de la URL
