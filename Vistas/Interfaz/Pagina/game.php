@@ -6,6 +6,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: ../sesion/inicio_sesion.php");
     exit();
 }
+
+
+
 ?>
 
 <!DOCTYPE html>

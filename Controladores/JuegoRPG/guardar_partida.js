@@ -12,6 +12,8 @@
         success: function(response) {
             if (response.status === 'success') {
                 // Redirect to "city.html" after saving
+                alert(response.status);
+                alert(response.message);
                 SetClass(characterJSON);
                 loadScenario("../../../Vistas/Interfaz/JuegoRPG/Escenarios/" + gameData.Ubicacion);
             } else {

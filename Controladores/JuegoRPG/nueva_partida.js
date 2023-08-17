@@ -21,6 +21,7 @@ function createNewGame() {
 
     const nombrePersonaje = document.getElementById('nombre').value.trim();
     const claseSeleccionada = document.querySelector('.personaje.seleccionado');
+    
 
     if (!nombrePersonaje || !claseSeleccionada) {
         alert('Por favor, selecciona una clase y proporciona un nombre para el personaje.');

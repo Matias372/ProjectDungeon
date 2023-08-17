@@ -7,7 +7,7 @@ barraVida.style.width = porcentajeVida + '%';
 barraVida.textContent = vidaActual + '/' + vidaMaxima;
 
 //==========BARRA DE MANA==========
-const barraVida = document.getElementById('barra-mana');
+const barraMana = document.getElementById('barra-mana');
 const manaActual = PJ_active.getMP_actual();
 const manaMaxima = PJ_active.getMPMax();
 const porcentajeMana = (manaActual / manaMaxima) * 100;

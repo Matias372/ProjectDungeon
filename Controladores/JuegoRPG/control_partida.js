@@ -61,8 +61,5 @@ let PJ_active = null;*/
             bonificacionesAplicadas: characterObj.BonificacionesAplicadas
         };
 
-        // Asignar la instancia de PJ_active a la variable globalPJ en game.php
-        if (typeof globalPJ !== 'undefined') {
-            globalPJ = PJ_active;
-        }
+        
     }
