@@ -1,35 +1,4 @@
-/*MENSAJE DE EXITO EN EL REGISTRO----------------*/
 
-/* Estilos para el mensaje de registro exitoso */
-#mensaje-exito {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-  display: none;
-}
-
-#mensaje-exito p {
-  margin-bottom: 10px;
-}
-
-#mensaje-exito button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#mensaje-exito button:hover {
-  background-color: #555;
-}
 
 /*==============ESTILOS BODY==============*/
 body {
@@ -101,4 +70,44 @@ body {
 
 #in4 {
   min-height: 35px; /* Altura mínima de 35px para el div */
+}
+
+/*MENSAJE DE EXITO EN EL REGISTRO----------------*/
+
+/* Estilos para el mensaje de registro exitoso */
+.mensaje-exito{
+  position: absolute;
+  left: 40%;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mensaje-exito p {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: large;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para el botón de cierre */
+.cerrar-mensaje {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  bottom: 50px;
+  
 }

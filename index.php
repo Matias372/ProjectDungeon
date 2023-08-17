@@ -1,5 +1,18 @@
 <?php
 session_start();
+
+// Verificar si se ha enviado un mensaje de éxito
+$mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : "";
+
+// Mensaje a mostrar si el registro fue exitoso
+$mensajeExitoso = "¡Registro exitoso! Puedes iniciar sesión y jugar ahora.";
+
+//CONTROL DE ERRORES.
+
+include("Controladores/Errors_display.php");
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +26,7 @@ session_start();
     <link rel="stylesheet" href="Vistas/CSS/Pagina/header_estilo.css">
     <link rel="stylesheet" href="Vistas/CSS/Pagina/footer_estilo.css">
     <script src="Controladores/Pagina/404.js"></script>
+    <script src="Controladores/Pagina/index.js"></script>
 </head>
 <body>
     <!-- Incluir el encabezado -->
@@ -28,8 +42,17 @@ session_start();
     </section>
     <?php } ?>
 
+    <?php if ($mensaje === "exito") { ?>
+        <div class="mensaje-exito" id="mensaje-exito">
+            <p><?php echo $mensajeExitoso; ?></p>
+            <button class="cerrar-mensaje" onclick="cerrarMensaje()">Cerrar</button>
+        </div>
+    <?php } ?>
+    
     <!-- Agregar el section "introduccion" -->
     <section id="introduccion">
+
+        
 
         <!-- Primer div -->
         <div>

@@ -2,6 +2,8 @@
 // Incluir el archivo de conexión a la base de datos
 include("conexion.php");
 
+// Verificar si se pudo conectar a la base de datos
+
 
 $response["status"] = "error";
 $response["message"] = "ingreso al archivo";
@@ -15,14 +17,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
-    if ($row["count"] > 0) {
-        // Devolver la respuesta al script AJAX
-        $response["status"] = "success";
-        $response["message"] = "se conto los datos de tabla";
+    if ($row["count"] === "1") {
+        // Si hay una fila con el ID proporcionado
+        $response["status"] = "existe";
+        $response["message"] = "La fila existe en la tabla.";
+    } elseif ($row["count"] === "0") {
+        // Si no hay una fila con el ID proporcionado
+        $response["status"] = "new";
+        $response["message"] = "La fila es nueva en la tabla.";
     } else {
-        // Si no existe una fila con el mismo ID, ejecutar la función directamente
+        // Si ocurrió algún error
         $response["status"] = "error";
-        $response["message"] = "no se conto los datos de tabla";
+        $response["message"] = "Ocurrió un error al verificar la fila.";
     }
 }
 

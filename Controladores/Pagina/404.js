@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let validPages = [];
         if(isIndexPage == true){
             validPages = [
+                'index.php',
                 'localhost/Project%20Dungeon/index.php',
                 'Vistas/Interfaz/Pagina/footer.html',
                 'Vistas/Interfaz/Pagina/header.html',
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 'Vistas/Interfaz/Pagina/game.php',
                 'Vistas/Interfaz/Pagina/inicio_sesion.php',
                 'Vistas/Interfaz/Pagina/registro.php',
+                'Modelos/Pagina/logout.php',
                 'https://opengameart.org/users/justin-nichol',
                 'https://www.freepik.es/autor/upklyak',
                 'https://www.freepik.es/autor/pikisuperstar',
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 'game.php',
                 'inicio_sesion.php',
                 'registro.php',
+                '../../../Modelos/Pagina/logout.php',
                 'https://opengameart.org/users/justin-nichol',
                 'https://www.freepik.es/autor/upklyak',
                 'https://www.freepik.es/autor/pikisuperstar',

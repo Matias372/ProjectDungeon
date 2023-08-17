@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <link rel="stylesheet" href="../../../CSS/JuegoRPG/city_estilo.css">
-    <script src="../../../../Controladores/JuegoRPG/control_city.js"></script>
-    <script src="../../../../Controladores/JuegoRPG/estado_personaje.js"></script>
+    <link rel="stylesheet" href="../../../Vistas/CSS/JuegoRPG/city_estilo.css">
+    <script src="../../../Controladores/JuegoRPG/control_city.js"></script>
+    <script src="../../../Controladores/JuegoRPG/estado_personaje.js"></script>
 </head>
 <body>
     <div class="city-content">
         <section id="estado">
             <!-- Aquí mostramos los datos del personaje desde PJ_active -->
-            <img src="../../../Recursos/img/Character/{{PJ_active.Clase}}.png" alt="">
+            <img src="../../../Vistas/Recursos/img/Character/{{PJ_active.Clase}}.png" alt="">
             <h2 id="nombrePersonaje">Nombre</h2>
             <p>Nivel: <span id="nivelPersonaje">1</span></p>
             <div class="barra">
@@ -25,7 +25,7 @@
 
         <section id="UI-Money">
             <div class="Cantidad-M"></div>
-            <img src="../../../Recursos/img/Object/Gold_Icon.png" alt="">
+            <img src="../../../Vistas/Recursos/img/Object/Gold_Icon.png" alt="">
         </section>
 
         <section class="accion">

@@ -4,26 +4,29 @@
     // Función para enviar el formulario mediante AJAX
     function verificarPartida(codigoId, characterJSON, gameDataJSON) {
         $.ajax({
-            url: '../../Modelos/check_partida.php',
+            url: '../../../Modelos/check_partida.php',
             type: 'POST',
             data: {
                 Cod_User: codigoId,
             },
             dataType: 'json',
             success: function(response) {
-                if (response.status === "success") {
+                if (response.status === "existe") {
                     if (confirm("Ya tienes una partida guardada. ¿Deseas sobrescribir los datos?")) {
                         saveGameData(codigoId, characterJSON, gameDataJSON);
                     }
-                } else if (response.status === "error") {
+                } else if (response.status === "new") {
+                    saveGameData(codigoId, characterJSON, gameDataJSON);
+                }else if (response.status === "error") {
                     alert("Ha ocurrido un error dentro del check... ");
                 } else {
                     alert("Respuesta desconocida. A->n_p->eF()");
                 }
             },
-            error: function() {
+            error: function(jqXHR, textStatus, errorThrown) {
                 // Manejo de errores si ocurre algún problema con la llamada AJAX
                 alert("Ha ocurrido un error al validar los datos.");
+                
             }
         });
     }

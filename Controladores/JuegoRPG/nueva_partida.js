@@ -31,7 +31,7 @@ function createNewGame() {
     const character = initializeCharacter(nombrePersonaje, clase);
     const characterJSON = JSON.stringify(character); // Convert the character object to JSON
 
-    const gameData = {
+    gameData = {
         Cod_User: codigoId,
         Nombre: nombrePartida,
         Nivel: nivelPartida,
@@ -94,7 +94,7 @@ function loadScenario(scenarioURL) {
 
 // Function to go back to game.html when "Volver" button is clicked
 function goToIndex() {
-    loadScenario('../../Vistas/Interfaz/JuegoRPG/game.html');
+    loadScenario('../../../Vistas/Interfaz/JuegoRPG/game.html');
 }
 
 

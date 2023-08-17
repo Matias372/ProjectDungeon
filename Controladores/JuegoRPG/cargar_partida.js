@@ -7,7 +7,7 @@ $(document).ready(function() {
     // Función para obtener la partida guardada
     function obtenerPartidaGuardada(codigoId) {
         $.ajax({
-            url: "../../Modelos/check_partida.php",
+            url: "../../../Modelos/check_partida.php",
             type: "POST",
             data: {
                 Cod_User: codigoId,
@@ -33,7 +33,7 @@ $(document).ready(function() {
     function obtenerDatosPartida(codigoId) {
         
         $.ajax({
-            url: "../../Modelos/JuegoRPG/obtener_partida.php",
+            url: "../../../Modelos/JuegoRPG/obtener_partida.php",
             type: "POST",
             data: {
                 Cod_User: codigoId,
@@ -87,7 +87,7 @@ $(document).ready(function() {
     // Función para cargar la partida
     function cargarPartida(partida) {
         $.ajax({
-            url: "../../Modelos/JuegoRPG/cargar_partida.php",
+            url: "../../../Modelos/JuegoRPG/cargar_partida.php",
             type: "POST",
             data: {
                 Cod_User: partida.Cod_User,
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
                     SetClass(JSON.stringify(response.data));
                     alert("se colocan los datos en la variable global de personaje");
-                    loadScenario("../../Vistas/Interfaz/JuegoRPG/Escenarios/" + gameData.Ubicacion);
+                    loadScenario("../../../Vistas/Interfaz/JuegoRPG/Escenarios/" + gameData.Ubicacion);
                     
 
                 } else {
