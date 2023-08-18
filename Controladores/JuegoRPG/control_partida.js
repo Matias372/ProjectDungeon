@@ -39,27 +39,26 @@ let PJ_active = null;*/
 
     // Función para establecer la clase activa (PJ_active) para el resto de escenarios
     function SetClass(characterJSON) {
-        // Parsear el JSON recibido para obtener un objeto del personaje
-        const characterObj = JSON.parse(characterJSON);
-
-        // Crear una nueva instancia de la clase Personaje y establecer sus propiedades con los datos del personaje
-        PJ_active = {
-            nombre: characterObj.nombre,
-            clase: characterObj.clase,
-            nivel: characterObj.nivel,
-            fuerzaBasic: characterObj.fuerzaBasic,
-            resistenciaBasic: characterObj.resistenciaBasic,
-            destrezaBasic: characterObj.destrezaBasic,
-            magiaBasic: characterObj.magiaBasic,
-            fuerzaBonif: characterObj.fuerzaBonif,
-            resistenciaBonif: characterObj.resistenciaBonif,
-            destrezaBonif: characterObj.destrezaBonif,
-            magiaBonif: characterObj.magiaBonif,
-            statPoint: characterObj.statPoint,
-            HP_actual: characterObj.HP_actual,
-            MP_actual: characterObj.MP_actual,
-            bonificacionesAplicadas: characterObj.BonificacionesAplicadas
-        };
-
-        
+        $.ajax({
+            url: '../../../Modelos/JuegoRPG/Generar_PJ.php',
+            type: 'POST',
+            data: {
+                characterJSON: characterJSON
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    alert(response.personaje);
+                    PJ_active = response.personaje; // Asigna la instancia del personaje creada en PHP
+                } else {
+                    alert('Error al crear la instancia del personaje.');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert('Error en la llamada AJAX para crear la instancia del personaje.');
+            }
+        });
     }

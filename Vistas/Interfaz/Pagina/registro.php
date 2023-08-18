@@ -6,6 +6,9 @@ if(isset($_SESSION['email'])) {
     header("Location: ../../../index.php");
     exit();
 }
+//AGREGA EL MANEJO DE ERRORES.
+include('../../../Modelos/Pagina/Errors_display.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +25,10 @@ if(isset($_SESSION['email'])) {
 </head>
 <body>
 
+    
     <!-- Incluir el encabezado -->
     
-        <?php include 'header.html'; ?>
+        <?php include 'header.php'; ?>
     
 
     <form class="registro-form" action="../../../Modelos/Pagina/validar_registro.php" method="POST">

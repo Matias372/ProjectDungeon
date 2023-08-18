@@ -9,6 +9,8 @@ if(!isset($_SESSION['email'])) {
 // Incluir el archivo de conexión a la base de datos y lista de logros
 include("../../../Modelos/conexion.php");
 include("../../../Modelos/Pagina/logros.php");
+//AGREGA EL MANEJO DE ERRORES.
+include('../../../Modelos/Pagina/Errors_display.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +28,9 @@ include("../../../Modelos/Pagina/logros.php");
     
 </head>
 <body>
+    
     <!-- Incluir el archivo header.html -->
-    <?php include("header.html"); ?>
+    <?php include("header.php"); ?>
 
     <section class= datos>
     <div>   

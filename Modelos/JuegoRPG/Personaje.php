@@ -1,4 +1,4 @@
-class Personaje {
+class Personaje{
     private $nombre;
     private $clase;
     private $nivel;
@@ -81,7 +81,7 @@ class Personaje {
         $this->MP_actual = $MP_actual;
 
         // Llamar a la función para aplicar bonificación de clase
-        if (bonificacionesAplicadas == false) {
+        if ($this->bonificacionesAplicadas == false) {
             $this->Clase_bonif();
             $this->bonificacionesAplicadas = true;
         }

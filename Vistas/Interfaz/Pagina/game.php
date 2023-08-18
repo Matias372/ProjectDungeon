@@ -7,7 +7,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit();
 }
 
-
+//AGREGA EL MANEJO DE ERRORES.
+include('../../../Modelos/Pagina/Errors_display.php');
 
 ?>
 
@@ -32,8 +33,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     
 </head>
 <body id= "PageGame">
+    
     <!-- Incluir el encabezado -->
-    <?php include 'header.html'; ?>
+    <?php include 'header.php'; ?>
 
     <!-- Agregar el section "game" -->
     <section class="ext-game">

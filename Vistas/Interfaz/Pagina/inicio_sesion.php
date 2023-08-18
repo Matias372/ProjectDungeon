@@ -6,6 +6,8 @@ if(isset($_SESSION['email'])) {
     header("Location: ../../../index.php");
     exit();
 }
+//AGREGA EL MANEJO DE ERRORES.
+include('../../../Modelos/Pagina/Errors_display.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,10 +23,11 @@ if(isset($_SESSION['email'])) {
     <script src="../../../Controladores/Pagina/404.js"></script>
 </head>
 <body>
-
+    
+    
     <!-- Incluir el encabezado -->
     
-    <?php include 'header.html'; ?>
+    <?php include 'header.php'; ?>
     
 
     

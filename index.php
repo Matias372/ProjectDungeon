@@ -9,7 +9,7 @@ $mensajeExitoso = "¡Registro exitoso! Puedes iniciar sesión y jugar ahora.";
 
 //CONTROL DE ERRORES.
 
-include("Controladores/Errors_display.php");
+include('Modelos/Pagina/Errors_display.php');
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -29,8 +29,10 @@ ini_set('display_errors', '1');
     <script src="Controladores/Pagina/index.js"></script>
 </head>
 <body>
+
+    
     <!-- Incluir el encabezado -->
-    <?php include 'Vistas/Interfaz/Pagina/header.html'; ?>
+    <?php include 'Vistas/Interfaz/Pagina/header.php'; ?>
 
     <?php 
     // Definir la variable $isLoggedIn
