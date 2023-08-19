@@ -1,6 +1,6 @@
 <?php
 
-include 'Personaje.php';
+include ('Personaje.php');
 
 // Verifica si se ha recibido un dato JSON en la solicitud POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['characterJSON'])) {

@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+// Verificar y manejar la expiración de sesión por inactividad
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > SESSION_EXPIRATION) {
+    session_unset(); // Elimina todas las variables de sesión
+    session_destroy(); // Destruye la sesión
+    header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php?error=sesion_expirada");
+    exit();
+}
 // Verificar si hay una sesión iniciada
 if(!isset($_SESSION['email'])) {
     header("Location: ../../../index.php");

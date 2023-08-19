@@ -1,6 +1,19 @@
 <?php
 session_start();
 
+define('SESSION_EXPIRATION', 1800); // 30 minutos
+
+// Verificar y manejar la expiración de sesión por inactividad
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > SESSION_EXPIRATION) {
+    session_unset(); // Elimina todas las variables de sesión
+    session_destroy(); // Destruye la sesión
+    header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php?error=sesion_expirada");
+    exit();
+}
+
+// Actualiza la marca de tiempo de la última actividad
+$_SESSION['last_activity'] = time();
+
 // Inicializar la variable de sesión $_SESSION
 $_SESSION = array();
 
@@ -38,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['Id'] = $row['Id']; // Almacenar el Codigo_Id en la sesión
             $_SESSION['User_Img'] = $row['User_Img']; // Almacenar el User_Img en la sesión
             $_SESSION['Fecha_Creacion'] = $row['Fecha']; // Almacenar la fecha de creación en la sesión
+            define('SESSION_EXPIRATION', 1800);
 
             // Redirigir al index.php con la señal de sesión iniciada
             header("Location: ../../index.php?sesion_iniciada=true");

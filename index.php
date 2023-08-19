@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+// Verificar y manejar la expiración de sesión por inactividad
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > SESSION_EXPIRATION) {
+    session_unset(); // Elimina todas las variables de sesión
+    session_destroy(); // Destruye la sesión
+    header("Location: ../../Vistas/Interfaz/Pagina/inicio_sesion.php?error=sesion_expirada");
+    exit();
+}
+
 // Verificar si se ha enviado un mensaje de éxito
 $mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : "";
 
@@ -8,11 +16,9 @@ $mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : "";
 $mensajeExitoso = "¡Registro exitoso! Puedes iniciar sesión y jugar ahora.";
 
 //CONTROL DE ERRORES.
-
 include('Modelos/Pagina/Errors_display.php');
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-
 ?>
 
 <!DOCTYPE html>
