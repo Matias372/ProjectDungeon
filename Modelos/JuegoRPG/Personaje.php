@@ -1,3 +1,4 @@
+<?php
 class Personaje{
     private $nombre;
     private $clase;
@@ -33,22 +34,35 @@ class Personaje{
     private function Clase_bonif() {
         switch ($this->clase) {
             case 'Bárbaro':
-                $this->fuerzaBonif += 5;
-                break;
-            case 'Mago':
-                $this->magiaBonif += 5;
-                break;
-            case 'Cazador':
-                $this->destrezaBonif += 5;
+                $this->fuerzaBasic = 15;
+                $this->resistenciaBasic = 12;
+                $this->destrezaBasic = 8;
+                $this->magiaBasic = 5;
                 break;
             case 'Guerrero':
-                $this->resistenciaBonif += 5;
+                $this->fuerzaBasic = 12;
+                $this->resistenciaBasic = 15;
+                $this->destrezaBasic = 10;
+                $this->magiaBasic = 5;
+                break;
+            case 'Cazador':
+                $this->fuerzaBasic = 10;
+                $this->resistenciaBasic = 10;
+                $this->destrezaBasic = 15;
+                $this->magiaBasic = 8;
+                break;
+            case 'Mago':
+                $this->fuerzaBasic = 5;
+                $this->resistenciaBasic = 8;
+                $this->destrezaBasic = 10;
+                $this->magiaBasic = 15;
                 break;
             default:
                 // Si la clase no coincide con ninguna opción, no se aplica bonificación.
                 break;
         }
     }
+    
 
     public function __construct($nombre, $clase, $nivel, $fuerzaBasic, $resistenciaBasic, $destrezaBasic, $magiaBasic, $fuerzaBonif, $resistenciaBonif, $destrezaBonif, $magiaBonif, $statPoint, $HP_actual, $MP_actual, $bonificacionesAplicadas) {
         $this->nombre = $nombre;
@@ -63,6 +77,18 @@ class Personaje{
         $this->destrezaBonif = $destrezaBonif;
         $this->magiaBonif = $magiaBonif;
         $this->statPoint = $statPoint;
+
+        /*se debe agregar mas estadisticas terciarias. 
+        fuerzabasica (estadistica basica con la que comienza) 
+        fuerzabonif (estadistica que modifica con puntos de estado el usuario)
+        fuerzaterciaria (estadistica que aumenta con beneficios de equipos)
+        fuerza_total (la suma completa de los valores) (despues se usaria esta para calcularlo con las estadisticas del enemigo y ver daño final)
+        */
+        // verifica si ya se genero anteriormente el personaje
+        if ($this->bonificacionesAplicadas == false) {
+            $this->Clase_bonif();
+            $this->bonificacionesAplicadas = true;
+        }
 
         // Calculate and initialize the properties related to calculations
         $this->HP_Max = $this->calculateHPMax();
@@ -80,11 +106,21 @@ class Personaje{
         $this->HP_actual = $HP_actual;
         $this->MP_actual = $MP_actual;
 
-        // Llamar a la función para aplicar bonificación de clase
-        if ($this->bonificacionesAplicadas == false) {
-            $this->Clase_bonif();
-            $this->bonificacionesAplicadas = true;
-        }
+        
+    }
+
+    //================================ACTUALIZAR ESTADO================================
+    function refreshStats(){
+        //calcular cambios en estado de personaje.
+        $this->HP_Max = $this->calculateHPMax();
+        $this->MP_Max = $this->calculateMPMax();
+        $this->Atk_Fisico = $this->calculateAtkFisico();
+        $this->Atk_Magico = $this->calculateAtkMagico();
+        $this->Defensa_fisica = $this->calculateDefensaFisica();
+        $this->Defensa_Magica = $this->calculateDefensaMagica();
+        $this->Hit_rate = $this->calculateHitRate();
+        $this->atk_speed = $this->calculateAtkSpeed();
+        $this->Crit_chance = $this->calculateCritChance();
     }
 
     //=============================GETTERS=============================
@@ -204,6 +240,37 @@ class Personaje{
         return $this->Crit_chance;
     }
 
+    //============================= SETTERS =============================
+    public function LevelUp(){
+        $this->nivel += 1;
+
+        $this->refreshStats();
+
+        $this->HP_actual = $this->HP_Max;
+        $this->MP_actual = $this->MP_Max;
+        
+    }
+    public function setfuerzaBonif(){
+        $this->fuerzaBonif += 1;
+        $this->statPoint -=1;
+        $this->refreshStats();
+    }
+    public function setDestrezaBonif(){
+        $this->destrezaBonif += 1;
+        $this->statPoint -=1;
+        $this->refreshStats();
+    }
+    public function setresistenciaBonif(){
+        $this->resistenciaBonif += 1;
+        $this->statPoint -=1;
+        $this->refreshStats();
+    }
+    public function setmagiaBonif(){
+        $this->magiaBonif += 1;
+        $this->statPoint -=1;
+        $this->refreshStats();
+    }
+    
     //=============================FORMULAS Y CALCULOS=============================
     
     // Calculate the maximum HP based on attributes
@@ -251,3 +318,5 @@ class Personaje{
         return ($this->destrezaBasic * 0.1) + ($this->destrezaBonif * 0.2);
     }
 }
+
+?>
