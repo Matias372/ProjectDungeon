@@ -31,10 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['characterJSON'])) {
             $decoded_character['MP_actual'],
             $decoded_character['bonificacionesAplicadas']
         );
-
-    
-        $response["status"] = "success";
-        $response["personaje"] = $personaje;
+        
+        $response = $personaje;
     } else {
         $response["status"] = "error";
         $response["message"] = "Error al decodificar el JSON.";
@@ -44,5 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['characterJSON'])) {
     $response["message"] = "No se recibieron datos JSON válidos.";
 }
 // Return the response as JSON
+
 echo json_encode($response);
 ?>

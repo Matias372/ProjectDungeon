@@ -1,5 +1,3 @@
-
-
 // Function to resaltar la clase seleccionada visualmente
 function seleccionarClase(clase){
     const personajes = document.querySelectorAll('.personaje');
@@ -31,6 +29,8 @@ function createNewGame() {
     const clase = claseSeleccionada.id;
     const character = initializeCharacter(nombrePersonaje, clase);
     const characterJSON = JSON.stringify(character); // Convert the character object to JSON
+    
+    
 
     gameData = {
         Cod_User: codigoId,

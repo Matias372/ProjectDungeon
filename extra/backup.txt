@@ -1,0 +1,25 @@
+// Función para establecer la clase activa (PJ_active) para el resto de escenarios
+    function SetClass(characterJSON) {
+        $.ajax({
+            url: '../../../Modelos/JuegoRPG/Generar_PJ.php', //toma los datos basicos y genera la clase personaje
+            type: 'POST',
+            data: {
+                characterJSON: characterJSON
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    PJ_active = response.personaje; // pasa la clase a la variable global
+                    alert(PJ_active.nombre);
+                } else {
+                    alert('Error al crear la instancia del personaje.');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert('Error en la llamada AJAX para crear la instancia del personaje.');
+            }
+        });
+    }

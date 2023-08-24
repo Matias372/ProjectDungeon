@@ -22,4 +22,4 @@ const nivelPersonajeElement = document.getElementById('nivelPersonaje');
 
 // Cargar los datos del personaje desde PJ_active
 nombrePersonajeElement.textContent = PJ_active.nombre;
-nivelPersonajeElement.textContent = PJ_active.nivel;
+nivelPersonajeElement.textContent = PJ_active.getNivel();

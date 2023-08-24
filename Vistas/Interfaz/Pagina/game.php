@@ -15,7 +15,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 //AGREGA EL MANEJO DE ERRORES.
-include('../../../Modelos/Pagina/Errors_display.php');
+include('../../../Modelos/Pagina/Errors_display.php'); 
+include('../../../Modelos/JuegoRPG/Personaje.php'); //SE AGREGO PARA PRUEBA Y ERROR.
 
 ?>
 
@@ -42,7 +43,9 @@ include('../../../Modelos/Pagina/Errors_display.php');
 <body id= "PageGame">
     
     <!-- Incluir el encabezado -->
-    <?php include 'header.php'; ?>
+    <?php
+        include 'header.php'; 
+    ?>
 
     <!-- Agregar el section "game" -->
     <section class="ext-game">

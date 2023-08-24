@@ -47,9 +47,11 @@ let PJ_active = null;*/
             },
             dataType: 'json',
             success: function(response) {
-                if (response.status === 'success') {
-                    alert(response.personaje);
-                    PJ_active = response.personaje; // Asigna la instancia del personaje creada en PHP
+                if (typeof response !== 'undefined' && response.status !== 'error') {
+                    PJ_active = response;  // La respuesta es el objeto de personaje
+                    alert("Nombre del personaje: " + response.clase);
+                    alert("Nombre del personaje: " + PJ_active->getNombre());
+                    alert("Clase del personaje: " + PJ_active.getClase());
                 } else {
                     alert('Error al crear la instancia del personaje.');
                 }
@@ -62,3 +64,4 @@ let PJ_active = null;*/
             }
         });
     }
+    
