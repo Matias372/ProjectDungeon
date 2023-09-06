@@ -29,7 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['characterJSON'])) {
             $decoded_character['statPoint'],
             $decoded_character['HP_actual'],
             $decoded_character['MP_actual'],
-            $decoded_character['bonificacionesAplicadas']
+            $decoded_character['bonificacionesAplicadas'],
+            $decoded_character['fuerzaEquip'],
+            $decoded_character['resistenciaEquip'],
+            $decoded_character['destrezaEquip'],
+            $decoded_character['magiaEquip']
         );
         
         $response = $personaje;

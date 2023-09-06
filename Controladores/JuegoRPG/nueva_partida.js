@@ -61,6 +61,10 @@ function initializeCharacter(nombre, clase) {
     const HP_actual = (nivel * 10) + (fuerza_basic * 5) + (fuerza_bonif * 10); //MODIFICAR
     const MP_actual = (nivel * 5) + (magia_basic * 10) + (magia_bonif * 5);
     const bonificacionesAplicadas = false;
+    const fuerzaEquip = 0;
+    const resistenciaEquip = 0;
+    const destrezaEquip = 0;
+    const magiaEquip = 0;
 
     // Crear un objeto con las propiedades del personaje
     const character = {
@@ -78,7 +82,11 @@ function initializeCharacter(nombre, clase) {
         statPoint: stat_point,
         HP_actual: HP_actual,
         MP_actual: MP_actual,
-        bonificacionesAplicadas: bonificacionesAplicadas
+        bonificacionesAplicadas: bonificacionesAplicadas,
+        fuerzaEquip: fuerzaEquip,
+        resistenciaEquip: resistenciaEquip,
+        destrezaEquip: destrezaEquip,
+        magiaEquip: magiaEquip
     };
 
     return character;
