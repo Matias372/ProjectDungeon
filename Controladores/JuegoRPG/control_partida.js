@@ -49,9 +49,7 @@ let PJ_active = null;*/
             success: function(response) {
                 if (typeof response !== 'undefined' && response.status !== 'error') {
                     PJ_active = response;  // La respuesta es el objeto de personaje
-                    alert("Nombre del personaje: " + response.clase);
-                    alert("Nombre del personaje: " + PJ_active.Nombre);
-                    alert("Clase del personaje: " + PJ_active.Clase);
+                    //alert("Clase del personaje: " + PJ_active.Clase + "\n" + "HP del personaje: " + PJ_active.HP + "\n"+ "MP del personaje: " + PJ_active.MP + "\n" + "ATK del personaje: " + PJ_active.Ataque_Fisico + "\n" + "Nivel del personaje: " + PJ_active.Nivel + "\n");
                 } else {
                     alert('Error al crear la instancia del personaje.');
                 }

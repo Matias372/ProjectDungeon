@@ -19,7 +19,7 @@ barraMana.textContent = manaActual + '/' + manaMaxima;
 var imgElement = document.getElementById("personajeImagen");
 
 // Construir la ruta de la imagen
-var rutaImagen = "../../../Vistas/Recursos/img/Character/" + clasePersonaje + ".png";
+var rutaImagen = "../../../Vistas/Recursos/img/Character/" + PJ_active.Clase + ".png";
 
 // Establecer la ruta de la imagen en la etiqueta <img>
 imgElement.src = rutaImagen;

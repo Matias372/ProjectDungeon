@@ -10,8 +10,8 @@
                 // Actualizar el Cod_User, nombre y nivel del personaje en gameData cuando se carga un nuevo escenario
                 if (gameData) {
                     gameData.Cod_User = document.getElementById('game-content').dataset.codigoId;
-                    gameData.NombrePersonaje = PJ_active.getNombre();
-                    gameData.NivelPersonaje = PJ_active.getNivel();
+                    gameData.NombrePersonaje = PJ_active.Nombre;
+                    gameData.NivelPersonaje = PJ_active.Nivel;
                     gameData.Ubicacion = fileName; // Guardar solo el nombre del archivo
                 }
             }
