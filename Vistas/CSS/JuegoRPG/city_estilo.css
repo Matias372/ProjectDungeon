@@ -1,11 +1,47 @@
-.city-content{
+/* Estilos CSS para el contenedor principal .city-content */
+.city-content {
     background-image: url('../../Recursos/img/Backgrouds/city_day.png');
     background-repeat: no-repeat;
     background-size: 800px 600px;
     width: 800px;
     height: 600px;
+    display: flex;
+    flex-direction: column; /* Cambiamos a disposición en columna para apilar elementos verticalmente */
+    align-items: flex-start; /* Alineación a la izquierda */
 }
 
+/* Estilos CSS para el section "estado" */
+#estado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px; /* Agregamos un margen para separar del borde superior e izquierdo */
+}
+
+#personajeImagen {
+    width: 100px; /* Ajusta el tamaño de la imagen del avatar según tus necesidades */
+}
+
+/* Estilos CSS para el section "UI-Money" */
+#UI-Money {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el contenedor */
+    margin: 10px; /* Agregamos un margen para separar del borde superior e izquierdo */
+}
+
+.Cantidad-M {
+    width: 80px;
+    height: 15px;
+    background-color: #f0f0f0;
+    text-align: center; /* Centra el texto horizontalmente */
+    line-height: 15px; /* Centra el texto verticalmente */
+}
+
+.Cantidad-M img {
+    width: 15px; /* Ajusta el tamaño de la imagen de las monedas */
+    height: 15px; /* Ajusta el tamaño de la imagen de las monedas */
+    margin-left: 5px; /* Agregamos un margen a la izquierda de la imagen */
+}
 /* Estilos CSS para la barra de vida y mana */
 .barra {
     width: 200px;

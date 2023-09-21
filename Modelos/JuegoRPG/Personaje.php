@@ -118,10 +118,17 @@ class Personaje{
         $this->destrezaEquip = $destrezaEquip;
         $this->magiaEquip = $magiaEquip;
 
+
+        // inicializa el hp y mp actual con los valores guardados en base de datos.
+        $this->HP_actual = $HP_actual;
+        $this->MP_actual = $MP_actual;
+
         // verifica si ya se genero anteriormente el personaje
         if ($this->bonificacionesAplicadas == false) {
             $this->Clase_bonif();
             $this->bonificacionesAplicadas = true;
+            $this->HP_actual = $this->calculateHPMax(); //si se genero por primera vez iguala el hp con hp_max
+            $this->MP_actual = $this->calculateMPMax();
         }
 
         // Calculate and initialize the properties related to calculations
@@ -140,9 +147,7 @@ class Personaje{
         $this->Crit_chance = $this->calculateCritChance();
         $this->bonificacionesAplicadas = $bonificacionesAplicadas;
 
-        // Initialize HP_actual and MP_actual with the values from HP_Max and MP_Max
-        $this->HP_actual = $HP_actual;
-        $this->MP_actual = $MP_actual;
+        
 
         //SET variables publicas
         $this->Nombre = $this->nombre;
@@ -202,7 +207,6 @@ class Personaje{
         $this->Critical_Chance = $this->Crit_chance;
     }
 
-   
     //============================= SETTERS =============================
     public function LevelUp(){
         $this->nivel += 1;
@@ -234,16 +238,16 @@ class Personaje{
         $this->refreshStats();
     }
     
-    //=============================FORMULAS Y CALCULOS=============================
+    //=============================FORMULAS Y CALCULOS=============================IMPORTANTE: intval() es para transformar nro a entero
     
     // Calculate the maximum HP based on attributes
     private function calculateHPMax() {
-        return ($this->nivel * 10) + ($this->fuerzaBasic * 5) + ($this->fuerzaBonif * 10); //modificar
+        return intval(10+(($this->fuerzaBasic + $this->fuerzaBonif + $this->fuerzaEquip) + ($this->resistenciaBasic + $this->resistenciaBonif + $this->resistenciaEquip)) * (1+($this->nivel * 1))); 
     }
 
     // Calculate the maximum MP based on attributes
     private function calculateMPMax() {
-        return ($this->nivel * 5) + ($this->magiaBasic * 10) + ($this->magiaBonif * 5);
+        return intval(10+(($this->magiaBasic) + ($this->magiaBonif)+($this->magiaEquip))*(1+($this->nivel * 1)) );
     }
 
     private function calculateFuerzaTotal(){
@@ -261,22 +265,22 @@ class Personaje{
 
     // Calculate physical attack based on attributes, including bonuses and equipment
     private function calculateAtkFisico() {
-        return ($this->nivel * 2) + ($this->FuerzaTotal * 3) + ($this->destrezaBasic);
+        return intval($this->nivel * 2) + ($this->FuerzaTotal * 3) + ($this->destrezaBasic);
     }
 
     // Calculate magical attack based on attributes, including bonuses and equipment
     private function calculateAtkMagico() {
-        return ($this->nivel * 2) + ($this->MagiaTotal * 4) + ($this->destrezaBasic);
+        return intval($this->nivel * 2) + ($this->MagiaTotal * 4) + ($this->destrezaBasic);
     }
 
     // Calculate physical defense based on attributes, including bonuses and equipment
     private function calculateDefensaFisica() {
-        return ($this->nivel * 1) + ($this->FuerzaTotal) + ($this->ResistenciaTotal * 2);
+        return intval($this->nivel * 1) + ($this->FuerzaTotal) + ($this->ResistenciaTotal * 2);
     }
 
     // Calculate magical defense based on attributes, including bonuses and equipment
     private function calculateDefensaMagica() {
-        return ($this->nivel * 1) + ($this->MagiaTotal * 2) + ($this->ResistenciaTotal);
+        return intval($this->nivel * 1) + ($this->MagiaTotal * 2) + ($this->ResistenciaTotal);
     }
 
     // Calculate hit rate based on attributes, including bonuses and equipment

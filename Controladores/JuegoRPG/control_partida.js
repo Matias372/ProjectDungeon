@@ -38,7 +38,7 @@ let PJ_active = null;*/
 
 
     // Función para establecer la clase activa (PJ_active) para el resto de escenarios
-    function SetClass(characterJSON) {
+    function SetClass(characterJSON, callback) {
         $.ajax({
             url: '../../../Modelos/JuegoRPG/Generar_PJ.php',
             type: 'POST',
@@ -48,18 +48,17 @@ let PJ_active = null;*/
             dataType: 'json',
             success: function(response) {
                 if (typeof response !== 'undefined' && response.status !== 'error') {
-                    PJ_active = response;  // La respuesta es el objeto de personaje
-                    //alert("Clase del personaje: " + PJ_active.Clase + "\n" + "HP del personaje: " + PJ_active.HP + "\n"+ "MP del personaje: " + PJ_active.MP + "\n" + "ATK del personaje: " + PJ_active.Ataque_Fisico + "\n" + "Nivel del personaje: " + PJ_active.Nivel + "\n");
+                    PJ_active = response;
+                    callback(PJ_active);
                 } else {
                     alert('Error al crear la instancia del personaje.');
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
                 alert('Error en la llamada AJAX para crear la instancia del personaje.');
             }
         });
     }
+    
+    
     
