@@ -1,0 +1,52 @@
+ESCENARIO	|MENU INICIAL	 |MENU SELECCIÓN						 |MENU CONFIRMACION
+----------------|----------------|---------------------------------------------------------------|-----------------	
+City		|Mover a	 |Tienda							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Gremio							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Portal							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Posada							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Cancelar  ( function loadScenario() + cambio de ubicacion )	 |	
+		|Personaje	 |Estado							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Inventario							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Cancelar  ( function loadScenario() + cambio de ubicacion )	 |	
+		|Guardar	 |function verificarPartida()				 	 |
+----------------|----------------|---------------------------------------------------------------|-------------
+Tienda		|Comprar	 |function ShowBuyList()					 |
+		|Vender		 |function ShowSellList()					 |
+		|Volver a ciudad |function loadScenario() + cambio de ubicacion 		 |
+----------------|----------------|---------------------------------------------------------------|-------------
+Gremio		|Misiones	 |function ShowQuest()						 |
+		|Volver a ciudad |function loadScenario() + cambio de ubicacion 		 |
+----------------|----------------|---------------------------------------------------------------|-------------
+Posada		|Descansar	 |"quieres una habitacion para descansar? Sale  ### G"		 |Confirmar	
+		|		 |								 |Cancelar	
+		|Comprar	 |function ShowBuyList()					 |
+		|Volver a ciudad |function loadScenario() + cambio de ubicacion 		 |
+----------------|----------------|---------------------------------------------------------------|-------------
+Portal		|Explorar Area	 |(mostrar lista de areas para seleccionar)			 |Confirmar	
+		|		 |								 |Cancelar	
+		|Volver a ciudad |function loadScenario() + cambio de ubicacion 		 |
+----------------|----------------|---------------------------------------------------------------|-------------
+Area #		|Explorar	 |function ExplorarArea()					 |
+		|Personaje	 |Estado							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Inventario							 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Cancelar  ( function loadScenario() + cambio de ubicacion )	 |	
+		|Guardar	 |function verificarPartida()					 |
+		|Volver a ciudad |function loadScenario() + cambio de ubicacion  		 |
+----------------|----------------|---------------------------------------------------------------|-------------
+Battle		|Atacar		 |Deseas atacar a X?						 |Confirmar	
+		|		 |								 |Cancelar	
+		|Habilidad	 |function ShowHability() + seleccionar habilidad		 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Cancelar  ( function loadScenario() + cambio de ubicacion )	 |	
+		|Objeto		 |function ShowObjectBattle() + seleccionar object		 |Confirmar	
+		|		 |								 |Cancelar	
+		|		 |Cancelar  ( function loadScenario() + cambio de ubicacion )	 |	
+		|Huir		 |function EscapeFromBattle() + confirmar			 |

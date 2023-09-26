@@ -1,0 +1,382 @@
+// Obtener el escenario actual (deberás definir una forma de obtenerlo)
+const escenarioActual = obtenerEscenarioActual(); // Esto debe ser una función que obtenga el escenario actual
+
+// Definir las opciones iniciales según el escenario
+const opcionesIniciales = obtenerOpcionesIniciales(escenarioActual);
+
+// Generar botones para las opciones iniciales
+const inicialSection = document.getElementById('inicial');
+opcionesIniciales.forEach((opcion) => {
+    const button = document.createElement('button');
+    button.textContent = opcion;
+    button.addEventListener('click', () => mostrarSeleccion(opcion));
+    inicialSection.appendChild(button);
+});
+
+// Función para mostrar opciones de selección
+function mostrarSeleccion(opcion) {
+    // Aquí puedes implementar la lógica para mostrar las opciones de selección según la opción inicial seleccionada
+    const opcionesSeleccion = obtenerOpcionesSeleccion(escenarioActual, opcion);
+
+    // Generar botones para las opciones de selección
+    const seleccionSection = document.getElementById('seleccion');
+    seleccionSection.innerHTML = ''; // Limpiar contenido anterior
+    opcionesSeleccion.forEach((opcionSeleccion) => {
+        const button = document.createElement('button');
+        button.textContent = opcionSeleccion;
+        button.addEventListener('click', () => mostrarConfirmacion(opcionSeleccion));
+        seleccionSection.appendChild(button);
+    });
+
+    // Mostrar el sector de selección
+    inicialSection.style.display = 'none';
+    seleccionSection.style.display = 'block';
+}
+
+// Función para mostrar opciones de confirmación
+function mostrarConfirmacion(opcionSeleccion) {
+    // Aquí puedes implementar la lógica para mostrar las opciones de confirmación según la opción de selección
+    const opcionesConfirmacion = obtenerOpcionesConfirmacion(escenarioActual, opcionSeleccion);
+
+    // Generar botones para las opciones de confirmación
+    const confirmacionSection = document.getElementById('confirmacion');
+    confirmacionSection.innerHTML = ''; // Limpiar contenido anterior
+    opcionesConfirmacion.forEach((opcionConfirmacion) => {
+        const button = document.createElement('button');
+        button.textContent = opcionConfirmacion;
+        button.addEventListener('click', () => realizarAccion(opcionConfirmacion));
+        confirmacionSection.appendChild(button);
+    });
+
+    // Mostrar el sector de confirmación
+    document.getElementById('seleccion').style.display = 'none';
+    confirmacionSection.style.display = 'block';
+}
+
+// Función para realizar la acción seleccionada
+function realizarAccion(accion) {
+    // Aquí puedes implementar la lógica para realizar la acción correspondiente
+    console.log(`Acción realizada: ${accion}`);
+    // Reiniciar el menú
+    reiniciarMenu();
+}
+
+// Función para reiniciar el menú volviendo al sector inicial
+function reiniciarMenu() {
+    document.getElementById('inicial').style.display = 'block';
+    document.getElementById('seleccion').style.display = 'none';
+    document.getElementById('confirmacion').style.display = 'none';
+}
+
+// Debes definir estas funciones para obtener las opciones según el escenario y la selección
+function obtenerEscenarioActual() {
+    // Obtener la URL actual del navegador
+    const urlActual = window.location.href;
+
+    // Analizar la URL para determinar el escenario actual
+    if (urlActual.includes('city.html')) {
+        return 'City'; // Cambia 'City' al nombre del escenario según tu estructura
+    } else if (urlActual.includes('tienda.html')) {
+        return 'Tienda'; // Cambia 'Tienda' al nombre del escenario según tu estructura
+    } else if (urlActual.includes('gremio.html')) {
+        return 'Gremio'; // Cambia 'Gremio' al nombre del escenario según tu estructura
+    } else if (urlActual.includes('posada.html')) {
+        return 'Posada'; // Cambia 'Gremio' al nombre del escenario según tu estructura
+    } else if (urlActual.includes('Portal.html')) {
+        return 'Portal'; // Cambia 'Gremio' al nombre del escenario según tu estructura
+    } else if (urlActual.includes('Area_N')) {
+        return 'Area'; // Cambia 'Gremio' al nombre del escenario según tu estructura
+    }
+    // Agrega más condiciones para otros escenarios según sea necesario
+
+    // Valor predeterminado si no se detecta ningún escenario
+    return 'Desconocido'; // Puedes cambiar 'Desconocido' a lo que necesites
+}
+
+
+function obtenerOpcionesIniciales(escenario) {
+        let opciones = [];
+    
+        switch (escenario) {
+            case 'City':
+                opciones = ['Mover a', 'Personaje', 'Guardar'];
+                break;
+            case 'Tienda':
+                opciones = ['Comprar', 'Vender', 'Volver a ciudad'];
+                break;
+            case 'Gremio':
+                opciones = ['Misiones', 'Volver a ciudad'];
+                break;
+            case 'Posada':
+                opciones = ['Descansar', 'Comprar', 'Volver a ciudad'];
+                break;
+            case 'Portal':
+                opciones = ['Explorar Area', 'Volver a ciudad'];
+                break;
+            case 'Area':
+                opciones = ['Explorar', 'Personaje', 'Guardar', 'Volver a ciudad'];
+                break;
+            case 'Battle':
+                opciones = ['Atacar', 'Habilidad', 'Objeto', 'Huir'];
+                break;
+            default:
+                opciones = ['Desconocido'];
+                break;
+        }
+    
+        return opciones;
+    }
+
+
+    function obtenerOpcionesSeleccion(escenario, opcionInicial) {
+        let opciones = [];
+    
+        switch (escenario) {
+            case 'City':
+                switch (opcionInicial) {
+                    case 'Mover a':
+                        opciones = ['Tienda', 'Gremio', 'Portal', 'Posada', 'Cancelar'];
+                        break;
+                    case 'Personaje':
+                        opciones = ['Estado', 'Inventario', 'Cancelar'];
+                        break;
+                    case 'Guardar':
+                        const PJJSON = JSON.stringify(PJ_active); 
+                        const DataJSON = JSON.stringify(gameData);
+                        const ID = document.getElementById('game-content').dataset.codigoId; 
+                        verificarPartida(ID,PJJSON,DataJSON);
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Tienda':
+                switch (opcionInicial) {
+                    case 'Comprar':
+                        opciones = ['Mostrar Lista de Compra', 'Cancelar'];
+                        break;
+                    case 'Vender':
+                        opciones = ['Mostrar Lista de Venta', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Gremio':
+                switch (opcionInicial) {
+                    case 'Misiones':
+                        opciones = ['Mostrar Lista de Misiones', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Posada':
+                switch (opcionInicial) {
+                    case 'Descansar':
+                        opciones = ['¿Quieres una habitación para descansar?', 'Cancelar'];
+                        break;
+                    case 'Comprar':
+                        opciones = ['Mostrar Lista de Compra', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Portal':
+                switch (opcionInicial) {
+                    case 'Explorar Area':
+                        opciones = ['Mostrar Lista de Áreas', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Area':
+                switch (opcionInicial) {
+                    case 'Explorar':
+                        opciones = ['Explorar el Área', 'Cancelar'];
+                        break;
+                    case 'Personaje':
+                        opciones = ['Estado', 'Inventario', 'Cancelar'];
+                        break;
+                    case 'Guardar':
+                        opciones = ['Verificar Partida', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Battle':
+                switch (opcionInicial) {
+                    case 'Atacar':
+                        opciones = ['¿Deseas atacar a X?', 'Cancelar'];
+                        break;
+                    case 'Habilidad':
+                        opciones = ['Mostrar Habilidades', 'Cancelar'];
+                        break;
+                    case 'Objeto':
+                        opciones = ['Mostrar Objetos', 'Cancelar'];
+                        break;
+                    case 'Huir':
+                        opciones = ['¿Deseas huir de la batalla?', 'Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            default:
+                opciones = ['Cancelar'];
+                break;
+        }
+    
+        return opciones;
+    }
+    
+
+    function obtenerOpcionesConfirmacion(escenario, opcionSeleccion) {
+        let opciones = [];
+    
+        switch (escenario) {
+            case 'City':
+                switch (opcionSeleccion) {
+                    case 'Mover a':
+                    case 'Personaje':
+                    case 'Guardar':
+                        opciones = ['Confirmar', 'Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Tienda':
+                switch (opcionSeleccion) {
+                    case 'Comprar':
+                    case 'Vender':
+                        opciones = ['Mostrar Lista de Compra/Venta', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Gremio':
+                switch (opcionSeleccion) {
+                    case 'Misiones':
+                        opciones = ['Mostrar Lista de Misiones', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Posada':
+                switch (opcionSeleccion) {
+                    case 'Descansar':
+                        opciones = ['¿Confirmar habitación para descansar?', 'Cancelar'];
+                        break;
+                    case 'Comprar':
+                        opciones = ['Mostrar Lista de Compra', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Portal':
+                switch (opcionSeleccion) {
+                    case 'Explorar Area':
+                        opciones = ['Explorar el Área', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Area':
+                switch (opcionSeleccion) {
+                    case 'Explorar':
+                    case 'Personaje':
+                    case 'Guardar':
+                        opciones = ['Confirmar', 'Cancelar'];
+                        break;
+                    case 'Volver a ciudad':
+                        opciones = ['Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            case 'Battle':
+                switch (opcionSeleccion) {
+                    case 'Atacar':
+                    case 'Habilidad':
+                    case 'Objeto':
+                        opciones = ['Confirmar', 'Cancelar'];
+                        break;
+                    case 'Huir':
+                        opciones = ['Confirmar Huida', 'Cancelar'];
+                        break;
+                    default:
+                        opciones = ['Cancelar'];
+                        break;
+                }
+                break;
+    
+            default:
+                opciones = ['Cancelar'];
+                break;
+        }
+    
+        return opciones;
+    }
+    
