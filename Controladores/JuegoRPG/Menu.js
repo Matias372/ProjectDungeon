@@ -29,7 +29,6 @@ function mostrarSeleccion(opcion) {
     });
 
     // Mostrar el sector de selección
-    inicialSection.style.display = 'none';
     seleccionSection.style.display = 'block';
 }
 
@@ -49,8 +48,20 @@ function mostrarConfirmacion(opcionSeleccion) {
     });
 
     // Mostrar el sector de confirmación
-    document.getElementById('seleccion').style.display = 'none';
     confirmacionSection.style.display = 'block';
+}
+
+//Funcion para cancelar opcion
+function CancelarOpcion() {
+    const seleccionSection = document.getElementById('seleccion');
+    const confirmacionSection = document.getElementById('confirmacion');
+    
+    // Verificar cuál es el section actual y ocultarlo
+    if (seleccionSection.style.display === 'block') {
+        seleccionSection.style.display = 'none';
+    } else if (confirmacionSection.style.display === 'block') {
+        confirmacionSection.style.display = 'none';
+    }
 }
 
 // Función para realizar la acción seleccionada
@@ -155,16 +166,16 @@ function obtenerOpcionesIniciales(escenario) {
             case 'Tienda':
                 switch (opcionInicial) {
                     case 'Comprar':
-                        opciones = ['Mostrar Lista de Compra', 'Cancelar'];
+                        //MOSTRAR LISTA DE COMPRAS
                         break;
                     case 'Vender':
-                        opciones = ['Mostrar Lista de Venta', 'Cancelar'];
+                        //MOSTRAR LISTA DE COMPRAS
                         break;
                     case 'Volver a ciudad':
-                        opciones = ['Cancelar'];
+                        //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        //MENSAJE DE ERROR
                         break;
                 }
                 break;
@@ -172,13 +183,13 @@ function obtenerOpcionesIniciales(escenario) {
             case 'Gremio':
                 switch (opcionInicial) {
                     case 'Misiones':
-                        opciones = ['Mostrar Lista de Misiones', 'Cancelar'];
+                        //MOSTRAR LISTA DE MISIONES
                         break;
                     case 'Volver a ciudad':
-                        opciones = ['Cancelar'];
+                        //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        //MENSAJE DE ERROR
                         break;
                 }
                 break;
@@ -186,16 +197,16 @@ function obtenerOpcionesIniciales(escenario) {
             case 'Posada':
                 switch (opcionInicial) {
                     case 'Descansar':
-                        opciones = ['¿Quieres una habitación para descansar?', 'Cancelar'];
+                        opciones = ['¿Quieres una habitación para descansar?', 'Cancelar']; //PASARLO A MENSAJE Y AVANZAR A OPCIONCONFIRMCION
                         break;
                     case 'Comprar':
-                        opciones = ['Mostrar Lista de Compra', 'Cancelar'];
+                        //MOSTRAR LISTA DE COMPRAS
                         break;
                     case 'Volver a ciudad':
-                        opciones = ['Cancelar'];
+                        //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        //MENSAJE DE ERROR
                         break;
                 }
                 break;
@@ -203,13 +214,13 @@ function obtenerOpcionesIniciales(escenario) {
             case 'Portal':
                 switch (opcionInicial) {
                     case 'Explorar Area':
-                        opciones = ['Mostrar Lista de Áreas', 'Cancelar'];
+                        //MOSTRAR LISTA DE AREAS
                         break;
                     case 'Volver a ciudad':
-                        opciones = ['Cancelar'];
+                        //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        //MENSAJE DE ERROR
                         break;
                 }
                 break;
@@ -226,10 +237,10 @@ function obtenerOpcionesIniciales(escenario) {
                         opciones = ['Verificar Partida', 'Cancelar'];
                         break;
                     case 'Volver a ciudad':
-                        opciones = ['Cancelar'];
+                        //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        //MENSAJE DE ERROR
                         break;
                 }
                 break;
@@ -237,19 +248,19 @@ function obtenerOpcionesIniciales(escenario) {
             case 'Battle':
                 switch (opcionInicial) {
                     case 'Atacar':
-                        opciones = ['¿Deseas atacar a X?', 'Cancelar'];
+                        opciones = ['¿Deseas atacar a X?', 'Cancelar'];//PASARLO A MENSAJE Y AVANZAR A OPCIONCONFIRMCION
                         break;
                     case 'Habilidad':
-                        opciones = ['Mostrar Habilidades', 'Cancelar'];
+                        //MOSTRAR LISTA DE HABILIDADES
                         break;
                     case 'Objeto':
-                        opciones = ['Mostrar Objetos', 'Cancelar'];
+                        //MOSTRAR OBJETOS DE INVENTARIO
                         break;
                     case 'Huir':
-                        opciones = ['¿Deseas huir de la batalla?', 'Cancelar'];
+                        opciones = ['¿Deseas huir de la batalla?', 'Cancelar']; //PASARLO A MENSAJE Y AVANZAR A OPCIONCONFIRMCION
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        //MENSAJE DE ERROR
                         break;
                 }
                 break;
