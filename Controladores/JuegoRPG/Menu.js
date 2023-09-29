@@ -9,12 +9,12 @@ const inicialSection = document.getElementById('inicial');
 opcionesIniciales.forEach((opcion) => {
     const button = document.createElement('button');
     button.textContent = opcion;
-    button.addEventListener('click', () => mostrarSeleccion(opcion));
+    button.addEventListener('click', () => mostrarSeleccion(opcion, opcionesIniciales));
     inicialSection.appendChild(button);
 });
 
 // Función para mostrar opciones de selección
-function mostrarSeleccion(opcion) {
+function mostrarSeleccion(opcion, opcionesIniciales) {
     // Aquí puedes implementar la lógica para mostrar las opciones de selección según la opción inicial seleccionada
     const opcionesSeleccion = obtenerOpcionesSeleccion(escenarioActual, opcion);
 
@@ -24,7 +24,7 @@ function mostrarSeleccion(opcion) {
     opcionesSeleccion.forEach((opcionSeleccion) => {
         const button = document.createElement('button');
         button.textContent = opcionSeleccion;
-        button.addEventListener('click', () => mostrarConfirmacion(opcionSeleccion));
+        button.addEventListener('click', () => mostrarConfirmacion(opcionesIniciales, opcionSeleccion));
         seleccionSection.appendChild(button);
     });
 
@@ -33,7 +33,7 @@ function mostrarSeleccion(opcion) {
 }
 
 // Función para mostrar opciones de confirmación
-function mostrarConfirmacion(opcionSeleccion) {
+function mostrarConfirmacion(opcionesIniciales, opcionSeleccion) {
     // Aquí puedes implementar la lógica para mostrar las opciones de confirmación según la opción de selección
     const opcionesConfirmacion = obtenerOpcionesConfirmacion(escenarioActual, opcionSeleccion);
 
@@ -43,7 +43,7 @@ function mostrarConfirmacion(opcionSeleccion) {
     opcionesConfirmacion.forEach((opcionConfirmacion) => {
         const button = document.createElement('button');
         button.textContent = opcionConfirmacion;
-        button.addEventListener('click', () => realizarAccion(opcionConfirmacion));
+        button.addEventListener('click', () => realizarAccion(opcionesIniciales, opcionSeleccion, opcionConfirmacion));//ANALIZAR: para realizar la accion debe verificar que opcion eligio para saber que accion realizar.
         confirmacionSection.appendChild(button);
     });
 
@@ -65,9 +65,11 @@ function CancelarOpcion() {
 }
 
 // Función para realizar la acción seleccionada
-function realizarAccion(accion) {
+function realizarAccion(inicial,seleccion,confirmacion) {
     // Aquí puedes implementar la lógica para realizar la acción correspondiente
-    console.log(`Acción realizada: ${accion}`);
+    console.log(`Acción realizada: ${inicial}, ${seleccion}, ${confirmacion}`);
+    //DESARROLLAR LOGICA===============================================================
+
     // Reiniciar el menú
     reiniciarMenu();
 }
@@ -158,7 +160,7 @@ function obtenerOpcionesIniciales(escenario) {
                         verificarPartida(ID,PJJSON,DataJSON);
                         break;
                     default:
-                        opciones = ['Cancelar'];
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -175,7 +177,7 @@ function obtenerOpcionesIniciales(escenario) {
                         //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        //MENSAJE DE ERROR
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -189,7 +191,7 @@ function obtenerOpcionesIniciales(escenario) {
                         //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        //MENSAJE DE ERROR
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -206,7 +208,7 @@ function obtenerOpcionesIniciales(escenario) {
                         //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        //MENSAJE DE ERROR
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -220,7 +222,7 @@ function obtenerOpcionesIniciales(escenario) {
                         //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        //MENSAJE DE ERROR
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -240,7 +242,7 @@ function obtenerOpcionesIniciales(escenario) {
                         //CAMBIAR UBICACION Y EJECUTAR LOADSCENARIO()
                         break;
                     default:
-                        //MENSAJE DE ERROR
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -260,7 +262,7 @@ function obtenerOpcionesIniciales(escenario) {
                         opciones = ['¿Deseas huir de la batalla?', 'Cancelar']; //PASARLO A MENSAJE Y AVANZAR A OPCIONCONFIRMCION
                         break;
                     default:
-                        //MENSAJE DE ERROR
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
@@ -279,14 +281,24 @@ function obtenerOpcionesIniciales(escenario) {
     
         switch (escenario) {
             case 'City':
-                switch (opcionSeleccion) {
-                    case 'Mover a':
-                    case 'Personaje':
-                    case 'Guardar':
+                switch (opcionSeleccion) {// MODIFICAR- POR OPCION Y AGREGAR UN BOOL PARA CUANDO LA OPCIONSELECCION ES TEXTO.
+                    case 'Tienda':
+                    case 'Gremio':
+                    case 'Portal':
+                    case 'Posada':
                         opciones = ['Confirmar', 'Cancelar'];
                         break;
+                    case 'Cancelar':
+                        CancelarOpcion();
+                        break;
+                    case 'Estado':
+                        //AGREGAR FUNCION PARA MOSTRAR ESTADO DE PERSONAJE
+                        break;
+                    case 'Inventario':
+                        ////AGREGAR FUNCION PARA MOSTRAR INVENTARIO
+                        break;
                     default:
-                        opciones = ['Cancelar'];
+                        alert("ERROR CON opcionInicial");
                         break;
                 }
                 break;
